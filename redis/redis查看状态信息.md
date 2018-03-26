@@ -16,3 +16,9 @@ Info 指定项
 	uptime_in_seconds : 自 Redis 服务器启动以来，经过的秒数
 	uptime_in_days : 自 Redis 服务器启动以来，经过的天数
 	lru_clock : 以分钟为单位进行自增的时钟，用于 LRU 管理
+	
+## clients已连接客户端信息
+connected_clients : 已连接客户端的数量（不包括通过从属服务器连接的客户端）
+client_longest_output_list : 当前连接的客户端当中，最长的输出列表
+client_longest_input_buf : 当前连接的客户端当中，最大输入缓存
+blocked_clients : 正在等待阻塞命令（BLPOP、BRPOP、BRPOPLPUSH）的客户端的数量
