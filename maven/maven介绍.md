@@ -155,6 +155,33 @@ clean、validate、compile、test、package、verify、install、site、deploy
 ## maven依赖包查询
     http://www.mvnrepository.com/
 
+## maven插件
+* mybatis-generator-maven-plugin插件
+    <plugin>
+        <groupId>org.mybatis.generator</groupId>
+        <artifactId>mybatis-generator-maven-plugin</artifactId>
+        <version>1.3.2</version>
+        <configuration>
+            <verbose>true</verbose><!--允许移动生成的文件-->
+            <overwrite>true</overwrite><!--允许覆盖生成的文件-->
+        </configuration>
+    </plugin>
+    详细配置 http://www.cnblogs.com/web369/p/6807925.html
+* tomcat-maven-plugin 插件
+    <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>tomcat-maven-plugin</artifactId>
+        <version>1.1</version>
+        <configuration>
+            <url>http://localhost:8080/manager/text</url>
+            <server>tomcat</server>
+            <username>admin</username>
+            <password>admin</password>
+            <ignorePackaging>true</ignorePackaging>
+        </configuration>  
+    </plugin>
+    详细配置 http://www.cnblogs.com/web369/p/7520233.html
+
 ## maven常用命令
 	mvn:clean 清除产生的项目 target目录
 	mvn:validate 验证项目是否正确，以及所有为了完整构建必要的信息是否可用
