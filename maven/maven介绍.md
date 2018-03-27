@@ -1,6 +1,6 @@
 ## Maven的生命周期
 >maven把项目的构建划分为不同的生命周期(lifecycle)。粗略一点的话，它这个过程(phase)包括：编译、测试、打包、集成测试、验证、部署。maven中所有的执行动作(goal)都需要指明自己在这个过程中的执行位置，然后maven执行的时候，就依照过程的发展依次调用这些goal进行各种处理。这个也是maven的一个基本调度机制。一般来说，位置稍后的过程都会依赖于之前的过程。当然，maven同样提供了配置文件，可以依照用户要求，跳过某些阶段。
-
+clean、validate、compile、test、package、verify、install、site、deploy 
 ## Maven的版本规范
 * groudId：团体、组织的标识符。团体标识的约定是，它以创建这个项目的组织名称的逆向域名(reverse domain name)开头。一般对应着JAVA的包的结构。例如org.apache
 * artifactId:单独项目的唯一标识符。比如我们的tomcat, commons等。不要在artifactId中包含点号(.)。
@@ -112,14 +112,19 @@
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     	
     <dependency>项目相关的所有依赖
-		<groupId>依赖的group ID
-	 	<artifactId> 依赖的artifact ID 
-		<version>依赖的版本号 
-       <type> 依赖类型，默认类型是jar
-       <scope> test </scope> 
+        <groupId>依赖的group ID
+        <artifactId> 依赖的artifact ID 
+        <version>依赖的版本号 
+        <type> 依赖类型，默认类型是jar
+        <scope>主要管理依赖的部署，默认就是compile
+            1.compile（编译范围）：默认值 他表示被依赖项目需要参与当前项目的编译，还有后续的测试，运行周期也参与其中，是一个比较强的依赖。打包的时候通常需要包含进去
+            2.test（测试范围）：依赖项目仅仅参与测试相关的工作，包括测试代码的编译和执行，不会被打包，例如：junit
+            3.runtime（运行时范围）：表示被依赖项目无需参与项目的编译，不过后期的测试和运行周期需要其参与。与compile相比，跳过了编译而已。例如JDBC驱动，适用运行和测试阶段
+            4.provided（已提供范围）：打包的时候可以不用包进去，别的设施会提供。事实上该依赖理论上可以参与编译，测试，运行等周期。相当于compile，但是打包阶段做了exclude操作
+            5.system（系统范围）：从参与度来说，和provided相同，不过被依赖项不会从maven仓库下载，而是从本地文件系统拿。需要添加systemPath的属性来定义路径
     <dependencyManagement>是表示依赖jar包的声明，即你在项目中的dependencyManagement下声明了依赖，maven不会加载该依赖，主要是为了统一管理插件，确保所有子项目使用的插件版本保持一致。
        
-## maven常用命令
+## maven常用命令
 	mvn:clean 清除产生的项目 target目录
 	mvn:validate 验证项目是否正确，以及所有为了完整构建必要的信息是否可用
 	mvn:compile 编译项目的源代码
