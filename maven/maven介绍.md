@@ -116,14 +116,45 @@ clean、validate、compile、test、package、verify、install、site、deploy
         <artifactId> 依赖的artifact ID 
         <version>依赖的版本号 
         <type> 依赖类型，默认类型是jar
+        <exclusions> 排除项目中的依赖冲突时使用。
+        <<optional> 可选依赖阻断依赖的传递性。
         <scope>主要管理依赖的部署，默认就是compile
-            1.compile（编译范围）：默认值 他表示被依赖项目需要参与当前项目的编译，还有后续的测试，运行周期也参与其中，是一个比较强的依赖。打包的时候通常需要包含进去
-            2.test（测试范围）：依赖项目仅仅参与测试相关的工作，包括测试代码的编译和执行，不会被打包，例如：junit
-            3.runtime（运行时范围）：表示被依赖项目无需参与项目的编译，不过后期的测试和运行周期需要其参与。与compile相比，跳过了编译而已。例如JDBC驱动，适用运行和测试阶段
-            4.provided（已提供范围）：打包的时候可以不用包进去，别的设施会提供。事实上该依赖理论上可以参与编译，测试，运行等周期。相当于compile，但是打包阶段做了exclude操作
-            5.system（系统范围）：从参与度来说，和provided相同，不过被依赖项不会从maven仓库下载，而是从本地文件系统拿。需要添加systemPath的属性来定义路径
+            1. compile（编译范围）：默认值 他表示被依赖项目需要参与当前项目的编译，还有后续的测试，运行周期也参与其中，是一个比较强的依赖。打包的时候通常需要包含进去
+            2. test（测试范围）：依赖项目仅仅参与测试相关的工作，包括测试代码的编译和执行，不会被打包，例如：junit
+                <dependency>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                    <version>4.12</version>
+                    <scope>test</scope>
+                </dependency>
+            3. runtime（运行时范围）：表示被依赖项目无需参与项目的编译，不过后期的测试和运行周期需要其参与。与compile相比，跳过了编译而已。例如JDBC驱动，适用运行和测试阶段
+            4. provided（已提供范围）：打包的时候可以不用包进去，别的设施会提供。事实上该依赖理论上可以参与编译，测试，运行等周期。相当于compile，但是打包阶段做了exclude操作
+            <!-- 这个Servlet API JAR 由你的应用服务器或者servlet 容器提供。已提供范围的依赖在编译classpath （不是运行时）可用。它们不是传递性的，也不会被打包。 -->
+                <dependency>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>javax.servlet-api</artifactId>
+                    <version>3.0.1</version>
+                    <scope>provided</scope>
+                </dependency>
+            5. system（系统范围）：从参与度来说，和provided相同，不过被依赖项不会从maven仓库下载，而是从本地文件系统拿。需要添加systemPath的属性来定义路径
     <dependencyManagement>是表示依赖jar包的声明，即你在项目中的dependencyManagement下声明了依赖，maven不会加载该依赖，主要是为了统一管理插件，确保所有子项目使用的插件版本保持一致。
-       
+    <resources> 指定你在Build时需要的资源文件
+        <resource>
+            <targetPath>WEB-INF/resource</targetPath>
+            <!-- 不对文件中的表达式进行处理 -->
+            <filtering>false</filtering>
+            <directory>${basedir}/src/test/resources</directory>
+            <includes>
+                <include>include.xml</include>
+            </includes>
+            <excludes>
+                <exclude>exclude.xml</exclude>
+            </excludes>
+        </resource>
+
+## maven依赖包查询
+    http://www.mvnrepository.com/
+
 ## maven常用命令
 	mvn:clean 清除产生的项目 target目录
 	mvn:validate 验证项目是否正确，以及所有为了完整构建必要的信息是否可用
@@ -132,6 +163,6 @@ clean、validate、compile、test、package、verify、install、site、deploy
 	mvn:package 将编译好的代码打包成可分发的格式，如JAR，WAR
 	mvn:verify 执行所有检查，验证包是有效的，符合质量规范
 	mvn:install 安装包至本地仓库，以备本地的其它项目作为依赖使用
-	mvn:site 命令支持各种文档信息的发布，包括构建过程的各种输出，javadoc，产品文档等。
+	mvn:site 命令支持各种文档信息的发布，包括构建过程的各种输出，产品文档等。
 	mvn:deploy  复制最终的包至远程仓库，共享给其它开发人员和项目（通常和一次正式的发布相关）
     mvn javadoc:javadoc 生成api文档
