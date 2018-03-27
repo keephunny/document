@@ -57,10 +57,10 @@ clean、validate、compile、test、package、verify、install、site、deploy
         mirrorOf：被镜像的服务器的id,这必须和中央仓库的id central完全一致
 	国内阿里云镜象
 	&lt;mirror>
-        &lt;id>nexus-aliyun</id>
-        &lt;mirrorOf>central</mirrorOf>
-        &lt;name>Nexus aliyun</name>
-        &lt;url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        <id>nexus-aliyun</id>
+        <mirrorOf>central</mirrorOf>
+        <name>Nexus aliyun</name>
+        <url>http://maven.aliyun.com/nexus/content/groups/public</url>
 	&lt;/mirror>
 
 
