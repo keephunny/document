@@ -134,3 +134,4 @@ clean、validate、compile、test、package、verify、install、site、deploy
 	mvn:install 安装包至本地仓库，以备本地的其它项目作为依赖使用
 	mvn:site 命令支持各种文档信息的发布，包括构建过程的各种输出，javadoc，产品文档等。
 	mvn:deploy  复制最终的包至远程仓库，共享给其它开发人员和项目（通常和一次正式的发布相关）
+    mvn javadoc:javadoc 生成api文档
