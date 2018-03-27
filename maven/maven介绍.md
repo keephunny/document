@@ -1,18 +1,18 @@
-##Maven的生命周期
+## Maven的生命周期
 >maven把项目的构建划分为不同的生命周期(lifecycle)。粗略一点的话，它这个过程(phase)包括：编译、测试、打包、集成测试、验证、部署。maven中所有的执行动作(goal)都需要指明自己在这个过程中的执行位置，然后maven执行的时候，就依照过程的发展依次调用这些goal进行各种处理。这个也是maven的一个基本调度机制。一般来说，位置稍后的过程都会依赖于之前的过程。当然，maven同样提供了配置文件，可以依照用户要求，跳过某些阶段。
 
-##Maven的版本规范
+## Maven的版本规范
 * groudId：团体、组织的标识符。团体标识的约定是，它以创建这个项目的组织名称的逆向域名(reverse domain name)开头。一般对应着JAVA的包的结构。例如org.apache
 * artifactId:单独项目的唯一标识符。比如我们的tomcat, commons等。不要在artifactId中包含点号(.)。
 * version:一个项目的特定版本。
 * packaging：项目的类型，默认是jar，描述了项目打包后的输出。类型为jar的项目产生一个JAR文件，类型为war的项目产生一个web应用。
 
-##maven的安装配置
-###安装准备
+## maven的安装配置
+### 安装准备
     下载地址：https://maven.apache.org/download.cgi
     选择版本：apache-maven-3.5.3-bin.tar.gz
     由于maven依赖jdk，所以安装前确保已经安装jdk.
-###安装配置
+### 安装配置
 * 下载解压后放到指定目录，例如D:\install\maven\apache-maven-3.5.0目录下
 * 配置Maven环境变量
 * 在我的电脑-------属性-------高级系统设置---------环境变量---------系统变量--------新建
