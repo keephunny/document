@@ -85,7 +85,7 @@
       repositories：远程仓库列表
     activation：自动触发profile的条件逻辑。
     activeProfiles：手动激活profiles的列表，按照profile被应用的顺序定义
-        &lt;activeProfiles>
-            &lt;!-- 要激活的profile id -->
-            &lt;activeProfile>dev</activeProfile>
-        &lt;/activeProfiles>
+        <activeProfiles>
+            <!-- 要激活的profile id -->
+            <activeProfile>dev</activeProfile>
+        </activeProfiles>
