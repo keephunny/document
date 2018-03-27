@@ -85,7 +85,47 @@
       repositories：远程仓库列表
     activation：自动触发profile的条件逻辑。
     activeProfiles：手动激活profiles的列表，按照profile被应用的顺序定义
-        <activeProfiles>
-            <!-- 要激活的profile id -->
-            <activeProfile>dev</activeProfile>
-        </activeProfiles>
+    <activeProfiles>
+        <!-- 要激活的profile id -->
+        <activeProfile>dev</activeProfile>
+    </activeProfiles>
+
+## pom.xml配置
+### parent
+如果项目中没有规定某个元素的值，那么父项目中的对应值即为项目的默认值。坐标包括group ID，artifact ID和 version。
+
+	<parent>父项目的坐标
+		<groupId>被继承的父项目的全球唯一标识符
+		<artifactId>被继承的父项目的构件标识符
+		<version>被继承的父项目的版本
+		<relativePath>父项目的pom.xml文件的相对路径，Maven首先在构建当前项目的地方寻找父项目的pom，其次在文件系统的这个位置（relativePath位置），然后在本地仓库，最后在远程仓库寻找父项目的pom。
+		
+    <modelVersion> 声明项目描述符遵循哪一个POM模型版本
+    <groupId>项目的全球唯一标识符
+    <artifactId>构件的标识符，它和group ID一起唯一标识一个构件
+    <packaging>项目产生的构件类型，例如jar、war、ear、pom。
+    <version> 项目当前版本
+    <name>项目的名称, Maven产生的文档用
+    <url>项目主页的URL, Maven产生的文档用
+    <description>项目的详细描述, Maven 产生的文档用。
+    <properties>项目开发片定义属性
+    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    	
+    <dependency>项目相关的所有依赖
+		<groupId>依赖的group ID
+	 	<artifactId> 依赖的artifact ID 
+		<version>依赖的版本号 
+       <type> 依赖类型，默认类型是jar
+       <scope> test </scope> 
+    <dependencyManagement>是表示依赖jar包的声明，即你在项目中的dependencyManagement下声明了依赖，maven不会加载该依赖，主要是为了统一管理插件，确保所有子项目使用的插件版本保持一致。
+       
+## maven常用命令
+	mvn:clean 清除产生的项目 target目录
+	mvn:validate 验证项目是否正确，以及所有为了完整构建必要的信息是否可用
+	mvn:compile 编译项目的源代码
+	mvn:test 使用合适的单元测试框架运行测试。
+	mvn:package 将编译好的代码打包成可分发的格式，如JAR，WAR
+	mvn:verify 执行所有检查，验证包是有效的，符合质量规范
+	mvn:install 安装包至本地仓库，以备本地的其它项目作为依赖使用
+	mvn:site 命令支持各种文档信息的发布，包括构建过程的各种输出，javadoc，产品文档等。
+	mvn:deploy  复制最终的包至远程仓库，共享给其它开发人员和项目（通常和一次正式的发布相关）
