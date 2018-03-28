@@ -1,4 +1,4 @@
-# redis查看状态信息
+## redis查看状态信息
 * info   all|default
 * Info 指定项
 
@@ -16,12 +16,14 @@
 * uptime_in_seconds : 自 Redis 服务器启动以来，经过的秒数
 * uptime_in_days : 自 Redis 服务器启动以来，经过的天数
 * lru_clock : 以分钟为单位进行自增的时钟，用于 LRU 管理
+![server服务器信息](./resources/QQ20180328-095103@2x.png)
 	
 ## clients已连接客户端信息
 * connected_clients : 已连接客户端的数量（不包括通过从属服务器连接的客户端）
 * client_longest_output_list : 当前连接的客户端当中，最长的输出列表
 * client_longest_input_buf : 当前连接的客户端当中，最大输入缓存
 * blocked_clients : 正在等待阻塞命令（BLPOP、BRPOP、BRPOPLPUSH）的客户端的数量
+![clients已连接客户端信息](./resources/QQ20180328-095141@2x.png)
 
 ## memory内存信息
 * used_memory : 由 Redis 分配器分配的内存总量，以字节（byte）为单位
@@ -40,6 +42,7 @@
 * 当 Redis 释放内存时，分配器可能会，也可能不会，将内存返还给操作系统。
 * 如果 Redis 释放了内存，却没有将内存返还给操作系统，那么 used_memory 的值可能和操作系统显示的 Redis 内存占用并不一致。
 * 查看 used_memory_peak 的值可以验证这种情况是否发生。
+![memory内存信息](./resources/QQ20180328-095212@2x.png)
 
 ## 4､persistence:RDB和AOF相关持久化信息
 * loading:0    一个标志值，记录了服务器是否正在载入持久化文件
@@ -55,6 +58,7 @@
 * aof_last_rewrite_time_sec:-1    记录了最后一次AOF重写操作的耗时
 * aof_current_rewrite_time_sec:-1    如果服务器正在进行AOF重写操作，那么这个值记录的就是当前重写操作已经耗费的时间（单位是秒）
 * aof_last_bgrewrite_status:ok    一个标志值，记录了最后一次重写AOF文件的结果是成功还是失败
+![RDB和AOF相关持久化信息](./resources/QQ20180328-095237@2x.png)
 
 ## 5､stats:一般统计信息
 * total_connections_received:1    服务器已经接受的连接请求数量
@@ -68,6 +72,7 @@
 * pubsub_channels:0    目前被订阅的频道数量
 * pubsub_patterns:0    目前被订阅的模式数量
 * latest_fork_usec:0    最近一次fork()操作耗费的时间(毫秒)
+![一般统计信息](./resources/QQ20180328-095304@2x.png)
 
 ## 6､replication:主从复制信息,master上显示的信息
 * role:master                               #实例的角色，是master or slave
@@ -78,6 +83,7 @@
 * repl_backlog_size:134217728    #复制积压缓冲大小
 * repl_backlog_first_byte_offset:6578955418  #复制缓冲区里偏移量的大小
 * repl_backlog_histlen:134217728   #此值等于 master_repl_offset - repl_backlog_first_byte_offset,该值不会超过repl_backlog_size的大小
+![主从复制信息,master上显示的信息](./resources/QQ20180328-095329@2x.png)
 
 ## 6､replication:主从复制信息,slave上显示的信息
 * role:slave                                        #实例的角色，是master or slave
@@ -96,26 +102,29 @@
 * repl_backlog_first_byte_offset:0 #复制缓冲区里偏移量的大小
 * repl_backlog_histlen:0           #此值等于 master_repl_offset - repl_backlog_first_byte_offset,该值不会超过repl_backlog_size的大小
 
-## 7､cpu:cput计算量统计信息
+## 7､cpu:cpu计算量统计信息
 * used_cpu_sys:0.03    Redis服务器耗费的系统CPU
 * used_cpu_user:0.01    Redis服务器耗费的用户CPU
 * used_cpu_sys_children:0.00    Redis后台进程耗费的系统CPU
 * used_cpu_user_children:0.00    Redis后台进程耗费的用户CPU
+![cpu计算量统计信息](./resources/QQ20180328-095407@2x.png)
 
 ## 8､commandstats:redis命令统计信息
 * cmdstat_get:calls=1664657469,usec=8266063320,usec_per_call=4.97 #call每个命令执行次数,usec总共消耗的CPU时长(单位微秒),平均每次消耗的CPU时长(单位微秒)
+![redis命令统计信息](./resources/QQ20180328-095433@2x.png)
 
 ## 9､cluster:redis集群信息
 * cluster_enabled:1   #实例是否启用集群模式
 
 ## 10､keyspace:数据库相关的统计信息
 * db0:keys=2,expires=0,avg_ttl=0    0号数据库有2个键、已经被删除的过期键数量为0、以及带有生存期的key的数量
+![keyspace:数据库相关的统计信息](./resources/QQ20180328-095514@2x.png)
 
 
 
 
-redis性能查看与监控常用工具
+## redis性能查看与监控常用工具
 1.redis-benchmark
-redis基准信息，redis服务器性能检测 
-redis-benchmark -h localhost -p 6379 -c 100 -n 100000 
-100个并发连接，100000个请求，检测host为localhost 端口为6379的redis服务器性能
+> redis基准信息，redis服务器性能检测  
+> redis-benchmark -h localhost -p 6379 -c 100 -n 100000  
+> 100个并发连接，100000个请求，检测host为localhost 端口为6379的redis服务器性能  
