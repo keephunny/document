@@ -16,7 +16,14 @@ The dynamic firewall daemon firewalld provides a dynamically managed firewall wi
     将具体的端口制定到具体的zone配置文件中
     firewall-cmd --zone=public --permanent --add-port=8010/tcp
 
+
 ### Firewall常用命令
+
+ 
+    启动： systemctl start firewalld
+    查看状态： systemctl status firewalld 
+    停止： systemctl disable firewalld
+    禁用： systemctl stop firewalld
 
     service firewalld restart 重启
     service firewalld start 开启
@@ -93,3 +100,4 @@ The dynamic firewall daemon firewalld provides a dynamically managed firewall wi
     开启某个端口
     #firewall-cmd --permanent --zone=public --add-port=8080-8081/tcp  //永久
     #firewall-cmd  --zone=public --add-port=8080-8081/tcp   //临时
+    
