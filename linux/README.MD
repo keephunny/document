@@ -35,3 +35,16 @@ hostname
 例：#date –set “10/11/10 10:15”
 查看硬件时间的命令： # hwclock
 设置硬件时间的命令： # hwclock –set –date = （月/日/年 时：分：秒）
+
+
+docker run \
+  --name=zabbix-agent-xxl \
+  -h $(hostname) \
+  -p 10050:10050 \
+  -v /:/rootfs \
+  -v /var/run:/var/run \
+  -e "ZA_Server=192.168.54.120" \
+  -d monitoringartist/zabbix-agent-xxl-limited:latest
+
+
+
