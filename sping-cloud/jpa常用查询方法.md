@@ -123,13 +123,15 @@ Pageable pageable=new PageRequest(0,3,null);
     //统计人数 统计类返回值long,尽量写大类型
     @Query(value = "select count(u) from PrpDuser u")
     Long findCountUser();
+
 ## EntityManage
-用@PersistenceContext动态注入Entitymanager
+用@PersistenceContext动态注入Entitymanager  
+
     //创建EntityManage
     @PersistenceContext
     private EntityManager entityManager;
 
-jpql查询语句，非原生sql   jpql里全部是对象和属性，不是数据库里的表和字段，所以注意命名和大小写
+### jpql查询语句，非原生sql   jpql里全部是对象和属性，不是数据库里的表和字段，所以注意命名和大小写
     String dataSql="select p from PrpDcustomer p where p.customerCName like :customerCName";
     Query dataQuery=entityManager.createQuery(dataSql);
     dataQuery.setParameter("customerCName","张%”);
@@ -138,7 +140,7 @@ jpql查询语句，非原生sql   jpql里全部是对象和属性，不是数据
     dataQuery.setMaxResults(10);
     //获取查询结果
     List<PrpDcustomer> list=dataQuery.getResultList();   
-查询行号+对象
+### 查询行号+对象
     String dataSql="select RowNum as LineNum ,p from PrpDcustomer p";
     Query dataQuery=entityManager.createQuery(dataSql);
     //dataQuery.setMaxResults(10);
@@ -148,12 +150,12 @@ jpql查询语句，非原生sql   jpql里全部是对象和属性，不是数据
         PrpDcustomer pc=(PrpDcustomer) obj[1];
         System.out.println(pc.getCustomerCName());
     }
-原生sql查询对象
+### 原生sql查询对象
     String dataSql = "select userCode,userName,userName,createdBy,createdTime from PrpDuser";
     Query dataQuery = entityManager.createNativeQuery(dataSql,PrpDuser.class);
     List<PrpDuser>  list = dataQuery.getResultList();
     //PrpDuser 需要加entity、id注解 
-集合参数
+### 集合参数
     List<String> stringList = new ArrayList<String>();
     stringList.add("001");
     stringList.add("002");
@@ -163,18 +165,18 @@ jpql查询语句，非原生sql   jpql里全部是对象和属性，不是数据
     Query dataQuery = entityManager.createQuery(dataSql);
     dataQuery.setParameter("list", stringList);
     List<PrpDuser> list = dataQuery.getResultList();
-// 执行更新语句
-Query query = em.createQuery("update Person as p set p.name =?1 where p. personid=?2");
-query.setParameter(1, “黎明”);
-query.setParameter(2, new Integer(1) );
-int result = query.executeUpdate(); //影响的记录数
+### 执行更新语句
+    Query query = em.createQuery("update Person as p set p.name =?1 where p. personid=?2");
+    query.setParameter(1, “黎明”);
+    query.setParameter(2, new Integer(1) );
+    int result = query.executeUpdate(); //影响的记录数
 
-插入 方法需要加事务
+### 插入 方法需要加事务
     PrpDuser prpDuser=prpDuserDao.findOne("001");
     prpDuser.setUserCode("017");
     prpDuser.setUserName("张三017");
     entityManager.persist(prpDuser);
-修改 方法需要加事务
+### 修改 方法需要加事务
     PrpDuser prpDuser=new PrpDuser();
     prpDuser.setUserCode("017");
     prpDuser.setUserName("张三");
