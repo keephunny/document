@@ -183,8 +183,10 @@ Pageable pageable=new PageRequest(0,3,null);
     entityManager. merge(prpDuser);
 
 ## 事务管理Transactional
-@Transactional事务：默认只对 RuntimeException 回滚，而非 Exception 进行回滚如果要对 checked Exceptions 进行回滚，则需要 @Transactional(rollbackFor = Exception.class)  
-@Transactional 只能被应用到public方法上, 对于其它非public的方法,如果标记了@Transactional也不会报错,但方法没有事务功能.
+@Transactional事务：默认只对 RuntimeException 回滚，而非 Exception 进行回滚如果要对 checked Exceptions 进行回滚，则需要 @Transactional(rollbackFor = Exception.class)   
+
+@Transactional 只能被应用到public方法上, 对于其它非public的方法,如果标记了@Transactional也不会报错,但方法没有事务功能.  
+
 
     @Transactional
     public void testSysConfig(SysConfigEntity entity) throws Exception {
@@ -210,7 +212,10 @@ Pageable pageable=new PageRequest(0,3,null);
         this.testSysConfig4(entity);
         throw new Exception("sysconfig error");
     }
+
+### 事务的传播特性
 @Transactional(propagation=Propagation.REQUIRED) 注解用作定义一个事务的传播特性。
+
     org.springframework.transaction.annotation.Propagation
     public enum Propagation {  
         REQUIRED(0),
