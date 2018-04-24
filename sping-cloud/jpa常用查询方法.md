@@ -28,7 +28,8 @@
         @Formula --一个SQL表达式，这种属性是只读的,不在数据库生成属性(可以使用sum、average、max等)
 ## DAO接口实现
 ### JpaRepository主要方法，接口都已经声名，直接继承使用
-该接口使用了泛型，需要为其提供两个类型：第一个为该接口处理的域对象类型，第二个为该域对象的主键类型。 如下：  
+该接口使用了泛型，需要为其提供两个类型：第一个为该接口处理的域对象类型，第二个为该域对象的主键类型。 如下
+
     //Spring Data JPA 风格的持久层接口：
     public interface UserDao extends Repository<AccountInfo, Long> {
         //需要UserDao的实现类，框架会为我们完成业务逻辑。
@@ -36,13 +37,14 @@
     }
     //泛型参数中T代表实体类型，Long是实体中id的类型
     List<T> findAll();
-    List<T> findAll(Sort sort);    
+    List<T> findAll(Sort sort);
     List<T> findAll(Iterable<ID> ids);
     <S extends T> List<S> save(Iterable<S> entities);
     <S extends T> S saveAndFlush(S entity);
     void deleteInBatch(Iterable<T> entities);
     void deleteAllInBatch();
     T getOne(ID id);
+
 查询全部方法
     userDao.findAll();
 添加对象
@@ -225,33 +227,33 @@ int result = query.executeUpdate(); //影响的记录数
     NEVER ：以非事务方式运行，如果当前存在事务，则抛出异常。
     NESTED ：如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；如果当前没有事务，则该取值等价于 REQUIRED 。
 ## jpa支持的函数
-方法     说明     类型     支持   测试结果HQL 使用方法  
-ABS(n)     取绝对值    数学函数    JPA QL HQL √   ABS(column_name[数字类型对象属性])
-SQRT(n)     取平方根    数学函数    JPA QL HQL √   SQRT(column_name[数字类型对象属性])
-MOD(x,y)    取余数     数学函数    JPA QL HQL √   MOD([对象属性(数字)或值],[对象属性（数字）或值]数字必须是整型。返回参数1/参数2得的余数。
-SIZE(c)     方法集合内对象数量   集合函数    JPA QL HQL
-MINELEMENT(c)    返回集合中最小元素   集合函数    HQL
-MAXELEMENT(c)    返回集合中最大元素   集合函数    HQL
-MININDEX(c)    返回索引集合最小索引   集合函数    HQL
-MAXINDEX(c)    返回索引集合最大索引   集合函数    HQL
-CONCAT(s1,s2)    连接连个字符串    字符串函数    JPA QL HQL √   CONCAT([对象属性],[对象属性]) 相当与“||”SUBSTRING(s,offset,length) 返回部分字符串    字符串函数    JPA QL HQL √   SUBSTRING([要截取的字符串属性字段]，开始位置，截取长度)
-TRIM([[ BOTH | LEADING   去掉字符串中的某个给定的字符.
-| TRAILING]] char FROM s) 默认去掉字符串两面的空格. 字符串函数    JPA QL HQL √   默认用法，TRIM([字符串对象属性列]) 将字段两端的空格去掉。
-LOWER(s)    小写     字符串函数    JPA QL HQL √   LOWER([字符串对象属性列]) 将该列结果含有的字母全部大写
-UPPER(s)    大写     字符串函数    JPA QL HQL √   UPPER([字符串对象属性列]) 将该列结果含有的字母全部大写  
-LENGTH(s)    返回字符串长度    字符串函数    JPA QL HQL √   LENGTH(字段名) 返回字段内容的长度，包括数字。null值返回null.
-CURRENT_DATE()    返回数据库当前日期   时间函数    JPA QL HQL √   CURRENT_DATE() 返回数据库当前日期
-CURRENT_TIME()    时间     时间函数      √   CURRENT_TIME() 返回数据库当前时间
-CURRENT_    时间戳
-TIMESTAMP()
-SECOND(d)    从日期中提取具体参数分别为: 时间函数    HQL   √   SECOND(时间字段) 空的时候返回null
-MINUTE(d)     秒,分,小时,天,月,年        √   同上
-HOUR(d)               √   同上
-DAY(d)               √   同上
-MONTH(d)              √   同上
-YEAR(d)               √   同上
-CAST(t as type)    强制类型转换    转换函数    HQL   √   CAST([字段或值] as [要转换的类型-int,string...])
-max()
-min()
-count()
-    
+        方法     说明     类型     支持   测试结果HQL 使用方法  
+        ABS(n)     取绝对值    数学函数    JPA QL HQL √   ABS(column_name[数字类型对象属性])
+        SQRT(n)     取平方根    数学函数    JPA QL HQL √   SQRT(column_name[数字类型对象属性])
+        MOD(x,y)    取余数     数学函数    JPA QL HQL √   MOD([对象属性(数字)或值],[对象属性（数字）或值]数字必须是整型。返回参数1/参数2得的余数。
+        SIZE(c)     方法集合内对象数量   集合函数    JPA QL HQL
+        MINELEMENT(c)    返回集合中最小元素   集合函数    HQL
+        MAXELEMENT(c)    返回集合中最大元素   集合函数    HQL
+        MININDEX(c)    返回索引集合最小索引   集合函数    HQL
+        MAXINDEX(c)    返回索引集合最大索引   集合函数    HQL
+        CONCAT(s1,s2)    连接连个字符串    字符串函数    JPA QL HQL √   CONCAT([对象属性],[对象属性]) 相当与“||”SUBSTRING(s,offset,length) 返回部分字符串    字符串函数    JPA QL HQL √   SUBSTRING([要截取的字符串属性字段]，开始位置，截取长度)
+        TRIM([[ BOTH | LEADING   去掉字符串中的某个给定的字符.
+        | TRAILING]] char FROM s) 默认去掉字符串两面的空格. 字符串函数    JPA QL HQL √   默认用法，TRIM([字符串对象属性列]) 将字段两端的空格去掉。
+        LOWER(s)    小写     字符串函数    JPA QL HQL √   LOWER([字符串对象属性列]) 将该列结果含有的字母全部大写
+        UPPER(s)    大写     字符串函数    JPA QL HQL √   UPPER([字符串对象属性列]) 将该列结果含有的字母全部大写  
+        LENGTH(s)    返回字符串长度    字符串函数    JPA QL HQL √   LENGTH(字段名) 返回字段内容的长度，包括数字。null值返回null.
+        CURRENT_DATE()    返回数据库当前日期   时间函数    JPA QL HQL √   CURRENT_DATE() 返回数据库当前日期
+        CURRENT_TIME()    时间     时间函数      √   CURRENT_TIME() 返回数据库当前时间
+        CURRENT_    时间戳
+        TIMESTAMP()
+        SECOND(d)    从日期中提取具体参数分别为: 时间函数    HQL   √   SECOND(时间字段) 空的时候返回null
+        MINUTE(d)     秒,分,小时,天,月,年        √   同上
+        HOUR(d)               √   同上
+        DAY(d)               √   同上
+        MONTH(d)              √   同上
+        YEAR(d)               √   同上
+        CAST(t as type)    强制类型转换    转换函数    HQL   √   CAST([字段或值] as [要转换的类型-int,string...])
+        max()
+        min()
+        count()
+            
