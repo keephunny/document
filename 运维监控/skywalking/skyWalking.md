@@ -10,7 +10,7 @@ APM = Application Performance Management，应用性能管理，对企业系统�
 ## skywalaking 下载地址
 官方地址  https://github.com/OpenSkywalking/skywalking/releases  
 分别下载skywalking-collector.zip，skywalking-web.zip，skywalking-agent.zip 
-
+v3.2.6
 
 https://blog.csdn.net/qq_32792363/article/details/79501167
 https://blog.csdn.net/zhangkang65/article/details/78991760
