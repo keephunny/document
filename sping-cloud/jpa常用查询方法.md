@@ -212,7 +212,23 @@ Pageable pageable=new PageRequest(0,3,null);
         this.testSysConfig4(entity);
         throw new Exception("sysconfig error");
     }
+示例 
 
+    @Override
+    @Transactional
+    public void testdd() {
+        Orders orders=new Orders();
+        orders.setId(16);
+        orders.setOrderName("张三6");
+        
+        UserInfo userInfo=new UserInfo();
+        userInfo.setId(17);
+        userInfo.setUserName("张三6");
+
+        userInfoDao.saveAndFlush(userInfo);
+        System.out.println(1/0);
+        ordersDao.saveAndFlush(orders);
+    }
 ### 事务的传播特性
 @Transactional(propagation=Propagation.REQUIRED) 注解用作定义一个事务的传播特性。
 
