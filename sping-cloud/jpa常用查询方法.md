@@ -28,10 +28,11 @@
         @Formula --一个SQL表达式，这种属性是只读的,不在数据库生成属性(可以使用sum、average、max等)
 ## DAO接口实现
 ### JpaRepository主要方法，接口都已经声名，直接继承使用
-   该接口使用了泛型，需要为其提供两个类型：第一个为该接口处理的域对象类型，第二个为该域对象的主键类型。 如下：
-    Spring Data JPA 风格的持久层接口：
+该接口使用了泛型，需要为其提供两个类型：第一个为该接口处理的域对象类型，第二个为该域对象的主键类型。 如下：  
+    //Spring Data JPA 风格的持久层接口：
     public interface UserDao extends Repository<AccountInfo, Long> {
-        public AccountInfo save(AccountInfo accountInfo);//需要UserDao的实现类，框架会为我们完成业务逻辑。
+        //需要UserDao的实现类，框架会为我们完成业务逻辑。
+        public AccountInfo save(AccountInfo accountInfo);
     }
     //泛型参数中T代表实体类型，Long是实体中id的类型
     List<T> findAll();
