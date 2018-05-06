@@ -12,6 +12,7 @@ ScheduledThreadPoolExecutor：继承ThreadPoolExecutor的ScheduledExecutorServic
 
 ### ThreadPoolExecutor
 线程池Executor底层实现类的ThreadPoolExecutor的构造函数
+
     public ThreadPoolExecutor(int corePoolSize,
                               int maximumPoolSize,
                               long keepAliveTime,
@@ -42,6 +43,7 @@ java通过Executors提供了四种线程池，分别是：
 ### newCachedThreadPool
 创建一个可缓存的线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。
     //线程池为无限大，当执行第二个任务时第一个任务已经完成，会复用执行第一个任务的线程，而不用每次新建线程。
+
     public static void testCachedThreadPool() {
         ExecutorService executor = Executors.newCachedThreadPool();
         for (int i = 0; i < 10; i++) {
@@ -62,6 +64,7 @@ java通过Executors提供了四种线程池，分别是：
     }
 ### newFixedThreadPool
 创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。
+
     public static void testFixedThreadPool(){
         ExecutorService executor=Executors.newFixedThreadPool(3);
         for(int i=0;i<10;i++){
@@ -81,8 +84,10 @@ java通过Executors提供了四种线程池，分别是：
     }
     //线程池大小为3，每个任务间隔2秒输出
 定长线程池的大小最好根据系统资源进行设置，如Runtime,getRuntime().avaliableProcessors()//返回可用处理器的Java虚拟机的数量
+
 ### newScheduledThreadPool
 创建一个定长线程池，支持定时及周期性执行
+
     public static void testScheduledThreadPool() {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(5);
         //延时执行
@@ -107,6 +112,7 @@ java通过Executors提供了四种线程池，分别是：
 ScheduledExecutorService比Timer更安全，功能更强大
 ### newSingleThreadExecutor
 创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有的任务按照指定顺序执行
+
     public static void testSingleThreadExecutor(){
         ExecutorService executor=Executors.newSingleThreadExecutor();
         for (int i = 0; i < 10; i++) {
