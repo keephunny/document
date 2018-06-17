@@ -1,6 +1,6 @@
 https://blog.csdn.net/zhufenglonglove/article/details/51518846
-https://blog.csdn.net/gufengshanyin/article/details/21098879
 
+https://blog.csdn.net/gufengshanyin/article/details/21098879
 ## 常用查询参数
 * defType 指定用于处理查询语句(参数q的内容)的查询解析器，eg:defType=lucene
 * sort 指定响应的排序方式：升序asc或降序desc.同时需要指定按哪个字段进行排序。字段 asc|desc
