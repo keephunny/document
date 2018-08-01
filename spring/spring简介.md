@@ -18,3 +18,56 @@
 
 
 https://www.cnblogs.com/ysocean/p/7466191.html
+
+
+https://www.cnblogs.com/shirui/p/9373606.html
+spring框架是一个轻量级的企业级开发的一站式解决方案，spring框架的四大原则
+* 使用POJO进行轻量级和最小侵入式开发
+* 通过依赖和其于接口编程实现松耦合
+* 通过AOP和默认习惯进行声明式编程
+* 使用AOP和模板减少模式化代码
+* spring模块化设计，可以灵活使用
+
+## 核心容器(core container)
+* spring-core：核心工具类，spring其它模块大量使用spring-core
+* spring-bean：spring定义bean的支持
+* spring-context：运行时spring容器
+* spring-context-support：spring容器对第三方包的集成支持
+* spring-expression：使用表达式语言在运行时查询和操作对象
+
+## AOP
+* spring-aop：基于代码的aop支持
+* spring-aspects：基于aspectj的aop支持 
+
+## 消息(Messaging)
+* spring-messaging：对消息架构和协议的支持
+
+## web
+* spring-web：提供基础的web集成的功能，在web项目中提供spring容器
+* spring-webmvc：提供基于servlet的spring mvc
+* spring-websocket：提供websocket
+* spring-webmvc-portlet：提供porlet环境支持
+
+## 数据访问/集成(Data Access/Integration)
+* spring-jdbc：提供以jdbc访问数据库的支持
+* spring-TX：提供编程式和声明式的事务支持
+* spring-ORM：提供对对象/关系映射技术的支持
+* spring-OXM：提供对对象/XML映射技术的支持
+* spring-JMS：提供对jms的支持 
+
+## spring的生态
+* spring-boot：使用默认开发配置来实现快速开发
+* spring-xd：用来简化大数据应用开发
+* spring-cloud：为分布式系统开发提供工具集
+* spring-integration：通过消息机制对企业集成模式(EIP)的支持 
+* spring-batch：简化及优化大量数拓的批处理操作
+* spring-security：通过认证和授权保护应用
+* spring-hateoas：斟于hateoas原则简化REST服务开发
+* spring-social：与社交网络API(如facebook、weibo、qq)的集成
+* spring-AMQP：对其于AMQP的消息的支持 
+* spring-mobile：提供对手机设备检测的功能，给不同设备返回不同的页面支持 
+* spring-for-Android：主要提供在android上消费RESTful-api的功能
+* spring-web-flow：基于spring mvc提供基于向导流程式的web应用开发
+* spring-webServices：提供了基于协议有限的SOAP/web服务
+* spring-ldap：简化使用LDAP开发
+* spring-session：提供一个API及实现来管理用户会话信息

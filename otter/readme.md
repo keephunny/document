@@ -21,3 +21,5 @@ ETL阶段类似于数据仓库的etl模型，具体可为数据join，数据转�
 
 canale节点配置位置点信息binlog日志。
 添加映射关系，可以配置源表和目标表之间的映射关系。EventProcessor类型Source、clazz自定义映射关系。
+
+https://blog.csdn.net/hackerwin7/article/category/2414361
