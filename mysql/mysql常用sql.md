@@ -1,0 +1,10 @@
+## 删除所有的外键约束
+    SELECT CONCAT('ALTER TABLE ',TABLE_SCHEMA,'.',TABLE_NAME,' DROP FOREIGN KEY ',CONSTRAINT_NAME,' ;') 
+    FROM information_schema.TABLE_CONSTRAINTS c 
+    WHERE c.TABLE_SCHEMA='user_center' AND c.CONSTRAINT_TYPE='FOREIGN KEY';
+## 禁用外键约束
+    -- 禁用外键约束
+    SET FOREIGN_KEY_CHECKS = 0
+    -- 启用外键约束
+    SET FOREIGN_KEY_CHECKS = 1;
+    SET GLOBAL FOREIGN_KEY_CHECKS = 0;

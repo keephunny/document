@@ -47,4 +47,3 @@ docker run \
   -d monitoringartist/zabbix-agent-xxl-limited:latest
 
 
-

@@ -157,3 +157,8 @@ shutdownNow试图停止当前正执行的task，并返回尚未执行的task的l
 
 
 
+### ThreadPoolExecutor
+* corePoolSize：核心池的大小，当线 程池中的线程数目达到corePoolSize后，就会把到达的任务放到缓存队列当中；
+* maximumPoolSize：线程池最大线程数
+* keepAliveTime：表示线程没有任务执行时最多保持多久时间会终止。默认情况下，只有当线程池中的线程数大于corePoolSize 时，keepAliveTime才会起作用，直到线程池中的线程数不大于corePoolSize。
+* unit：参数keepAliveTime的时间单位

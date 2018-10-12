@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<configuration debug="false">  
+    <contextName>yoro</contextName>  
+    <property name="path" value="/data/wmall_logs/"></property>  
+    <!-- 动态 获取变量 name:变量名称，class：动态获取的类名 （类需要实现PropertyDefiner接口）   
+    <define name="USER_HOME"   
+        class="com.p.property.DynamicProperty"> <aProperty>of a.class.implementing.PropertyDefiner</aProperty>   
+    </define>   
+    -->  
+      
+    <!-- 控制台输出 -->  
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">  
+        <encoder>  
+            <pattern>  
+                <!-- 如果要实现在日志里面输出IP等客户端信息 可以写 一个 Filter 过滤器将 ip 等值放到到MDC里面（MDC.put） %X{ip}就是从MDC里面获取key是ip的值 -->  
+                服务器运行时间：%r 日志级别:%p 时间:%d %n 日志位置:%logger %L %m  
+                %xEx%n-------------------------------------------------------%n%n  
+            </pattern>  
+        </encoder>  
+    </appender>  
+  
+    <!-- 输出到文件 -->  
+    <appender name="DEBUG_FILE"  
+        class="ch.qos.logback.core.rolling.RollingFileAppender">  
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">  
+            <level>DEBUG</level>  
+            <onMatch>ACCEPT</onMatch>  
+            <onMismatch>DENY</onMismatch>  
+        </filter>  
+        <file>  
+            ${path}debug.log  
+        </file><!-- ${USER_HOME}获取系统的变量 -->  
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
+            <!-- fileNamePattern 归档模式 %d 表示按时间归档 yyyy-MM-dd_HH-mm 表示按分钟进行归档 i%表示按日志大小进行归档 -->  
+            <fileNamePattern>${path}debug.log.%d{yyyy-MM-dd}.%i.log.zip  
+            </fileNamePattern>  
+            <!-- 保留文件的最大数量 1 表示 只存1分钟前的归档记录 当 归档是根据月份（ yyyy-MM-dd）进行归档 maxHistory=1   
+                表示只保存最近一个月的归档记录 -->  
+            <maxHistory>7</maxHistory>  
+            <timeBasedFileNamingAndTriggeringPolicy  
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">  
+                <!-- 设置文件大于1KB进行压缩归档 -->  
+                <!-- <maxFileSize>100MB</maxFileSize> -->  
+            </timeBasedFileNamingAndTriggeringPolicy>  
+        </rollingPolicy>  
+        <encoder>  
+            <!-- 格式化输出 -->  
+            <pattern>  
+                <!--   
+                [host:%X{req.remoteHost}] [param:%X{req.queryString}]   
+                如果想在日子文件里面显示IP或参数信息配置MDC 过滤器  
+                 <filter>   
+                 <filter-name>MDCInsertingServletFilter</filter-name>   
+                 <filter-class> ch.qos.logback.classic.helpers.MDCInsertingServletFilter</filter-class> </filter>   
+                <filter-mapping>   
+                <filter-name>MDCInsertingServletFilter</filter-name> <url-pattern>/*</url-pattern>   
+                </filter-mapping>  
+                放在web.xml里面就行了 -->  
+                [host:%X{req.remoteHost}] [param:%X{req.queryString}]  
+                [URL:%X{req.requestURL}]%n  
+                级别:%p,类名:%logger,时间:%d,输出行:%L,输出消息:"%m"%n  
+            </pattern>  
+        </encoder>  
+    </appender>  
+    <!-- 输出到文件 -->  
+    <appender name="INFO_FILE"  
+        class="ch.qos.logback.core.rolling.RollingFileAppender">  
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">  
+            <level>INFO</level>  
+            <onMatch>ACCEPT</onMatch>  
+            <onMismatch>DENY</onMismatch>  
+        </filter>  
+        <file>  
+            ${path}info.log  
+        </file>  
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
+            <fileNamePattern>${path}info.log.%d{yyyy-MM-dd}.log.zip  
+            </fileNamePattern>  
+            <maxHistory>7</maxHistory>  
+            <timeBasedFileNamingAndTriggeringPolicy  
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">  
+<!--                 <maxFileSize>5MB</maxFileSize> -->  
+            </timeBasedFileNamingAndTriggeringPolicy>  
+        </rollingPolicy>  
+        <encoder>  
+            <pattern>  
+                [host:%X{req.remoteHost}] [param:%X{req.queryString}]  
+                [URL:%X{req.requestURL}]%n  
+                级别:%p,类名:%logger,时间:%d,输出行:%L,输出消息:"%m"%n-------------------------------------------------------%n%n  
+            </pattern>  
+        </encoder>  
+    </appender>  
+    <appender name="WARN_FILE"  
+        class="ch.qos.logback.core.rolling.RollingFileAppender">  
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">  
+            <level>WARN</level>  
+            <onMatch>ACCEPT</onMatch>  
+            <onMismatch>DENY</onMismatch>  
+        </filter>  
+        <file>  
+            ${path}warn.log  
+        </file>  
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
+            <fileNamePattern>${path}warn.log.%d{yyyy-MM-dd}.log.zip  
+            </fileNamePattern>  
+            <maxHistory>7</maxHistory>  
+            <timeBasedFileNamingAndTriggeringPolicy  
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">  
+                <!-- <maxFileSize>5MB</maxFileSize> -->  
+            </timeBasedFileNamingAndTriggeringPolicy>  
+        </rollingPolicy>  
+        <encoder>  
+            <pattern>  
+                [host:%X{req.remoteHost}] [param:%X{req.queryString}]  
+                [URL:%X{req.requestURL}]%n  
+                级别:%p,类名:%logger,时间:%d,输出行:%L,输出消息:"%m"%n-------------------------------------------------------%n%n  
+            </pattern>  
+        </encoder>  
+    </appender>  
+    <appender name="ERROR_FILE"  
+        class="ch.qos.logback.core.rolling.RollingFileAppender">  
+         <filter class="ch.qos.logback.classic.filter.LevelFilter">   
+            <level>ERROR</level>   
+            <onMatch>ACCEPT</onMatch> <onMismatch>DENY</onMismatch>   
+         </filter>  
+        <file>  
+            ${path}error.log  
+        </file>  
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
+            <fileNamePattern>${path}error.log.%d{yyyy-MM-dd}.log.zip  
+            </fileNamePattern>  
+            <maxHistory>7</maxHistory>  
+            <timeBasedFileNamingAndTriggeringPolicy  
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">  
+                <!-- <maxFileSize>1G</maxFileSize> -->  
+            </timeBasedFileNamingAndTriggeringPolicy>  
+        </rollingPolicy>  
+        <encoder>  
+            <pattern>  
+                [host:%X{req.remoteHost}] [param:%X{req.queryString}]  
+                [URL:%X{req.requestURL}]%n  
+                级别:%p,类名:%logger,时间:%d,输出行:%L,输出消息:"%m"%n-------------------------------------------------------%n%n  
+            </pattern>  
+        </encoder>  
+    </appender>  
+      
+    <logger name="com.gargoylesoftware.htmlunit" level="ERROR" additivity="false" />  
+      
+    <!-- logs.configuration 报下面所有的类 的消息都打印到控制台 additivity 表示不继承父亲 当additivity=true   
+        是会继承他父元素的等级，包括root 节点配置的所有输入方式 additivity=false 只会调用STDOUT(控制台方式输出) <logger   
+        name="logs.configuration" additivity="false"> <appender-ref ref="STDOUT"   
+        /> </logger> -->  
+    <!-- 最高级别配置 不会继承其他输出，配置的 logger 会对root进行继承 除非设置additivity=false -->  
+    <root level="INFO">  
+        <appender-ref ref="STDOUT" />  
+        <!-- <appender-ref ref="DEBUG_FILE" /> -->  
+        <appender-ref ref="INFO_FILE" />  
+        <appender-ref ref="WARN_FILE" />  
+        <appender-ref ref="ERROR_FILE" />  
+    </root>  
+</configuration>  

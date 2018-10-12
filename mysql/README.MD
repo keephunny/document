@@ -22,3 +22,13 @@ BIN – Binary（二进制数）
 UN – Unsigned（无符号）
 ZF – Zero fill（补零）
 AI – Autoincrement（自动增量）
+
+
+mysql主从复制
+mysql mycat
+mysql proxysql
+
+什么是GTID （ Global transaction identifiers ）：
+https://www.cnblogs.com/andy6/p/6979590.html
+
+https://www.cnblogs.com/MrHSR/category/1255732.html
