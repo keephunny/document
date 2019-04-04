@@ -22,3 +22,10 @@ https://www.cnblogs.com/leefreeman/category/1058724.html
 
 jps、jstat、jmap、jstack 
 jvisualvm.exe
+
+
+深入java虚拟机
+https://www.cnblogs.com/java-chen-hao/p/10488689.html
+
+垃圾收信要器与内存分配策略
+https://www.cnblogs.com/java-chen-hao/p/10488574.html
