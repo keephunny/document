@@ -2,6 +2,9 @@
 
 
 ### 名称路径说明
+    ```
+    #使用fdisk -l查看硬盘信息
+    ```
     /mnt/storage  12T硬盘挂载点，用于存图片视频
     /dev/sda 999.0 GB
     /dev/sdb：6001.2 GB
@@ -21,10 +24,10 @@
     [root@whzc-slave ~]# blkid
     /dev/sda1: UUID="af501da6-d93d-417a-899f-661b2e55487a" TYPE="xfs" 
     /dev/sda2: UUID="HY5CWP-E1UL-IlSD-pa3q-R0m2-41th-UYTxRT" TYPE="LVM2_member" 
-    /dev/mapper/centos-root: UUID="6b0dfc72-a651-4fd8-b247-d56308495514" TYPE="xfs" 
-    /dev/mapper/centos-swap: UUID="73507422-dfa3-4570-89fe-724f6f2c414e" TYPE="swap" 
-    /dev/sdb1: UUID="kxv34d-yWZA-YH3F-cJn3-mAkK-L5WS-C6c58A" TYPE="LVM2_member" PARTLABEL="primary" PARTUUID="a6d62e29-6d82-4db2-92d3-184bc123724b" 
-    /dev/sdc1: UUID="22180138-1c31-4218-af79-005d3e354b3d" TYPE="ext4" PARTLABEL="primary" PARTUUID="cb4b35bf-3471-4210-8efe-9242c6afb910" 
+    /dev/mapper/centos-root: UUID="6b0df308495514" TYPE="xfs" 
+    /dev/mapper/centos-swap: UUID="735024f6f2c414e" TYPE="swap" 
+    /dev/sdb1: UUID="kxv34d-WS-C6c58A" TYPE="LVM2_member" PARTLABEL="primary" PARTUUID="a6d6-184bc123724b" 
+    /dev/sdc1: UUID="22180138-1c314b3d" TYPE="ext4" PARTLABEL="primary" PARTUUID="cb4b35bf2c6afb910" 
     #TYPE="ext4" 受pvcreat影响
 
     [root@whzc-slave ~]# lsblk

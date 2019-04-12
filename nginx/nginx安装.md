@@ -123,3 +123,5 @@ systemctl start nginx.service    启动nginx
 systemctl stop nginx.service    结束nginx
 
 systemctl restart nginx.service    重启nginx
+
+
