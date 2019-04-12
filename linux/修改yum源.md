@@ -23,3 +23,8 @@ ls /mnt/cdrom
 
 
   umount /mnt/cdrom
+
+
+
+### 非光盘挂载，直接使用iso文件挂载
+mount -o loop centos.iso /mnt  
