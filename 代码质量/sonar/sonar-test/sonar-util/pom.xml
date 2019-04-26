@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>sonar-parent</artifactId>
+        <groupId>com.project.sonar</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../sonar-parent/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.project.sonar</groupId>
+    <artifactId>sonar-util</artifactId>
+
+    <name>sonar-util</name>
+    <!-- FIXME change it to the project's website -->
+    <url>http://www.example.com</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <sonar.host.url>http://192.168.54.121:9000</sonar.host.url>
+                <sonar.login>f831dd5dd77ff1b8c925cd6b926082560a012946</sonar.login>
+                <sonar.projectKey>com.project.sonar:sonar-util</sonar.projectKey>
+                <sonar.projectName>sonar测试</sonar.projectName>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+
+    </build>
+</project>
