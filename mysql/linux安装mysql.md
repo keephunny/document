@@ -2,13 +2,15 @@
 ### 第一步：下载 
 下载MySQL5.7：http://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.12-1.el6.x86_64.rpm-bundle.tar
 ### 第二步：安装 
-安装前检查服务器是否已安装MySQL，如已安装则将其卸载:        
+安装前检查服务器是否已安装MySQL，如已安装则将其卸载:    
+```    
     rpm -qa|grep mysql  //查看有没有安装，如果有则卸载
     rpm -e --nodeps mysql-libs-5.1.71-1.el6.x86_64  //卸载
-
+```
 将下载的文件进行解压：tar -xf mysql-5.7.12-1.el6.x86_64.rpm-bundle.tar   
 yum -y install autoconf    
-按顺序依次安装：    
+按顺序依次安装：   
+```
     rpm -ivh mysql-community-common-5.7.12-1.el6.x86_64.rpm
     rpm -ivh mysql-community-libs-5.7.12-1.el6.x86_64.rpm
     rpm -ivh mysql-community-devel-5.7.12-1.el6.x86_64.rpm
@@ -59,6 +61,7 @@ skip-name-resolve
 
 
 ### 添加新用户
+```
     //允许本地 IP 访问 localhost, 127.0.0.1
     create user 'test'@'localhost' identified by '123456';
 
@@ -95,11 +98,20 @@ skip-name-resolve
 ### 设置数据库目录
 
 ### 
-error: Failed dependencies:
-    perl(Data::Dumper) is needed by
-yum install -y perl-Data-Dumper
-yum install -y perl perl-devel
+    error: Failed dependencies:
+        perl(Data::Dumper) is needed by
+    yum install -y perl-Data-Dumper
+    yum install -y perl perl-devel
 
 
 ERROR 1820 (HY000): You must SET PASSWORD before executing this statement
 mysql> set password=password('123456');
+
+
+###  开机启动
+chkconfig --list
+
+### 限制内网访问
+```
+    grant all privileges on *.* to 'root'@'192.168.0.0/255.255.0.0' identified by '123456';
+    flush privilges;
