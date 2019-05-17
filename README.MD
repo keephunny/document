@@ -36,3 +36,9 @@ chkconfig --list
     查看so文件是否加载
     ldconfig  -p  | grep hcnetsdk  
 7. idea生jar的几种方式
+
+2019-05-17
+1. 海康视频无插件播放
+https://blog.csdn.net/haoyitech/article/details/79574696
+2. web方式程序升级发布
+3. jenkins执续集成 执续布署
