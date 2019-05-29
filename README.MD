@@ -14,10 +14,10 @@
 * 静态代理 动态代理
 
 
-jvm 堆栈
+jvm 堆栈 
 java  -Xms -Xmx -XX:PermSize -XX:MaxPermSize
 jvm按照其存储数据的内容将所需内存分配为堆区和非堆区
 
-
+dd
 
 Spring + Atomikos 分布式事务实现方式
