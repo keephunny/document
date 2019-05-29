@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset>
+  <rule ref="rulesets/java/migrating.xml/JUnitUseExpected">
+    <priority>3</priority>
+  </rule>
+  <rule ref="rulesets/java/junit.xml/JUnitStaticSuite">
+    <priority>3</priority>
+  </rule>
+  <rule ref="rulesets/java/junit.xml/TestClassWithoutTestCases">
+    <priority>3</priority>
+  </rule>
+  <rule ref="rulesets/java/junit.xml/JUnitTestsShouldIncludeAssert">
+    <priority>3</priority>
+  </rule>
+  <rule ref="rulesets/java/junit.xml/UseAssertSameInsteadOfAssertTrue">
+    <priority>4</priority>
+  </rule>
+  <rule ref="rulesets/java/junit.xml/JUnitAssertionsShouldIncludeMessage">
+    <priority>4</priority>
+  </rule>
+  <rule ref="rulesets/java/junit.xml/UnnecessaryBooleanAssertion">
+    <priority>4</priority>
+  </rule>
+  <rule ref="rulesets/java/migrating.xml/JUnit4TestShouldUseAfterAnnotation">
+    <priority>3</priority>
+  </rule>
+  <rule ref="rulesets/java/migrating.xml/JUnit4SuitesShouldUseSuiteAnnotation">
+    <priority>3</priority>
+  </rule>
+  <rule ref="rulesets/java/junit.xml/SimplifyBooleanAssertion">
+    <priority>4</priority>
+  </rule>
+  <rule ref="rulesets/java/junit.xml/UseAssertNullInsteadOfAssertTrue">
+    <priority>4</priority>
+  </rule>
+  <rule ref="rulesets/java/migrating.xml/JUnit4TestShouldUseTestAnnotation">
+    <priority>3</priority>
+  </rule>
+  <rule ref="rulesets/java/junit.xml/UseAssertTrueInsteadOfAssertEquals">
+    <priority>4</priority>
+  </rule>
+  <rule ref="rulesets/java/junit.xml/JUnitTestContainsTooManyAsserts">
+    <priority>3</priority>
+    <properties>
+      <property name="maximumAsserts" value="1" />
+    </properties>
+  </rule>
+  <rule ref="rulesets/java/migrating.xml/JUnit4TestShouldUseBeforeAnnotation">
+    <priority>3</priority>
+  </rule>
+  <rule ref="rulesets/java/junit.xml/UseAssertEqualsInsteadOfAssertTrue">
+    <priority>4</priority>
+  </rule>
+  <rule ref="rulesets/java/junit.xml/JUnitSpelling">
+    <priority>3</priority>
+  </rule>
+</ruleset>
+

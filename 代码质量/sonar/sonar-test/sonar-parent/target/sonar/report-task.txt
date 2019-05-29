@@ -1,0 +1,6 @@
+projectKey=com.project.sonar:sonar-parent
+serverUrl=http://192.168.54.121:9000
+serverVersion=6.7.6.38781
+dashboardUrl=http://192.168.54.121:9000/dashboard/index/com.project.sonar:sonar-parent
+ceTaskId=AWnOPuGXxvRayUCC0xuz
+ceTaskUrl=http://192.168.54.121:9000/api/ce/task?id=AWnOPuGXxvRayUCC0xuz
