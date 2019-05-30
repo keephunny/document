@@ -136,7 +136,7 @@
 #### 复制剪切文件
 * cp：复制文件
 * scp：远程复制文件 scp /文件名 root@远程IP:/目录
-* mv：移动或重命令文件
+* mv：移动或重命名文件
 #### 查找文件
 * find：从磁盘查找文件，较慢，find /指定查找目录 -name 关键字
     * find ./ -name "my*"搜索当前目录含子目录，所有文件名以my开头的文件。
@@ -271,6 +271,7 @@
 可以自动处理依赖性关系，并且一次安装所有依赖的软体包。
 * yum install
 * yum list
+* yum list installed：已安装
 * yum search 关键字
 * yum remove 包名
 参考：配置光盘镜像源
@@ -379,6 +380,20 @@ KiB Swap:  2097148 total,  2097148 free,        0 used.   679608 avail Mem
     [root@localhost src]# yum install -y ntp
     [root@localhost src]# ntpdate ntp.ntsc.ac.cn && hwclock -w
 ```
+
+### 查看linux版本
+```
+#查看内核版本
+[root@localhost ~]# cat /proc/version 
+    Linux version 3.10.0-229.el7.x86_64 (builder@kbuilder.dev.centos.org) (gcc version 4.8.2 20140120 (Red Hat 4.8.2-16) (GCC) ) #1 SMP Fri Mar 6 11:36:42 UTC 2015
+#查看发行版本
+[root@localhost ~]# cat /etc/redhat-release
+    CentOS Linux release 7.1.1503 (Core) 
+[root@localhost ~]# uname -a
+    Linux localhost.localdomain 3.10.0-229.el7.x86_64 #1 SMP Fri Mar 6 11:36:42 UTC 2015 x86_64 x86_64 x86_64 GNU/Linux
+
+```
 ### shell工具
 windows：Xshell+Xftp
 mac：SecureCRT+SecureFx
+
