@@ -1,11 +1,24 @@
 
 ### 程序目录
-[root@10 jx-webservice]# ll
-drwxr-xr-x.  2 root root 4096 5月  30 14:51 bin
-drwxr-xr-x.  4 root root   70 5月  13 15:53 conf
-drwxr-xr-x. 10 root root 4096 5月  13 16:26 libs
-drwxr-xr-x. 32 root root 4096 5月  30 00:00 logs
-
+```
+[root@10 jx-webservice]# tree
+├── bin
+│   ├── app.pid
+│   ├── err.log
+│   ├── service.sh
+├── conf
+│   ├── application.yml
+│   ├── logback.xml
+│   └── mapper
+│       ├── ReportCityMapper.xml
+│       ├── ReportSiteMapper.xml
+├── libs
+│   ├── mapper-3.5.3.jar
+│   ├── mapper-spring-boot-autoconfigure-1.2.4.jar
+│   ├── mapper-spring-boot-starter-1.2.4.jar
+│   └── xmlschema-core-2.2.2.jar
+├── logs
+```
 ### 启动脚本
 ```
 #!/bin/bash 
