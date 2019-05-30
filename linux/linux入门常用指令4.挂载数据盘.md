@@ -11,7 +11,7 @@ Units = 扇区 of 1 * 512 = 512 bytes
 扇区大小(逻辑/物理)：512 字节 / 512 字节
 I/O 大小(最小/最佳)：512 字节 / 512 字节
 ```
-### 格式化磁盘
+### 分区磁盘
 通过fdisk -l可以看出挂载了sdb容量为5GB的磁盘
 ```
 [root@localhost ~]# fdisk /dev/sdb
@@ -70,10 +70,10 @@ NAME            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
 sdb               8:16   0    5G  0 disk 
 └─sdb1            8:17   0    5G  0 part 
 ```
-### 设备文件系统
+### 格式化文件系统
 ```
 #-j 是ext3
-[root@localhost ~]# mke2fs -j /dev/sdb1
+[root@localhost ~]# mkfs.ext3 /dev/sdb1
     mke2fs 1.42.9 (28-Dec-2013)
     文件系统标签=
     OS type: Linux

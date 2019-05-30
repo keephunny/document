@@ -358,38 +358,27 @@ KiB Swap:  2097148 total,  2097148 free,        0 used.   679608 avail Mem
 * ifconfig eth0 显示一个以太网卡的配置 
 * ifup eth0 启用一个 'eth0' 网络设备 
 * ifdown eth0 禁用一个 'eth0' 网络设备 
+* vim /etc/sysconfig/network-script/ifcfgxxx：配置IP
 * ping
 * traceroute 路由跟踪 
 * lsof -i:端口号：查看端口号
 * netstat -tunlp|grep 查看端口号
 * service network start|stop|restart：网络服务启动、关闭、重启。
+* systemctl stop firewalld ：关闭防火墙服务
+* systemctl start firewalld ：开启防火墙服务
+* systemctl disable firewalld：开机禁用
+* systemctl enable firewalld：开机启用
+* firewall-cmd --state：查看防火墙状态
 
-### 常用服务
-
-#### 防火墙
-
-#### 日期时间配置
+### 日期时间配置
 ```
     #设置日期时间
     [root@localhost src]# date -s 20190501
     [root@localhost src]# date -s 12:00:00
     #安装ntp时间同步服务软件， 同步时间且写入硬件
     [root@localhost src]# yum install -y ntp
-    [root@localhost src]# ntpdate time.windows.com && hwclock -w
+    [root@localhost src]# ntpdate ntp.ntsc.ac.cn && hwclock -w
 ```
-### shell
+### shell工具
 windows：Xshell+Xftp
-mac：SecureCRT
-
-
-### shell
-&
-nohup
-> >>
-
-
-
-shutdown -h now 关闭系统(1) 
-poweroff
-reboot
-ssh root@192.168.1.1
+mac：SecureCRT+SecureFx
