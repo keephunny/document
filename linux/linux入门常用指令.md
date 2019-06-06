@@ -379,7 +379,22 @@ KiB Swap:  2097148 total,  2097148 free,        0 used.   679608 avail Mem
     #安装ntp时间同步服务软件， 同步时间且写入硬件
     [root@localhost src]# yum install -y ntp
     [root@localhost src]# ntpdate ntp.ntsc.ac.cn && hwclock -w
+
+    #先ntpdate检查能否和以上ntp服务器通信。
+    [root@localhost src]# ntpdate -q ntp.ntsc.ac.cn
+        server 114.118.7.163, stratum 2, offset 7.578599, delay 0.04713
+        server 114.118.7.161, stratum 2, offset 7.508745, delay 0.04659
+        5 Jun 17:08:58 ntpdate[15558]: step time server 114.118.7.161 offset 7.508745 sec
+
 ```
+阿里云ntp服务器列表：
+time1.aliyun.com
+time2.aliyun.com
+time3.aliyun.com
+time4.aliyun.com
+time5.aliyun.com
+time6.aliyun.com
+time7.aliyun.com
 
 ### 查看linux版本
 ```
