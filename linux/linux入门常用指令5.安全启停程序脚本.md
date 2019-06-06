@@ -1,7 +1,7 @@
 
 ### 程序目录
 ```
-[root@10 jx-webservice]# tree
+[root@10 xx-webservice]# tree
 ├── bin
 │   ├── app.pid
 │   ├── err.log
@@ -23,7 +23,7 @@
 ```
 #!/bin/bash 
 # chkconfig: 2345 99  90
-# description: jx-web-server
+# description: xx-web-server
 # 指定java命令
 JAVA=$(which java)
 
@@ -53,7 +53,7 @@ funStart(){
         CLASSPATH="$base/conf:$CLASSPATH";
 
     cd $bin_abs_path
-    nohup  $JAVA $JAVA_OPTS  -classpath .:$CLASSPATH com.gsafety.jx.web.Application >/dev/null  2>$base/bin/err.log & echo $! > $base/bin/app.pid
+    nohup  $JAVA $JAVA_OPTS  -classpath .:$CLASSPATH com.xx.xx.web.Application >/dev/null  2>$base/bin/err.log & echo $! > $base/bin/app.pid
 
     PIDS=$(cat "$base/bin/app.pid")
     echo "PID: $PIDS"
