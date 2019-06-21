@@ -371,6 +371,57 @@ KiB Swap:  2097148 total,  2097148 free,        0 used.   679608 avail Mem
 * systemctl enable firewalld：开机启用
 * firewall-cmd --state：查看防火墙状态
 
+配置静态IP
+```
+#查看当前哪块网块正在使用
+[root@localhost network-scripts]# ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 00:0c:29:9d:e9:1b brd ff:ff:ff:ff:ff:ff
+    inet 192.168.41.101/24 brd 192.168.41.255 scope global noprefixroute ens33
+       valid_lft forever preferred_lft forever
+    inet6 fe80::9dce:6b87:e901:e24c/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+
+#  ens33在使用
+
+    ```
+    [root@localhost ]# cd /etc/sysconfig/network-scripts
+    [root@localhost network-scripts]# ls
+    ifcfg-ens33  ifdown-eth   ifdown-post    ifdown-Team      ifup-aliases  ifup-ipv6   ifup-post    ifup-Team      init.ipv6-global
+    ifcfg-lo     ifdown-ippp  ifdown-ppp     ifdown-TeamPort  ifup-bnep     ifup-isdn   ifup-ppp     ifup-TeamPort  network-functions
+    ifdown       ifdown-ipv6  ifdown-routes  ifdown-tunnel    ifup-eth      ifup-plip   ifup-routes  ifup-tunnel    network-functions-ipv6
+    ifdown-bnep  ifdown-isdn  ifdown-sit     ifup             ifup-ippp     ifup-plusb  ifup-sit     ifup-wireless
+    #修改网卡配置
+    [root@localhost network-scripts]# vi ifcfg-ens33
+        TYPE=Ethernet
+        PROXY_METHOD=none
+        BROWSER_ONLY=no
+        BOOTPROTO=STATIC
+        DEFROUTE=yes
+        IPV4_FAILURE_FATAL=no
+        IPV6INIT=yes
+        IPV6_AUTOCONF=yes
+        IPV6_DEFROUTE=yes
+        IPV6_FAILURE_FATAL=no
+        IPV6_ADDR_GEN_MODE=stable-privacy
+        NAME=ens33
+        UUID=59358f39-e8a2-4e1f-8fcf-6a492fc3dde9
+        DEVICE=ens33
+        ONBOOT=yes
+        IPADDR=192.168.41.101
+        NETMASK=255.255.255.0
+        GATEWAY=192.168.41.2
+    #重启生效 
+    [root@localhost network-scripts]# service network restart
+        Restarting network (via systemctl):                        [  OK  ]
+    ```
+
 ### 日期时间配置
 ```
     #设置日期时间

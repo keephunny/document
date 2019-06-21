@@ -28,7 +28,7 @@ checking for C compiler ... not found
 ./configure: error: the HTTP rewrite module requires the PCRE library.
 [root@localhost nginx-1.10.3]# yum install pcre pcre-devel -y
 [root@localhost nginx-1.10.3]# yum install zlib zlib-devel -y
-[root@localhost nginx-1.10.3]# yum install openssl openssl--devel -y
+[root@localhost nginx-1.10.3]# yum install openssl openssl-devel -y
 ```
 
 ### 安装nginx

@@ -46,7 +46,10 @@ restrict安全相关参数
 ```
     #设置定时任务
     [root@localhost src]# crontab -e
+        #每天两点时
         0 2 * * * ntpdate ntp.ntsc.ac.cn && hwclock -w
+        #每小时
+        * */1 * * *  ntpdate ntp.ntsc.ac.cn && hwclock -w
     #查看定时任务
     [root@localhost src]# crontab -l
     #重启服务
