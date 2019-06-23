@@ -1,7 +1,7 @@
  ### 修改host文件
  
 1. C:\Windows\System32\drivers\etc\hosts
-2. https://www.ipaddress.com/查询github的ip
+2. 在https://www.ipaddress.com/ 查询github的ip
 	* github.com
 	* ithub.global.ssl.fastly.net
 ![](./resources/20190623220047.png)
