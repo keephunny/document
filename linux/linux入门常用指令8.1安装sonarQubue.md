@@ -41,6 +41,9 @@
 ### 启动
 不能用root用户启动
 ```
+    [root@localhost src]# useradd sonar
+    [root@localhost src]# passwd sonar    
+    [root@localhost src]# chown -R sonar /usr/local/sonarqube/
     [root@localhost src]# su sonar
     [root@localhost src]$ /usr/local/sonarqube/bin/linux-x86-64/sonar.sh start
     [root@localhost src]$ tail -fn100 /usr/local/sonarqube/logs/sonar.log
