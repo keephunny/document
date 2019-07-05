@@ -1,2 +1,0 @@
-依赖插件
-Email Extension Plugin插件

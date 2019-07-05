@@ -1,10 +1,10 @@
 ```
     [root@localhost /]# yum install subversion -y
     [root@localhost /]# svnadmin create /home/svn
-    [root@localhost /]# vim /home/svn/passwd 
+    [root@localhost /]# vim /home/svn/conf/passwd 
         admin=123456
         test1=123456
-    [root@localhost /]# vim /home/svn/authz
+    [root@localhost /]# vim /home/svn/conf/authz
         #所有文件
         [/]
         admin=rw
@@ -20,7 +20,7 @@
         @group1 = rw
         @group2 = r
         * =
-    [root@localhost /]# vim /home/svn/svnserve.conf 
+    [root@localhost /]# vim /home/svn/conf/svnserve.conf 
         #匿名用户可读
         anon-access = read 
         #授权用户可写
