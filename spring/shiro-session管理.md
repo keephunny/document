@@ -20,3 +20,27 @@
 * ServletContainerSessionManager：使用的默认实现，用于web环境，其直接使用servlet容易的会话。
 * DefaultWebSessionManager：用于web环境的实现，可以替代ServletContainerSessionManager，自己维护着会话，直接废弃了Servlet容器的会话管理。
 
+
+
+
+在一般系统中，也可能需要在session失效后做一些操作： 
+1.控制用户数，当session失效后，系统的用户数减少一个，控制用户数量在一定范围内，确保系统的性能 
+2.控制一个用户多次登录，当session有效时，如果相同用户登录，就提示已经登录了，当session失效后，就可以不同提示，直接登录 
+那么如何在session失效后，进行一系列的操作呢？ 
+这里就需要用到监听器了，即当session因为各种原因失效后，监听器就可以监听到，然后执行监听器中定义好的程序就可以了 
+监听器类为：HttpSessionListener类，有sessionCreated和sessionDestroyed两个方法 
+自己可以继承这个类，然后分别实现 
+sessionCreated指在session创建时执行的方法 
+sessionDestroyed指在session失效时执行的方法 
+例子：
+
+public class OnlineUserListener implements HttpSessionListener{
+      public void sessionCreated(HttpSessionEvent event){
+                 //session创建时执行操作
+      }
+
+      public void sessionDestroyed(HttpSessionEvent event){
+            //session失效时执行操作
+    }
+ }
+
