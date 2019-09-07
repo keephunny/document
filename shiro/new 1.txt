@@ -1,0 +1,27 @@
+ UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(userName, userPwd);
+        Subject subject = SecurityUtils.getSubject();
+
+        //session有效时间
+        Session session = subject.getSession();
+        session.setTimeout(60000 * SessionTimeOut);
+
+        try {
+            subject.login(usernamePasswordToken);
+			
+			
+			
+        SimpleAuthenticationInfo authenticationInfo1 = new SimpleAuthenticationInfo("administrator", "123456", ByteSource.Util.bytes("administrator"), getName());
+        if (1 > 0) {
+            return authenticationInfo1;
+        }
+		
+		
+		
+//        UserInfo user = new UserInfo();
+//        user.setId(1);
+//        user.setRoleId(1);
+//        user.setUserName("administrator");
+//        user.setDepartmentName("部门");
+//        if (1 > 0) {
+//            return user;
+//        }
