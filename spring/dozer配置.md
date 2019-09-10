@@ -62,3 +62,20 @@ mobileNo转换后，前三和后四都使用了*进行了脱敏，
 </mappings>
 ```
 
+日期转换
+```
+<mappings>
+  <configuration>
+    <date-format>yyyy-MM-dd HH:mm:ss</date-format>
+  </configuration>
+
+  <mapping wildcard="true">
+    <class-a>xxxxx.TestObjectA</class-a>
+    <class-b>xxxxx.TestObjectB</class-b>
+    <field>
+      <a>dateString</a>
+      <b>dateObject</b>
+    </field>
+  </mapping>
+</mappings>
+```
