@@ -1,0 +1,76 @@
+https://www.jianshu.com/p/8efcea89b11f
+https://blog.csdn.net/xiejiashu/article/details/71786187
+
+主码流
+rtsp://admin:hik12345@220.249.114.90:554/h264/ch33/main/av_stream
+子码流
+rtsp://admin:hik12345@220.249.114.90:554/h264/ch33/sub/av_stream
+子码流 时间回放
+rtsp://admin:hik12345@220.249.114.90:554/Streaming/tracks/101?starttime=20190723t093812z&endtime=20190723t104816z
+
+rtsp://admin:hik12345@220.249.114.90:554/MPEG-4/ch1/main/av_stream
+
+
+ffmpeg -i rtsp://admin:hik12345@220.249.114.90:554/h264/ch33/main/av_stream -vcodec copy -acodec copy -f flv rtmp://127.0.0.1:1935/live
+ffmpeg -i rtsp://admin:hik12345@220.249.114.90:554/h264/ch33/sub/av_stream -vcodec copy -acodec copy -f flv rtmp://127.0.0.1:1935/live
+
+ffmpeg -i rtsp://admin:hik12345@220.249.114.90:554/h264/ch33/sub/av_stream -vcodec copy -acodec copy -f flv rtmp://127.0.0.1:1935/live
+
+ffmpeg -re -i rtsp://admin:hik12345@220.249.114.90:554/h264/ch33/main/av_stream -vcodec libx264 -preset:v ultrafast -tune:v zerolatency -acodec copy -f flv rtmp://localhost:1935/hls/mystream
+
+
+
+https://flowplayer.com/demos
+
+通过FFmpeg将rtsp流摄像头视频转码为rtmp播放 ngins安装rtmp服务
+https://blog.csdn.net/u012492535/article/details/79220398
+
+
+基于nginx的rtmp的服务器（nginx-rtmp-module）
+https://www.cnblogs.com/qazwsxwtc/p/5384967.html
+重新编译nginx 
+1 --prefix=/opt/nginx --with-stream --with-http_ssl_module --with-stream_ssl_module --with-debug --add-module=../nginx-rtmp-module
+
+Nginx-rtmp 直播媒体实时流实现
+https://www.cnblogs.com/wunaozai/p/9427730.html
+
+https://github.com/arut/nginx-rtmp-module
+
+ngins安装rtmp nginx-full --with-rtmp-module
+https://www.jianshu.com/p/99fd7d447f41
+https://blog.csdn.net/u010004734/article/details/93886021
+
+
+https://blog.csdn.net/wishfly/article/details/44534139
+最简单的基于Flash的流媒体示例：网页播放器（HTTP，RTMP，HLS）
+
+windows下nginx的rtmp配置加载问题 unknown directive "rtmp"
+下载带rtmp模块的nginx版本，如nginx 1.7.11.3 Gryphon，亲测可用
+上述情况为windows版本
+
+利用H5实现RTMP流的WEB移动端直播
+https://www.cnblogs.com/chen1994li/p/9496113.html
+
+
+RTMP流媒体服务器
+
+RTSP 
+Real Time Streaming Protocol，RFC2326，实时传输协议，是TCP/IP协议体系中的一应用层协议。
+
+
+RTMP
+Real Time Messaging Protocol，实时消息传输协议，基于TCP，是一个协议簇，包括RTMP基本协议和RTMPT、RTMPS等。
+RTMP是一种设计用来进行实时数据通信的网络协议，主要用来在Flash/AIR平台和支持RTMP协议的流媒体/交互服务器之间进行音视频数据通信。
+
+
+WebRTC 
+
+HLS
+
+
+
+
+
+
+
+
