@@ -7,6 +7,7 @@ http://erlang.org/download/otp_src_19.2.tar.gz
     [root@localhost src]# tar -xvf otp_src_19.2.tar.gz 
     [root@localhost src]# cd otp_src_19.2
     [root@localhost src]# ./configure --prefix=/usr/local/erlang --enable-smp-support --enable-threads --enable-sctp --enable-kernel-poll --enable-hipe --with-ssl --without-javac
+    [root@localhost src]# ./configure --prefix=/usr/local/erlang --enable-smp-support --enable-threads --enable-sctp --enable-kernel-poll --enable-hipe --with-ssl=/usr/local/openssl --without-javac
     [root@localhost src]# make && make install
     #配置环境变理
     [root@localhost src]# vim /etc/profile
@@ -21,6 +22,10 @@ http://erlang.org/download/otp_src_19.2.tar.gz
         BREAK: (a)bort (c)ontinue (p)roc info (i)nfo (l)oaded
             (v)ersion (k)ill (D)b-tables (d)istribution
 ```
+configure: error: No curses library functions found
+configure: error: /bin/sh '/usr/local/src/rabbitmq/otp_src_19.2/erts/configure' failed for erts
+yum -y install ncurses-devel
+
 
 erlang语言编译配置选项：    
 * prefix 指定安装目录 

@@ -22,7 +22,7 @@
 [root@localhost /]# vi CentOS-Base.repo        
     [base]
     name=base
-    baseurl=file:///mnt//cdrom
+    baseurl=file:///mnt/cdrom/
     enabled=1
     gpgcheck=0
 ```

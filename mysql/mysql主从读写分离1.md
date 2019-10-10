@@ -33,9 +33,9 @@ vim /etc/my.cnf
     binlog_format=MIXED
 
     #日志清理时间
-    expire_logs_days=7
+    expire_logs_days=90
     #日志大小
-    max_binlog_size=100m
+    max_binlog_size=200m
     #缓存大小
     binlog_cache_size=4m
     #最大缓存大小
