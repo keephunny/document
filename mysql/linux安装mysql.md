@@ -115,3 +115,9 @@ chkconfig --list
 ```
     grant all privileges on *.* to 'root'@'192.168.0.0/255.255.0.0' identified by '123456';
     flush privilges;
+
+```
+  
+### 快速导入数据
+		mysql -uroot -pTLlifeline@DB2019 cityll_tongling<cityll-tongling.sql   
+        sql里use 数据库

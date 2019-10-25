@@ -387,7 +387,7 @@ KiB Swap:  2097148 total,  2097148 free,        0 used.   679608 avail Mem
        valid_lft forever preferred_lft forever
     inet6 fe80::9dce:6b87:e901:e24c/64 scope link noprefixroute 
        valid_lft forever preferred_lft forever
-
+```
 #  ens33在使用
 
     ```
@@ -438,6 +438,7 @@ KiB Swap:  2097148 total,  2097148 free,        0 used.   679608 avail Mem
         5 Jun 17:08:58 ntpdate[15558]: step time server 114.118.7.161 offset 7.508745 sec
 
 ```
+
 阿里云ntp服务器列表：
 time1.aliyun.com
 time2.aliyun.com
@@ -459,7 +460,29 @@ time7.aliyun.com
     Linux localhost.localdomain 3.10.0-229.el7.x86_64 #1 SMP Fri Mar 6 11:36:42 UTC 2015 x86_64 x86_64 x86_64 GNU/Linux
 
 ```
+
+### 关闭SELinux
+```
+1.查看命令
+　　getenforce
+2.临时关闭
+　　setenforce 0
+3.永久关闭
+　　vim /etc/selinux/config
+　　将SELINUX=enforcing改为SELINUX=disabled；设置后保存，需要重启才能生效。
+```
+
+
+### 查看hostname
+    ```
+    [root@centos7 ~]$vim /etc/hosts     
+    [root@centos7 ~]$cat /etc/hosts
+    [root@centos7 ~]$hostname               
+    ```
+
+
 ### shell工具
 windows：Xshell+Xftp
 mac：SecureCRT+SecureFx
+
 

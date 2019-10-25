@@ -1,0 +1,56 @@
+https://blog.csdn.net/sdzhangshulong/article/details/80124900
+https://blog.csdn.net/fxq8866/article/details/81739579
+https://blog.csdn.net/qq_35337467/article/details/81508685
+
+### 普通值
+
+### 日期
+
+### 对象
+
+
+### 数组
+
+
+### List
+
+    ignores: [a,b,c,d]
+	
+    ignores:
+      - /api/**
+      - /ap*
+      - /static/*
+
+### Map
+maps: {k1: v1,k2: 12}
+
+
+
+
+yml:
+myProps:
+  varmaplist:
+      key11:
+        - t1
+        - t2
+        - t3
+      key22:
+        - t11
+        - t22
+        - t33
+  list:
+    - topic1
+    - topic2
+    - topic3
+  maps: {key1: 'value1', key2: 'value2'}
+MyProps:
+@Component
+@Data
+@Configuration
+@PropertySource(value = {"classpath:/bootstrap.yml"}, encoding = "utf-8")
+@ConfigurationProperties(prefix = "myProps")
+public class MyProps {
+    private List<String> list;
+    private Map<String,String> maps;
+    private Map<String,List<String>> varmaplist;
+}

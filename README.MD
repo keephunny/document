@@ -69,3 +69,15 @@ Jaccard系数
     3、依次展开如下注册表路径：HKEY_CURRENT_USER---Software---Microsoft--- Windows---CurrentVersion---Explorer---MyComputer---NameSpace；
     4、可以看到NameSpace项目下存在{E701A357-F43B-42c9-98D1-96B6C11EAD87}一类的子项目，在右侧窗口可看到其项目数据为腾讯视频，那么要删除的就是这个项目了；
 
+
+
+拦截器统一封装controller返回对象格式。需要解决参数校验问题，复杂业务场景不能大量使用异常抛出。统一异常处理是否有冲突。
+https://mp.weixin.qq.com/s/DaS8VbITUbfHxdb-diD8hg
+
+
+
+
+VSFTP 安全漏洞
+VSFTP  deny_file
+如何拒绝上传某个具体文件
+如何拒绝上传某个具体文件

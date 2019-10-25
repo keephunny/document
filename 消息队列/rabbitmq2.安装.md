@@ -102,3 +102,19 @@ http://www.rabbitmq.com/releases/rabbitmq-server/v3.6.1/rabbitmq-server-generic-
 * CONFIG_FILE	获取普通配置文件(rabbitmq.conf)的路径.
 * ADVANCED_CONFIG_FILE	获取高级配置文件(advanced.config)的路径.
 * CONF_ENV_FILE	获取环境变量配置文件(rabbitmq-env.conf)路径.
+
+
+### error
+    ```
+    configure: error: No curses library functions found
+    configure: error: /bin/sh '/usr/local/src/rabbitmq/otp_src_19.2/erts/configure' failed for erts
+    yum -y install ncurses-devel
+    yum install ncurses-devel
+
+
+
+    Error: dependent plugins [crypto,ssl] not found; used by [mochiweb,cowlib, cowboy].
+
+    Error: dependent plugins [crypto,ssl] not found; 
+
+    ```

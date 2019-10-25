@@ -1,0 +1,94 @@
+https://www.cnblogs.com/cjsblog/p/8946768.html
+
+
+
+
+
+
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+
+    @NotBlank
+    @Pattern(regexp = "^\\d{11}$", message = "手机号码格式错误")
+    String phoneNumber; //手机号码
+	
+	
+	@NotNull           任何对象的value不能为null
+
+@NotEmpty       集合对象的元素不为0，即集合不为空，也可以用于字符串不为null
+
+@NotBlank        只能用于字符串不为null，并且字符串trim()以后length要大于0
+
+JSR提供的校验注解：         
+@Null   被注释的元素必须为 null    
+@NotNull    被注释的元素必须不为 null    
+@AssertTrue     被注释的元素必须为 true    
+@AssertFalse    被注释的元素必须为 false    
+@Min(value)     被注释的元素必须是一个数字，其值必须大于等于指定的最小值    
+@Max(value)     被注释的元素必须是一个数字，其值必须小于等于指定的最大值    
+@DecimalMin(value)  被注释的元素必须是一个数字，其值必须大于等于指定的最小值    
+@DecimalMax(value)  被注释的元素必须是一个数字，其值必须小于等于指定的最大值    
+@Size(max=, min=)   被注释的元素的大小必须在指定的范围内    
+@Digits (integer, fraction)     被注释的元素必须是一个数字，其值必须在可接受的范围内    
+@Past   被注释的元素必须是一个过去的日期    
+@Future     被注释的元素必须是一个将来的日期    
+@Pattern(regex=,flag=)  被注释的元素必须符合指定的正则表达式   
+@Length(min=6,message="密码长度")
+@Length(groups={})
+为什么要有分组这一说呢？因为，举个例子，添加的时候不需要校验id，而修改的时候id不能为空，有了分组以后，就可以添加的时候校验用组A，修改的时候校验用组B
+
+
+
+
+### 约束性注解(简单)说明
+@AssertFalse：可以为null,如果不为null的话必须为false
+@AssertTrue：可以为null,如果不为null的话必须为true
+@DecimalMax：设置不能超过最大值
+@DecimalMin：设置不能超过最小值
+@Digits：设置必须是数字且数字整数的位数和小数的位数必须在指定范围内
+        @Digits(integer = 5, fraction = 3)
+@Future：日期必须在当前日期的未来
+@Past：日期必须在当前日期的过去
+@Max：最大不得超过此最大值
+@Min：最大不得小于此最小值
+@NotNull：不能为null，可以是空
+@Null：必须为null
+@Pattern：必须满足指定的正则表达式
+@Size：集合、数组、map等的size()值必须在指定范围内
+@Email：必须是email格式
+@Length：长度必须在指定范围内
+	@Length(min = 5, max = 10)
+@NotBlank：字符串不能为null,字符串trin()后也不能等于“”
+@NotEmpty：不能为null，集合、数组、map等size()不能为0；字符串trin()后可以等于“”
+@Range：值必须在指定范围内
+	@Range(min = 100, max = 100000000000L)
+@URL：必须是一个URL
+
+
+@Validated的使用位置较多(可详见源码)，但其主流的使用位置却是以下两种：
+
+◎在Controller层中，放在模型参数对象前。
+          当Controller层中参数是一个对象模型时，只有将@Validated直接放在该模型前，该模型内部的字段才会被
+   校验(如果有对该模型的字段进行约束的话)。
+
+◎在Controller层中，放在类上。
+           当一些约束是直接出现在Controller层中的参数前时，只有将@Validated放在类上时，参数前的约束才会生效。
+
+
+   @PostMapping("/queryAll")
+    public RespResult queryAll(@Valid @RequestBody RequestQueryPageVo queryPageVo, BindingResult bindingResult) {
+        RespResult responseVo = checkParam(bindingResult);
+        if (responseVo.getCode() != HttpStatus.OK.value()) {
+            return responseVo;
+        }
+        return responseVo;
+	}
+
+自定义valid注解
+
+
+
+
