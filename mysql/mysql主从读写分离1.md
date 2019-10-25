@@ -18,11 +18,12 @@ mysql中binlog_format模式与配置详解
 ### 主库配置
 1. 配置
 vim /etc/my.cnf
+```
     mysqld]
     #开启二进制日志
     log-bin=mysql-bin
     #标识唯一id
-    server-id=1
+    server_id=1
     #不同步的数据库，可设置多个
     binlog-ignore-db=information_schema
     binlog-ignore-db=cluster
@@ -33,17 +34,17 @@ vim /etc/my.cnf
     binlog_format=MIXED
 
     #日志清理时间
-    expire_logs_days=7
+    expire_logs_days=90
     #日志大小
-    max_binlog_size=100m
+    max_binlog_size=200m
     #缓存大小
     binlog_cache_size=4m
     #最大缓存大小
     max_binlog_cache_size=521m
-
+```
 2. 创建同步用户
 赋予从库权限帐号，允许用户在主库上读取日志，赋予192.168.1.2也就是Slave机器有File权限，只赋予Slave机器有File权限还不行，还要给它REPLICATION SLAVE的权限才可以。
-    mysql>GRANT REPLICATION SLAVE FILE ON *.* TO 'repl'@'192.168.40.%' IDENTIFIED BY '123456';　　#修改用户权限
+    mysql>GRANT replication slave ON *.* TO 'repl'@'192.168.40.%' IDENTIFIED BY '123456';　　#修改用户权限
     mysql>select host ，user ，password from mysql.user;　
     mysql>FLUSH PRIVILEGES; 　　
 3. 重启
