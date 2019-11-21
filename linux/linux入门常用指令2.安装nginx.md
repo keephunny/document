@@ -100,3 +100,25 @@ root      17003  0.0  0.0  20432   604 ?        Ss   22:11   0:00 nginx: master 
 #停止开机自启动
 [root@localhost nginx]# systemctl disable nginx.service
 ```
+
+### 常用配置
+```
+ server {
+        listen  9093;
+        root    "/opt/application/proj-web";
+        location /{
+           index index.html index.htm;
+        }
+        #代理
+        location /api/{
+           proxy_pass   "http://localhost:9092/";
+           #获取代理真实ip
+           proxy_set_header X-forwarded-for $proxy_add_x_forwarded_for;
+           proxy_set_header X-Real-IP  $remote_addr;
+        }
+        location /file/{
+          #虚拟目录
+          alias /opt/application/proj-data/;
+        }
+    }
+```    

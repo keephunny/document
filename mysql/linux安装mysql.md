@@ -4,8 +4,10 @@
 ### 第二步：安装 
 安装前检查服务器是否已安装MySQL，如已安装则将其卸载:    
 ```    
-    rpm -qa|grep mysql  //查看有没有安装，如果有则卸载
-    rpm -e --nodeps mysql-libs-5.1.71-1.el6.x86_64  //卸载
+[root@localhost src]# rpm -qa|grep mysql -i
+[root@localhost src]# rpm -qa|grep mariadb -i
+[root@localhost src]# rpm -qa|grep mysql  //查看有没有安装，如果有则卸载
+[root@localhost src]# rpm -e --nodeps mysql-libs-5.1.71-1.el6.x86_64  //卸载
 ```
 将下载的文件进行解压：tar -xf mysql-5.7.12-1.el6.x86_64.rpm-bundle.tar   
 yum -y install autoconf    

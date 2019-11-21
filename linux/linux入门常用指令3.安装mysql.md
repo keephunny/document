@@ -46,6 +46,7 @@ mariadb-libs-5.5.41-2.el7_0.x86_64
     character_set_server=utf8
     character_set_client=utf8
     collation-server=utf8_general_ci
+    #不区分大小写
     lower_case_table_names=1
     #免密登录
     skip-grant-tables
@@ -81,6 +82,23 @@ mysql> set password=password('123456');
 Query OK, 0 rows affected (0.00 sec)
 mysql> user mysql;
 mysql> select user,host from user;
+```
+
+### 配置mysql账号权限
+```
+[root@localhost mysql]# mysql -uroot
+mysql> use mysql; 
+    mysql> select host,user from user;
+    +-----------------------+------+
+    | host                  | user |
+    +-----------------------+------+
+    | 127.0.0.1             | root |
+    | ::1                   | root |
+    | localhost             | root |
+    | localhost.localdomain | root |
+    +-----------------------+------+
+    4 rows in set (0.00 sec)
+mysql>     
 ```
 
 
