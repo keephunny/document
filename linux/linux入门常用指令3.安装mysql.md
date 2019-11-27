@@ -52,6 +52,7 @@ mariadb-libs-5.5.41-2.el7_0.x86_64
     skip-grant-tables
     #禁用DNS解析
     skip-name-resolve
+    log_timestamps=SYSTEM
 #重新启动mysql
 [root@localhost mysql]# service mysql restart
 #开机启动

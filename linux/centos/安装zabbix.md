@@ -105,6 +105,16 @@ bridge host
      docker stop 145f8
 
  
+error
 
+Zabbix housekeeper processes more than 75% busy
+ 已验证解决方案； 
+housekeeper是zabbix清理数据库里过期的历史数据的一种机制 
+相关参数
+#zabbix执行Housekeeping的频率，单位为hours
+HousekeepingFrequency=1   
+#每次最多删除历史数据的行
+MaxHousekeeperDelete=500  
+ 
 
 docker run --name some-zabbix-agent -p 10050:10050 -e ZBX_HOSTNAME="hostname" -e ZBX_SERVER_HOST="192.168.54.129" -e ZBX_SERVER_PORT=10051 -d zabbix/zabbix-agent
