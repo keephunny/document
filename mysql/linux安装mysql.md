@@ -37,6 +37,15 @@ skip-name-resolve
 ### 其他配置 
 
 1. 编码设置：vim /etc/my.cnf，文件末尾加上编码内容default-character-set=utf8
+    
+    #日志文件时间与系统一致
+    log_timestamps=SYSTEM
+
+    #默认8小时 2880000
+    #数据库连接闲置最大时间值,如果MYSQL中有大量的Sleep进程，则需要修改
+    wait_timeout=1800
+    interactive_timeout = 1800
+    
 1. 允许远程访问MySQL： 
 1. 赋予任何主机访问数据的权限 
     mysql>grant all privileges on . to ‘root’@’%’with grant option; 

@@ -37,7 +37,8 @@ mariadb-libs-5.5.41-2.el7_0.x86_64
 [root@localhost mysql]# rpm -ivh MySQL-client-5.6.42-1.el6.x86_64.rpm 
 [root@localhost mysql]# rpm -ivh MySQL-devel-5.6.42-1.el6.x86_64.rpm 
 ```
-### 配置mysql
+
+### 常用配置
 ```
 #复制默认配置文件
 [root@localhost mysql]# cp /usr/share/mysql/my-default.cnf /etc/my.cnf
@@ -52,7 +53,14 @@ mariadb-libs-5.5.41-2.el7_0.x86_64
     skip-grant-tables
     #禁用DNS解析
     skip-name-resolve
+    #日志文件时间与系统一致
     log_timestamps=SYSTEM
+
+    #默认8小时 2880000
+    #数据库连接闲置最大时间值,如果MYSQL中有大量的Sleep进程，则需要修改
+    wait_timeout=1800
+    interactive_timeout = 1800
+        
 #重新启动mysql
 [root@localhost mysql]# service mysql restart
 #开机启动
