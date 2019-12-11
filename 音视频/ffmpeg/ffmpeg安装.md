@@ -16,9 +16,10 @@
 ```
 2. yasm安装
 ```
-    [root@localhost test]# tar -zxvf yasm-1.3.0.tar
+    [root@localhost test]# tar -zxvf yasm-1.3.0.tar.gz
     [root@localhost test]# cd yasm-1.3.0
     [root@localhost test]# ./configure
+    ./configure --prefix=/usr/yasm
     [root@localhost test]# make && make install
 ```
 3. libx264安装 
@@ -46,8 +47,11 @@
         include ld.so.conf.d/*.conf
         /usr/local/ffmpeg/lib       ///usr/local/ffmpeg 目录是我ffmpeg安装目录，根据你的安装目录改吧
         /usr/local/lib
-
-    [root@localhost ffmpeg]# ldd ffmpeg
+ 
+    #配置生效
+    [root@localhost]# ldconfig
+    #查看so文件是否加载
+    [root@localhost]# ldconfig  -p  | grep ffmpeg  
     [root@localhost ffmpeg]# vim /etc/profile            
         export PATH=$PATH:/usr/local/ffmpeg/bin
     [root@localhost ffmpeg]# source /etc/profile          

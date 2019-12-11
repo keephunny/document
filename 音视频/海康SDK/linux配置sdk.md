@@ -27,6 +27,7 @@
     libssl.so
 ```
 2. 配置lib
+```
     [root@localhost]# vim /etc/ld.so.conf
         #添加海康sdk
         /usr/local/hiksdk/
@@ -35,7 +36,10 @@
     [root@localhost]# ldconfig
     #查看so文件是否加载
     [root@localhost]# ldconfig  -p  | grep hcnetsdk  
+```    
 3. 配置环境变量
+```
     [root@localhost]# vim /etc/profile
         export LD_LIBRARY=$LD_LIBRARY:/usr/local/hiksdk/HCNetSDKCom:/usr/local/hiksdk/
     [root@localhost]# source /etc/profile
+```    

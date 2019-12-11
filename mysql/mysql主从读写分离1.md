@@ -130,3 +130,8 @@ show master logs;
 　　　　master-connect-retry=60
 　　　　replicate-do-db=mstest        //要同步的mstest数据库,要同步多个数据库，就多加几个replicate-db-db=数据库名
 　　　　replicate-ignore-db=mysql　 //要忽略的数据库　
+
+
+### 跳过
+主键、索引重复
+slave_skip_errors = 1062,1061
