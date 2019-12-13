@@ -135,3 +135,43 @@ show master logs;
 ### 跳过
 主键、索引重复
 slave_skip_errors = 1062,1061
+
+ Last_SQL_Errno: 1050
+               Last_SQL_Error: Error 'Table 'sys_config' already exists' on query. Default database: 'jx_test'. Query: 'CREATE TABLE `sys_config` (
+`id`  int NOT NULL AUTO_INCREMENT ,
+
+
+在从库上指定同点的位点。
+change master to master_host='10.0.5.x', master_user='repl', master_password='123456++', master_log_file='mysql-bin.000009', master_log_pos=4;
+
+Last_SQL_Errno: 1032
+Last_SQL_Error: Could not execute Update_rows event on table jx_test.report_site; Can't find record in 'report_site', Error_code: 1032; handler error HA_ERR_KEY_NOT_FOUND; the event's master log mysql-bin.000054, end_log_pos 9718696
+
+1、直接跳过错误执行语句
+2、找到错误执行语句，修复从库数据
+第一种解决方案会有造成主从不一致的隐患（delete语句可以跳过），第二种是从根本上解决问题比较推荐
+
+语句跳过操作方法如下：
+--传统模式
+mysql> stop slave;
+#表示跳过一步错误，后面的数字可变
+mysql> set global sql_slave_skip_counter =1;
+mysql> start slave;
+
+之后再用mysql> show slave status\G 查看：
+
+Slave_IO_Running: Yes
+Slave_SQL_Running: Yes
+
+--GTID模式
+mysql> stop slave;
+
+通过show slave status\G;找到Retrieved_Gtid_Set:7800a22c-95ae-11e4-983d-080027de205a:10
+
+mysql> set GTID_NEXT='7800a22c-95ae-11e4-983d-080027de205a:10 '
+
+mysql> begin;commit;
+
+mysql> set GTID_NEXT='AUTOMATIC';
+
+mysql> start slave;
