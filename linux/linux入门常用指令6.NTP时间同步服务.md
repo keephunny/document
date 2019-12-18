@@ -55,6 +55,14 @@ restrict安全相关参数
     #重启服务
     [root@localhost src]# service crond restart
 ```
+#### 解决Linux中crontab不执行ntpdate问题
+```
+[root@localhost ~]# whereis ntpdate
+ntpdate: /usr/sbin/ntpdate /usr/share/man/man8/ntpdate.8.gz
+
+* */1 * * *   /usr/sbin/ntpdate  10.0.5.2 && hwclock -w
+
+```
 
 ### 检测服务是否可用
 ```

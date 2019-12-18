@@ -48,10 +48,10 @@ skip-name-resolve
     
 1. 允许远程访问MySQL： 
 1. 赋予任何主机访问数据的权限 
-    mysql>grant all privileges on . to ‘root’@’%’with grant option; 
+    mysql>grant all privileges on . to ‘root’@’%’ with grant option; 
     会报错：ERROR 1133 (42000): Can’t find any matching row in the user table 
     其实如果事先在mysql.user表中存在root用户就正常了，或，将这句末尾加上identified by ‘密码’ 也就正常了。如下面的命令行 
-    mysql>grant all privileges on . to ‘root’@’%’identified by ‘123456’ with grant option;
+    mysql>grant all privileges on . to ‘root’@’%’ identified by ‘123456’ with grant option;
 1. 更改密码策略：
     mysql> set global validate_password_length=0; --更改密码长度
     mysql> set global validate_password_policy=0; --更改密码策略为LOW
