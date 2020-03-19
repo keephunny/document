@@ -113,4 +113,22 @@ mysql>
 
 
 
+### 创建数据
 
+CREATE DATABASE  yourdbname DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+
+### 导入数据
+
+linux环境导入
+
+1、导出数据和表结构：
+mysqldump -u用户名 -p密码 数据库名 > 数据库名.sql
+#/usr/local/mysql/bin/ mysqldump -uroot -p abc > abc.sql
+敲回车后会提示输入密码
+2、只导出表结构
+mysqldump -u用户名 -p密码 -d 数据库名 > 数据库名.sql
+
+#/usr/local/mysql/bin/ mysqldump -uroot -p -d abc > abc.sql
+
+进入mysql
+#mysql -uabc_f -p abc < abc.sql
