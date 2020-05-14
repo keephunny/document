@@ -1,3 +1,10 @@
+### 反射机制的相关类
+* Class：代表类的实体，在运行的java应用程序中表示类和接口
+* Field：类的成员变量
+* Method： 类的方法
+* Constructor：类的构造方法
+
+
 ```
 public static void main(String[] args) throws Exception {
 

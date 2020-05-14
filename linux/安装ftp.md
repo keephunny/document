@@ -1,9 +1,11 @@
 
 1. 下载安装包
+```
      vsftpd-3.0.2-25.el7.x86_64.rpm
      http://mirror.centos.org/centos/7/os/x86_64/Packages/vsftpd-3.0.2-25.el7.x86_64.rpm
-
+```
 2. 离线安装
+```
     #检查是否已经安装了vsftp
     rpm -qa | grep vsftpd
     #删除 上面查询的结果
@@ -13,8 +15,9 @@
     #检查是否安装成功
     rpm -qa | grep vsftpd
         vsftpd-2.2.2-24.el6.x86_64          
-
+```
 3. 配置
+```
     #不允许匿名登录
     anonymous_enable=NO
     #不允许访问上级目录
@@ -22,7 +25,9 @@
     #加上这行解决了无法登陆的问题
     allow_writeable_chroot=YES
     local_umask=022
+ ```   
 4. 添加用户
+```
     useradd ftpuser -s /sbin/nologin -d /app/www/ftp
     #设置密码
     passwd ftpuser
@@ -30,8 +35,9 @@
     目录权限
     chown ftpuser /app/www/ftp
     chomd a+wr /app/www/ftp
-
+```
 5. 开机启动
+```
     chkconfig vsftpd on
     #开启
     service vsftpd start
@@ -39,11 +45,12 @@
     service vsftpd stop
     #重启
     service vsftpd restart
+```    
 6. 常见问题
     文件名乱码可能是终端编码问题
 
 
-
+```
 allow_writeable_chroot=YES
 #加上这行解决了无法登陆的问题
 
@@ -195,3 +202,4 @@ service vsftpd restart //重新启动ftp服务
 netstat -nltp | grep 21
 
 https://www.cnblogs.com/ismallboy/p/6785270.html
+```

@@ -30,6 +30,17 @@ mariadb-libs-5.5.41-2.el7_0.x86_64
 #安装依赖包
 [root@localhost mysql]# yum install -y perl-Data-Dumper
 [root@localhost mysql]# yum install -y perl perl-devel
+
+[root@localhost mysql]# rpm -ivh MySQL-server-5.6.42-1.el7.x86_64.rpm 
+警告：MySQL-server-5.6.42-1.el7.x86_64.rpm: 头V3 DSA/SHA1 Signature, 密钥 ID 5072e1f5: NOKEY
+错误：依赖检测失败：
+	libaio.so.1()(64bit) 被 MySQL-server-5.6.42-1.el7.x86_64 需要
+	libaio.so.1(LIBAIO_0.1)(64bit) 被 MySQL-server-5.6.42-1.el7.x86_64 需要
+	libaio.so.1(LIBAIO_0.4)(64bit) 被 MySQL-server-5.6.42-1.el7.x86_64 需要
+
+[root@localhost mysql]# yum install -y libaio
+
+
 ```
 ### 安装mysql
 ```
