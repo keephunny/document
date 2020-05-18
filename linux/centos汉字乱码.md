@@ -1,11 +1,11 @@
-locale  
+﻿locale  
 
 vim /etc/sysconfig/i18n
 添加如下两行代码
 LANG="zh_CN.UTF-8"
 LC_ALL="zh_CN.UTF-8"
     #  source    /etc/sysconfig/i18n
-
+    
     再修改 locale.cnf配置文件
 
     #   vim /etc/locale.conf
