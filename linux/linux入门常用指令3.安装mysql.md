@@ -55,6 +55,7 @@ mariadb-libs-5.5.41-2.el7_0.x86_64
 [root@localhost mysql]# cp /usr/share/mysql/my-default.cnf /etc/my.cnf
 #修改配置文件
 [root@localhost mysql]# vim  /etc/my.cnf
+    log-bin=mysql-bin
     character_set_server=utf8
     character_set_client=utf8
     collation-server=utf8_general_ci
@@ -118,7 +119,18 @@ mysql> use mysql;
     | localhost.localdomain | root |
     +-----------------------+------+
     4 rows in set (0.00 sec)
-mysql>     
+
+#分配root访问域
+mysql>   grant all privileges on `*`.* to 'root'@10.0.%' identified by '123456';  
+#创建其它账号及权限
+mysql>  create user 'user1'@'%'  identified by '123456';
+mysql>  grant all on `db_name`.* to 'user1'@'%';
+mysql>  create user 'user2'@'%'  identified by '123456';
+mysql>  grant all on `db_name`.* to 'user2'@'%';
+#删除用户
+mysql>  drop user water@'%';
+mysql>  flush privileges;
+
 ```
 
 
@@ -143,3 +155,6 @@ mysqldump -u用户名 -p密码 -d 数据库名 > 数据库名.sql
 
 进入mysql
 #mysql -uabc_f -p abc < abc.sql
+
+use dbname;
+source /usr/local/src/test.sql
