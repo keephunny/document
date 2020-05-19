@@ -36,14 +36,15 @@
 
 ### 常用yum包
 ```
-[root@localhost /]# yum install vim
-[root@localhost /]# yum install net-tools
-[root@localhost /]# yum install lzrsz
-[root@localhost /]# yum install wget
-[root@localhost /]# yum install zip unzip
-[root@localhost /]# yum install ntpdate
-[root@localhost /]# yum install gcc-c++
-[root@localhost /]# yum install pcre pcre-devel
-[root@localhost /]# yum install zlib zlib-devel
-[root@localhost /]# yum install openssl openssl--devel
+[root@localhost /]# yum install vim \
+					net-tools \
+					lzrsz \
+					wget \
+					zip unzip \
+					ntpdate \
+					gcc-c++  \
+					pcre pcre-devel \
+					zlib zlib-devel  \
+                    lrzsz \
+					openssl openssl--devel -y
 ```
