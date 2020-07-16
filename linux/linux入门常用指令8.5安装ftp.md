@@ -104,6 +104,10 @@
 
     #开机禁用
     systemctl disable firewalld
+
+    #关闭安全增强
+    vim /etc/selinux/config
+	SELINUX=disabled
 ```
 
 ### 常用配置
@@ -240,7 +244,6 @@ error 553 could not create file
     setsebool -P ftpd_full_access on
     setsebool -P tftp_anon_write on
     setsebool -P sftpd_anon_write on
-
     setsebool -P ftp_home_dir on
     setenforce 0
 
@@ -296,5 +299,14 @@ ftp: connect :连接被拒绝
 500 OOPS: child died
     Connection closed by remote host.
     用户主目录没有权限或没有主目录    
+
+530 Login incorrect.
+    Login failed.
+    同样的配置在Centos7.6登录失败
+    解决办法：
+    vi /etc/pam.d/vsftpd
+    注释掉
+    #auth required pam_shells.so
+    
 ```
 

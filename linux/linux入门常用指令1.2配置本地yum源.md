@@ -46,5 +46,7 @@
 					pcre pcre-devel \
 					zlib zlib-devel  \
                     lrzsz \
+                    telnet \
+                    ftp \
 					openssl openssl--devel -y
 ```

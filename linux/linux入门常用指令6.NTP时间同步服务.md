@@ -1,3 +1,5 @@
+
+
 ### 安装ntp服务
 ```
     [root@localhost src]# yum -y install ntp ntpdate
@@ -41,6 +43,12 @@ restrict安全相关参数
 * notrust ：客户端除非通过认证，否则该客户端来源将被视为不信任子网 
 * noquery ：不提供客户端的时间查询 
 
+### 手动修改时间
+```
+  [root@localhost src]# date -s "2020-06-03 08:57:20"
+  [root@localhost src]# hwclock -w
+
+```
 
 ### 定时更新本地ntp时间
 ```
