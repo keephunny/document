@@ -65,6 +65,8 @@
         chroot_local_user=YES
         #加上这行解决了无法登陆的问题
         allow_writeable_chroot=YES
+        #VSFTP连接时很慢，因为默认开启了reverse_lookup（反向解析）
+        reverse_lookup_enable=NO
     [root@localhost ~]# service vsftpd restar
         Redirecting to /bin/systemctl restart  vsftpd.service
     #安装ftp客户端测试 
