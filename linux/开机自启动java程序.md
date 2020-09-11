@@ -3,7 +3,7 @@
     cd /etc/init.d/
     vim jx-server
     chmod +x jx-server
-    #!/bin/sh
+        #!/bin/sh
         # chkconfig: 2345 99  90
         # description: jx-server ....
 
