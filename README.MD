@@ -96,3 +96,5 @@ VSFTP  deny_file
 
 
 http://dqsh.cnpc.com.cn/dqsh/zbgg/zbggjg_list_10.shtml
+
+https://ftp-idc.pconline.com.cn/pub/download/201010/zh-hans_office_standard_2007.zip?md5=n239mZYYhFKtNePgkexSUQ&expires=1599273679
