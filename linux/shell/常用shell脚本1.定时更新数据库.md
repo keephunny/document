@@ -21,7 +21,7 @@
     #修改表名
     funRename(){
         mysql -uroot -p123456 <<EOF
-        use cityll_tongling;
+        use dbname;
         alter table test$table_prev rename to test$table_current;
     EOF
     }
@@ -37,7 +37,7 @@
 
 
     mysql -uroot -p123456 <<EOF
-            use cityll_tongling;
+            use dbname;
             #每天更新数据，省得造数据。保证系统每天都有数据
             update test set  insert_time=DATE_ADD(alarm_time,INTERVAL 1 day);
 

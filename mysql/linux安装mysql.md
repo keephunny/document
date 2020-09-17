@@ -130,5 +130,5 @@ chkconfig --list
 ```
   
 ### 快速导入数据
-		mysql -uroot -pTLlifeline@DB2019 cityll_tongling<cityll-tongling.sql   
+		mysql -uroot -pxxx dbName<sql.sql   
         sql里use 数据库

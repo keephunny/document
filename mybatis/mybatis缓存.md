@@ -26,7 +26,7 @@
 ### mapper.xml
 ```
 
-<mapper namespace="com.gscitylifeline.proj.tongling.web.core.dao.UserInfoMapper">
+<mapper namespace="com.proj.web.core.dao.UserInfoMapper">
 
     <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
 </mapper>
