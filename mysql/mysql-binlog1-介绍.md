@@ -57,3 +57,19 @@ Mysql BInlog日志格式可以通过mysql的my.cnf文件的属性binlog_format�
 ### mixed模式
 混合模式结合了row和statement的优点，一般的语句修改使用statement格式保存binlog，如一些函数statement无法完成主从复制操作，则采用row格式保存binlog，mysql会根据每一条具体sql语句来区分记录的日志形式。也就是在statement和row之间选一种。
 
+
+```
+    # 日志中的Serverid
+    server-id = 1
+    # 日志路径
+    log_bin  = /var/lib/mysql/mysql-bin.log
+    # 保存几天的日志
+    expire_logs_days = 10
+    # 每个binlog的大小
+    max_binlog_size = 1000M
+    #binlgo模式
+    binlog_format=ROW
+    # 默认是所有记录，可以配置哪些需要记录，哪些不记录
+    #binlog_do_db = include_database_name
+    #binlog_ignore_db = include_database_name
+```

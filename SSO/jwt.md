@@ -55,6 +55,59 @@ HMACSHA256(base64UrlEncode(header) + "." + base64UrlEncode(payload), secret)
     对token进行切割解码，获取payload，检测token是否超时。把前两端拼接再执行hs256加密，把加密后的密文和第三段进行比较。
 
 
+既然已经获取了token，为什么还要有jwt呢？token生成的其实是一个UUID，和业务没有任何关系，这样就带来最大的问题，就是需要人工持久化处理token，但jwt就不需要，因为jwt自身包含。它定义了一种紧凑且自包含的方式，用于在各方之间作为JSON对象安全地传输信息。由于此信息是经过数字签名的，因此可以被验证和信任。可以使用秘密（使用HMAC算法）或使用RSA或ECDSA的公钥/私钥对对JWT进行签名。
+
+
+
+* JWTLoginFilter：认证过过滤器
+* JWTAutherticationFilter：鉴权过滤器
+
+#### 客户端配置信息(Client Details)
+* clentId：客户端标识ID
+* secret：客户端安全码
+* scope：客户端访问范围，默认为空则表示全部范围。
+* authorizedGrantTypes：客户端使用的授权类型。
+* authorities：客户端可使用的权限。
+
+
+#### 管理令牌(Managing Token)
+* ResourceServerTokenService：接口定义了令牌加载，读取方法
+* AuthorizationServerTokenService：接口定义了令牌的创建、获取、刷新方法
+* ConsumerTokenService：定义令牌的撤销的方法
+* DefaultTokenServices：实现了上述三个接口，它包含了一些令牌业务的实现。
+
+TokenStore接口  
+* InMemoryTokenStore：默认采用该实现，将令牌信息保存在内存中，易于调试。
+* JdbcTokenStore：令牌保存在关系型数据库中，可以实不同服务器间的共享令牌。
+* JwtTokenStore：使用jwt方式保存令牌，它不需要进行储，但是它撤销一个已授权令牌会非常困难，所以通常用来处理一个生命周期较短的令牌及撤销刷新令牌。
+
+
+#### JWT令牌(JWT Tokens)
+* 使用jwt令牌需要在授权服务器中使用jwtTokenStore，资源服务器也需要一个解码token令牌的类JwtAccessTokenConverter,JwtTokenStore依赖这个类进行编码及解码，因此授权服务及资源服务都需要这个转换类
+* Token令牌默认是有签名，并且资源服务器中需要验证这个签名，因此需一个对称的key值，用来参与签名计算。
+* 这个key值存在于授权服务和资源服务之中。或使用非对称加密算法加密token进行签名，public key公布在/oauth/token_key中。
+
+* /oauth/authorize：授权端点
+* /oauth/token：令牌端点
+* /oauth/confirm_access：用户确认授权提交端点
+* /oauth/error：授权服务错识信息端点
+* /oauth/check_token：用于资源服务访问令牌解析端点
+* /oauth/token_key：当使用jwt令牌，提供公有密钥的端点
+
+
+#### 资源服务器
+* 要访问资源服务器受保护的资源需要携带令牌
+* 客户端往往同时也是一个资源服务器，各服务之间通信时需携带访问令牌
+* 资源服务器通过@EnableResourceServer注解开启
+* 通过继承ResourceServerConfigurerAdapter类来配置资源服务器
+
+
+资源服务器通在启动类添加以下注解来设置领牌的解析方式
+* @EnableAuthJWTTokenStore：使用JWT存储令牌
+* @EnableDBClientDetailsService：通过数据库获取客户端详情
+* @EnableDBTokenStore：通过数据库存储令牌
 
 
 ### springboot集成jwt
+
+
