@@ -27,5 +27,22 @@ systemctl status mysqld
 
 
 开机启动
-1 vim /etc/rc.local
-2 添加service mysqld start
+vim /etc/rc.local
+    service mysqld start
+
+
+#### 密码规则
+```
+SHOW VARIABLES LIKE 'validate_password%';
+
+validate_password_check_user_name	OFF
+validate_password_dictionary_file	
+validate_password_length	8
+validate_password_mixed_case_count	1
+validate_password_number_count	1
+validate_password_policy	MEDIUM
+validate_password_special_char_count	1
+
+将密码安全等级设置为low
+set global validate_password_policy=0; 
+```
