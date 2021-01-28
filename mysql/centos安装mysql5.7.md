@@ -30,6 +30,18 @@ systemctl status mysqld
 vim /etc/rc.local
     service mysqld start
 
+#### 编码
+
+```
+[mysqld]
+character-set-server=utf8
+[client]
+default-character-set=utf8
+[mysql]
+default-character-set=utf8
+
+show variables like 'character%';
+```
 
 #### 密码规则
 ```
@@ -46,3 +58,11 @@ validate_password_special_char_count	1
 将密码安全等级设置为low
 set global validate_password_policy=0; 
 ```
+
+
+
+在MySQL5.7版本中mysql数据库下已经没有password这个字段了，password字段改成了authentication_string字段。
+修改密码
+alter user root@localhost identified by '123';
+
+update user  et authentication_string=password('123456!') where user='root' and host='loacalhost';

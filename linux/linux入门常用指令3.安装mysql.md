@@ -124,7 +124,7 @@ mysql> use mysql;
     4 rows in set (0.00 sec)
 
 #分配root访问域
-mysql>   grant all privileges on `*`.* to 'root'@10.0.%' identified by '123456';  
+mysql>   grant all privileges on *.* to 'root'@10.0.%' identified by '123456';  
 #创建其它账号及权限
 mysql>  create user 'user1'@'%'  identified by '123456';
 mysql>  grant all on `db_name`.* to 'user1'@'%';

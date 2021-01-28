@@ -49,6 +49,15 @@ swagger bootstrap
 opencv 车牌识别
 目标跟随
 
+
+
+
+### mysql
+mysql 主从同步 主主同步
+mysql 分库分表 mycat jdbcsharding
+
+
+
 计算MD5值 签名
 ##### 文本相似度
 余弦相似度
@@ -98,3 +107,4 @@ VSFTP  deny_file
 http://dqsh.cnpc.com.cn/dqsh/zbgg/zbggjg_list_10.shtml
 
 https://ftp-idc.pconline.com.cn/pub/download/201010/zh-hans_office_standard_2007.zip?md5=n239mZYYhFKtNePgkexSUQ&expires=1599273679
+
