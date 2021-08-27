@@ -1,5 +1,11 @@
 
+### 删除OpenJdk
+```
+rpm -qa|grep java
 
+rpm -e --nodeps 上面的结果
+
+```
 ### jdk配置
 ```
     #解压

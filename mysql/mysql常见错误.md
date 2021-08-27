@@ -19,3 +19,9 @@ Query OK, 2 rows affected (0.00 sec)
 然后删除表mysql.proxies_priv中和cvs类似与具体域名有关的行,方法同上。
 
 重启MYSQL ，发现警告已经没有啦。 
+
+
+
+### blocked because of many connection errors; unblock with 'mysqladmin flush-ho
+
+mysqladmin  -uroot -p  -h192.168.1.1 flush-hosts

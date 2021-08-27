@@ -36,7 +36,7 @@ checking for C compiler ... not found
 ### 安装nginx
 ```
 #配置检测 指定安装目录
-[root@localhost nginx-1.10.3]# ./configure --prefix=/usr/local/nginx
+[root@localhost nginx-1.10.3]# ./configure --prefix=/usr/local/nginx --with-http_ssl_module --with-stream
     Configuration summary
     + using system PCRE library
     + OpenSSL library is not used
@@ -124,3 +124,6 @@ root      17003  0.0  0.0  20432   604 ?        Ss   22:11   0:00 nginx: master 
         }
     }
 ```    
+
+查看开机启动项
+systemctl list-unit-files | grep enable 

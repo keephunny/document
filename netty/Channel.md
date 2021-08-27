@@ -1,0 +1,4 @@
+Netty中主要分为NioSocketChannel和NioServerSocketChannel
+
+### AbstractChannel
+AbstractUnsafe作为AbstractChannel的内部类，定义了I/O事件处理的基本框架。

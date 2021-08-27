@@ -1,0 +1,50 @@
+Linux下使用service启动jar包
+描述：
+
+　　linux系统，以服务的方式启动jar，例如：
+
+　　systemctl restart xxx
+
+　　systemctl stop xxx
+
+　　systemctl status xxx
+
+步骤：
+
+1. cd etc/systemd/system
+2. 新增一个 服务名称.service文件
+[Unit]
+Description=harry-admin service #服务描述
+[Service]
+WorkingDirectory=/home/kangaroo-parts/ #指定服务的工作目录
+PrivateTmp=true
+Restart=always
+Type=simple #服务启动类型 可选类型有simple forking
+ExecStart=/usr/java/jdk1.8.0_121/bin/java -Xmx1024m -Xms512m -Xss256k -jar /home/kangaroo-parts/harry-admin.jar #启动命令
+ExecStop=/usr/bin/kill -15 $MAINPID #停止命令
+
+[Install]
+WantedBy=multi-user.target
+3.重新载入systemd，扫描新的或有变动的单元
+systemctl daemon-reload
+4.启动服务，使用：
+systemctl start 服务名称 或
+systemctl start 服务名称.service
+5. 其他常用的命令：
+systemctl status harry-admin #查看服务状态
+systemctl stop harry-admin #停止服务
+systemctl start harry-admin #启动服务
+systemctl reload harry-admin #重新加载
+
+#设置开机自启动:
+systemctl enable harry-admin
+#或
+systemctl enable harry-admin.service
+
+# 又或者不想开机启动:
+systemctl disable harry-admin
+#或
+systemctl disable harry-admin.service
+6. 拓展
+在service中配置一下参数，可以远程dug调试代码
+ExecStart=/usr/java/jdk1.8.0_121/bin/java -Xmx1024m -Xms512m -Xss256k -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5006 -jar /home/kangaroo-parts/harry-admin.jar
