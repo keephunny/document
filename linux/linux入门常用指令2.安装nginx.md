@@ -83,19 +83,19 @@ root      17003  0.0  0.0  20432   604 ?        Ss   22:11   0:00 nginx: master 
 ### 开机启动
 ```
 [root@localhost nginx]# vim /lib/systemd/system/nginx.service
-    [Unit]
-        Description=nginx
-        After=network.target
-        
-        [Service]
-        Type=forking
-        ExecStart=/usr/local/nginx/sbin/nginx
-        ExecReload=/usr/local/nginx/sbin/nginx -s reload
-        ExecStop=/usr/local/nginx/sbin/nginx -s quit
-        PrivateTmp=true
-        
-        [Install]
-        WantedBy=multi-user.target
+[Unit]
+Description=nginx
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/local/nginx/sbin/nginx
+ExecReload=/usr/local/nginx/sbin/nginx -s reload
+ExecStop=/usr/local/nginx/sbin/nginx -s quit
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
 
 #设置开机启动
 [root@localhost nginx]# systemctl enable nginx.service
