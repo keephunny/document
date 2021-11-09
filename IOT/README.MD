@@ -30,3 +30,28 @@ AMQP、JMS、REST/HTTP都是工作在以太网，COAP协议是专门为资源受
 ### 近距离通信
 
 ### 有线通信
+
+
+https://www.gizwits.com/dtu
+
+https://www.ctwing.cn/zhcs/397
+
+https://cloud.baidu.com/product/iotstack.html
+
+https://www.aliyun.com/product/iot/iot_instc_public_cn
+
+https://help.aliyun.com/document_detail/115438.html?spm=5176.19763250.J_6813266600.6.7e897506SZxcHd
+
+
+https://social-innovation.hitachi/zh-cn/feeler/it/article01/?WT.mc_id=21CnCnCh-it-search&utm_source=baidu&utm_medium=sem&utm_campaign=FY21GBCCN
+
+http://iot.10086.cn/
+
+https://service.caict.ac.cn/ywjs/index.html?classify2=%E6%99%BA%E6%85%A7%E5%9F%8E%E5%B8%82/%E7%89%A9%E8%81%94%E7%BD%91&classify3=
+
+国内的物联网平台
+https://www.zhihu.com/question/450337753
+
+
+https://www.ixigua.com/6827269332834189827?logTag=aedd5e1e0b6cabb4193c
+xcom v2.0
