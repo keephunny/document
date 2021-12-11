@@ -55,3 +55,15 @@ https://www.zhihu.com/question/450337753
 
 https://www.ixigua.com/6827269332834189827?logTag=aedd5e1e0b6cabb4193c
 xcom v2.0
+
+
+
+
+
+华为物联网平台
+
+https://support.huaweicloud.com/intl/zh-cn/api-IoT/iot_06_2003.html
+
+电信物联网平台
+
+https://www.ctwing.cn/
