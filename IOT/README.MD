@@ -51,7 +51,7 @@ https://service.caict.ac.cn/ywjs/index.html?classify2=%E6%99%BA%E6%85%A7%E5%9F%8
 
 国内的物联网平台
 https://www.zhihu.com/question/450337753
-
+EMqx
 
 https://www.ixigua.com/6827269332834189827?logTag=aedd5e1e0b6cabb4193c
 xcom v2.0
