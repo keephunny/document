@@ -2,19 +2,23 @@
 
 
 ### 下载安装包
-MySQL-5.6.42-1.el6.x86_64.rpm-bundle_redhat
+mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar
 ```
 [root@localhost src]# mkdir mysql
-[root@localhost src]# tar -xvf MySQL-5.6.42-1.el6.x86_64.rpm-bundle_redhat.tar -C mysql
+[root@localhost src]# tar -xvf mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar -C mysql
 [root@localhost mysql]# cd mysql
 [root@localhost mysql]# ll
--rw-r--r--. 1 7155 31415 19124980 9月  11 2018 MySQL-client-5.6.42-1.el6.x86_64.rpm
--rw-r--r--. 1 7155 31415  3411264 9月  11 2018 MySQL-devel-5.6.42-1.el6.x86_64.rpm
--rw-r--r--. 1 7155 31415 90167176 9月  11 2018 MySQL-embedded-5.6.42-1.el6.x86_64.rpm
--rw-r--r--. 1 7155 31415 57600260 9月  11 2018 MySQL-server-5.6.42-1.el6.x86_64.rpm
--rw-r--r--. 1 7155 31415  1973900 9月  11 2018 MySQL-shared-5.6.42-1.el6.x86_64.rpm
--rw-r--r--. 1 7155 31415  3969756 9月  11 2018 MySQL-shared-compat-5.6.42-1.el6.x86_64.rpm
--rw-r--r--. 1 7155 31415 51929752 9月  11 2018 MySQL-test-5.6.42-1.el6.x86_64.rpm
+    mysql-community-client-5.7.29-1.el7.x86_64.rpm
+    mysql-community-common-5.7.29-1.el7.x86_64.rpm
+    mysql-community-devel-5.7.29-1.el7.x86_64.rpm
+    mysql-community-embedded-5.7.29-1.el7.x86_64.rpm
+    mysql-community-embedded-compat-5.7.29-1.el7.x86_64.rpm
+    mysql-community-embedded-devel-5.7.29-1.el7.x86_64.rpm
+    mysql-community-libs-5.7.29-1.el7.x86_64.rpm
+    mysql-community-libs-compat-5.7.29-1.el7.x86_64.rpm
+    mysql-community-server-5.7.29-1.el7.x86_64.rpm
+    mysql-community-test-5.7.29-1.el7.x86_64.rpm
+
 ```
 ### 检测安装环境
 ```
@@ -25,37 +29,59 @@ mariadb-libs-5.5.41-2.el7_0.x86_64
 #卸载
 [root@localhost src]# rpm -e mariadb-libs-5.5.41-2.el7_0.x86_64 --nodeps
 
-
-[root@localhost mysql]# rpm -ivh MySQL-server-5.6.42-1.el6.x86_64.rpm 
-警告：MySQL-server-5.6.42-1.el6.x86_64.rpm: 头V3 DSA/SHA1 Signature, 密钥 ID 5072e1f5: NOKEY
-错误：依赖检测失败：
-	perl(Data::Dumper) 被 MySQL-server-5.6.42-1.el6.x86_64 需要
 #安装依赖包
 [root@localhost mysql]# yum install -y perl-Data-Dumper
 [root@localhost mysql]# yum install -y perl perl-devel
-
-[root@localhost mysql]# rpm -ivh MySQL-server-5.6.42-1.el7.x86_64.rpm 
-警告：MySQL-server-5.6.42-1.el7.x86_64.rpm: 头V3 DSA/SHA1 Signature, 密钥 ID 5072e1f5: NOKEY
-错误：依赖检测失败：
-	libaio.so.1()(64bit) 被 MySQL-server-5.6.42-1.el7.x86_64 需要
-	libaio.so.1(LIBAIO_0.1)(64bit) 被 MySQL-server-5.6.42-1.el7.x86_64 需要
-	libaio.so.1(LIBAIO_0.4)(64bit) 被 MySQL-server-5.6.42-1.el7.x86_64 需要
-
 [root@localhost mysql]# yum install -y libaio
-
-
 ```
 ### 安装mysql
 ```
-[root@localhost mysql]# rpm -ivh MySQL-server-5.6.42-1.el6.x86_64.rpm 
-[root@localhost mysql]# rpm -ivh MySQL-client-5.6.42-1.el6.x86_64.rpm 
-[root@localhost mysql]# rpm -ivh MySQL-devel-5.6.42-1.el6.x86_64.rpm 
+[root@localhost mysql]# rpm -ivh mysql-community-common-5.7.29-1.el7.x86_64.rpm 
+[root@localhost mysql]# rpm -ivh mysql-community-libs-5.7.29-1.el7.x86_64.rpm 
+[root@localhost mysql]# rpm -ivh mysql-community-devel-5.7.29-1.el7.x86_64.rpm 
+[root@localhost mysql]# rpm -ivh mysql-community-libs-compat-5.7.29-1.el7.x86_64.rpm 
+[root@localhost mysql]# rpm -ivh mysql-community-client-5.7.29-1.el7.x86_64.rpm 
+[root@localhost mysql]# rpm -ivh mysql-community-server-5.7.29-1.el7.x86_64.rpm 
 ```
+
+### 启动服务
+```
+# 开机启动
+[root@localhost mysql]# systemctl enable mysqld.service   
+[root@localhost mysql]# systemctl start mysqld
+[root@localhost mysql]# systemctl status mysqld
+[root@localhost mysql]# systemctl restart mysqld
+    systemctl stop firewalld ：关闭防火墙服务
+    systemctl start firewalld ：开启防火墙服务
+    systemctl disable firewalld：开机禁用
+    systemctl enable firewalld：开机启用
+    firewall-cmd --state：查看防火墙状态
+```
+
+### 登录服务
+```
+#查看初始密码
+[root@localhost mysql]# grep 'temporary password' /var/log/mysqld.log
+2021-11-09T02:55:20.988009Z 1 [Note] A temporary password is generated for root@localhost: H?Kg3tbNllMV
+
+[root@localhost mysql]# mysql -uroot -p
+    mysql> show databases;
+    ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this 
+    mysql> SET PASSWORD FOR 'root'@'localhost'= "Root@123";
+    mysql> set password=password("xxxxx");
+    #密码强度
+    ERROR 1819 (HY000): Your password does not satisfy the current policy requirements
+
+[root@localhost mysql]# 
+[root@localhost mysql]# 
+[root@localhost mysql]# 
+```
+
 
 ### 常用配置
 ```
 #复制默认配置文件
-[root@localhost mysql]# cp /usr/share/mysql/my-default.cnf /etc/my.cnf
+[root@localhost mysql]# cp /etc/my.cnf /etc/my.cnf.bak
 #修改配置文件
 [root@localhost mysql]# vim  /etc/my.cnf
     log-bin=mysql-bin
@@ -87,29 +113,7 @@ mariadb-libs-5.5.41-2.el7_0.x86_64
 * service mysql restart：重启
 * chkconfig mysql on：开机启动
 
-#### 开启binlog
-
-#### 默认字符编码
-
-### 登录mysql
-由于mysql配置成免密登录，先登录设置root密码
-```
-[root@localhost mysql]# mysql -uroot
-mysql> use mysql; 
-mysql> update user set password=password('123456') where user='root'; 
-mysql> flush privileges;
-mysql> exit;
-[root@localhost mysql]# vim /etc/my.cnf
-    #skip-grant-tables
-[root@localhost mysql]# service mysql restart
-[root@localhost mysql]# mysql -uroot -p
-mysql> use mysql;
-ERROR 1820 (HY000): You must SET PASSWORD before executing this statement
-mysql> set password=password('123456');
-Query OK, 0 rows affected (0.00 sec)
-mysql> user mysql;
-mysql> select user,host from user;
-```
+ 
 
 ### 配置mysql账号权限
 ```

@@ -2,7 +2,7 @@ Logback是由log4j创始人设计开发的日志组件。需要与slft4结合起
 * logback-core：是基础模块。 
 * logback-classic是log4j的一个改良版本，完整实现了slf4j api使你可以很方便的换成其它日志系统。
 * logback-access：访问模块与serlet容器集成提供通过http来访问日志功能。
-maven依赖  
+  maven依赖  
     <dependency>  
         <groupId>org.slf4j</groupId>  
         <artifactId>slf4j-api</artifactId>  
@@ -49,3 +49,27 @@ maven依赖
 
     private static final Logger logger = LoggerFactory.getLogger(XXXXX.class); 
     logger.info("info");
+
+
+
+### 常见问题
+
+1. logback打印日志不显示具体的信息，显示问号
+
+<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{68} %line - %msg%n </Pattern>
+
+AsyncAppender默认是不携带堆栈信息的
+
+```
+<appender name="fileAsyncInfoAppender" class="ch.qos.logback.classic.AsyncAppender">
+	<!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+	<discardingThreshold>0</discardingThreshold>
+	<!-- 更改默认的队列的深度,该值会影响性能.默认值为256 -->
+	<queueSize>512</queueSize>
+	<!-- 新增这行为了打印栈堆信息 -->
+	<includeCallerData>true</includeCallerData>
+	<appender-ref ref="orderServerAppender"/>
+ </appender>
+
+```
+

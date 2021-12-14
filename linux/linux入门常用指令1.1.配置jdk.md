@@ -21,6 +21,7 @@ rpm -e --nodeps 上面的结果
         PATH=$JAVA_HOME/bin:$PATH
     :wq  #保存
     [root@localhost local]# source /etc/profile
+    [root@localhost local]# ln -s /usr/local/java/bin/java /usr/bin/java
     [root@localhost local]# java -version
         java version "1.8.0_191"
         Java(TM) SE Runtime Environment (build 1.8.0_191-b12)
