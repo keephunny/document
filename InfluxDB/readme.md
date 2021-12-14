@@ -1,5 +1,18 @@
 InfluxDB是一个由InfluxData开发的开源时序型数据，由GO语言开发，着力于高性能地查询与存储时序型数据。被广泛的应用于存储系统的监控数据，IOT行业的实时数据等场景。
 
+优点
+
+* 专为时间序列数据编写的自定义高性能数据存储，STM引擎允许高速取和数据压缩。
+* 完全用Go语言编写，编译成单个二进制文件，没有外部依赖。
+* 标签允许对系统进行索引以实现快速有效的查询。
+* 保留策略有效地自动过期数据。
+
+缺点
+
+* influxdb开源版本只支持一个节点
+
+
+
 ![image-20211209171931490](readme.assets/image-20211209171931490.png)
 
 database->database
@@ -7,6 +20,8 @@ database->database
 table->measurement
 
 column-> tag(带索引) 、field（不带索引） timestemp（唯一主键）
+
+
 
 
 
