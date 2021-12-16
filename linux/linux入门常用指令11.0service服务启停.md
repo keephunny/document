@@ -167,5 +167,12 @@ Unable to find Java
 # 解决办法
 ln -s java变量位置 可以通过 which java找到
 ln -s /usr/local/java/bin/java /sbin/java
+
+# 文件无权限
+12月 16 09:30:56 localhost.localdomain systemd[1]: Starting appname...
+12月 16 09:30:56 localhost.localdomain systemd[12417]: Failed at step EXEC spawning /root/appname/bin/service.sh: Permiss...enied
+12月 16 09:30:56 localhost.localdomain systemd[1]: appname.service: control process exited, code=exited status=203
+12月 16 09:30:56 localhost.localdomain systemd[1]: Failed to start appname.
+
 ```
 
