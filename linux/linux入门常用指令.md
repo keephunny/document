@@ -515,6 +515,38 @@ crontab [-u username]　　　　//省略用户表表示操作当前用户的cro
 * 实例12：晚上11点到早上7点之间，每隔一小时重启smb
     * 23-7/1 * * * /etc/init.d/smb restart
 
+
+
+### 防火墙配置
+
+
+
+```
+#查看防火墙运行状态
+firewall-cmd --state
+
+#查看防火墙规则
+firewall-cmd --list-all
+
+#查询端口是否开放
+firewall-cmd --query-port=8000/tcp
+
+#开放指定端口
+firewall-cmd --permanent --add-port=8000/tcp
+
+#移除开放端口
+firewall-cmd --permanent --remove-port=8000/tcp
+
+#重启防火墙
+firewall-cmd -
+```
+
+
+
+
+
+
+
 ### 查看hostname
     ```
     [root@centos7 ~]$vim /etc/hosts     
@@ -526,5 +558,4 @@ crontab [-u username]　　　　//省略用户表表示操作当前用户的cro
 ### shell工具
 windows：Xshell+Xftp
 mac：SecureCRT+SecureFx
-
 
