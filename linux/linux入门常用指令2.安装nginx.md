@@ -1,12 +1,12 @@
 
 
 ### 下载nginx包
-nginx-1.10.3.tar.gz
+nginx-1.20.1.tar.gz
 ### 解压
 ```
-[root@localhost src]# tar -zxvf nginx-1.10.3.tar.gz 
-[root@localhost src]# cd nginx-1.10.3
-[root@localhost nginx-1.10.3]# ./configure 
+[root@localhost src]# tar -zxvf nginx-1.20.1.tar.gz 
+[root@localhost src]# cd nginx-1.20.1
+[root@localhost nginx-1.20.1]# ./configure 
 checking for OS
  + Linux 3.10.0-229.el7.x86_64 x86_64
 checking for C compiler ... not found
@@ -15,7 +15,7 @@ checking for C compiler ... not found
 ```
 ### 安装gcc编译环境
 ```
-[root@localhost nginx-1.10.3]# yum install gcc-c++
+[root@localhost nginx-1.20.1]# yum install gcc-c++  -y
 已安装:
   gcc-c++.x86_64 0:4.8.3-9.el7 
 作为依赖被安装:
@@ -28,15 +28,15 @@ checking for C compiler ... not found
 ```
 如果直接安装会包错
 ./configure: error: the HTTP rewrite module requires the PCRE library.
-[root@localhost nginx-1.10.3]# yum install pcre pcre-devel -y
-[root@localhost nginx-1.10.3]# yum install zlib zlib-devel -y
-[root@localhost nginx-1.10.3]# yum install openssl openssl-devel -y
+[root@localhost nginx-1.20.1]# yum install pcre pcre-devel -y
+[root@localhost nginx-1.20.1]# yum install zlib zlib-devel -y
+[root@localhost nginx-1.20.1]# yum install openssl openssl-devel -y
 ```
 
 ### 安装nginx
 ```
 #配置检测 指定安装目录
-[root@localhost nginx-1.10.3]# ./configure --prefix=/usr/local/nginx --with-http_ssl_module --with-stream
+[root@localhost nginx-1.20.1]# ./configure --prefix=/usr/local/nginx --with-http_ssl_module --with-stream
     Configuration summary
     + using system PCRE library
     + OpenSSL library is not used
@@ -58,9 +58,9 @@ checking for C compiler ... not found
     nginx http uwsgi temporary files: "uwsgi_temp"
     nginx http scgi temporary files: "scgi_temp"
 #编译    
-[root@localhost nginx-1.10.3]# make
+[root@localhost nginx-1.20.1]# make
 #安装
-[root@localhost nginx-1.10.3]# make install
+[root@localhost nginx-1.20.1]# make install
 ```
 ### 启动nginx
 ```
@@ -105,6 +105,9 @@ WantedBy=multi-user.target
 
 ### 常用配置
 ```
+ http{
+ 	server_tokens off;
+ }
  server {
         listen  9093;
         root    "/opt/application/proj-web";
@@ -123,7 +126,7 @@ WantedBy=multi-user.target
           alias /opt/application/proj-data/;
         }
     }
-```    
+```
 
 查看开机启动项
 systemctl list-unit-files | grep enable 
