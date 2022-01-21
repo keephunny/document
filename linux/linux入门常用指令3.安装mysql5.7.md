@@ -84,6 +84,9 @@ mariadb-libs-5.5.41-2.el7_0.x86_64
 [root@localhost mysql]# cp /etc/my.cnf /etc/my.cnf.bak
 #修改配置文件
 [root@localhost mysql]# vim  /etc/my.cnf
+	
+	server-id=1
+	binlog_format=ROW
     log-bin=mysql-bin
     character_set_server=utf8
     character_set_client=utf8
@@ -131,7 +134,7 @@ mysql> use mysql;
     4 rows in set (0.00 sec)
 
 #分配root访问域
-mysql>   grant all privileges on *.* to 'root'@10.0.%' identified by '123456';  
+mysql>   grant all privileges on *.* to 'root'@'10.0.%' identified by '123456';  
 #创建其它账号及权限
 mysql>  create user 'user1'@'%'  identified by '123456';
 mysql>  grant all on `db_name`.* to 'user1'@'%';

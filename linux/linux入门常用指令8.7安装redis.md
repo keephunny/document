@@ -117,7 +117,35 @@ redis-4.0.9.tar.gz
 [root@localhost redis]# service redis restart
 ```
 
+#### 只安装redis-cli
+
+```
+wget http://download.redis.io/redis-stable.tar.gz
+tar xvzf redis-stable.tar.gz
+cd redis-stable
+make redis-cli
+sudo cp src/redis-cli /usr/local/bin/
+```
+
+
+
+```
+redis-cli [OPTIONS] [cmd [arg [arg ...]]]
+-h <主机ip>，默认是127.0.0.1
+-p <端口>，默认是6379
+-c 指定是集群模式连接
+-a <密码>，如果redis加锁，需要传递密码
+--help，显示帮助信息
+
+./redis-cli -h 172.0.0.1 -p 6379 -c -a xxxxx
+```
+
+
+
+
+
 ### 常用命令
+
 * redis-cli -h host -p port -a password
 * redis-cli --raw 可以避免中文乱码
 * redis-benchmark：redis性能测试工具
