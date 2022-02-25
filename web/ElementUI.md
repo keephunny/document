@@ -21,7 +21,10 @@ npm install webpack -g
 npm i element-ui -S
 npm install -g vue-cli   
 
-npm install sass-loader --save-dev
+cnpm install sass-loader node-sass --save-dev
+-D 
+-S save
+-G
 ```
 
 
