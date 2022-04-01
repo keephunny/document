@@ -49,7 +49,19 @@ swagger bootstrap
 opencv 车牌识别
 目标跟随
 
+#### 数仓建模分层理论
 
+```
+数仓架构发展史
+https://www.ikeguang.com/?p=1582
+https://www.ikeguang.com/?p=1559
+
+https://www.ikeguang.com/?p=1582
+数仓建模—指标体系
+https://www.ikeguang.com/?p=1957
+```
+
+https://cloud.baidu.com/doc/TSDB/index.html
 
 
 ### mysql

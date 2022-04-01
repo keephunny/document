@@ -40,3 +40,30 @@ vue_dev_tools.crx
 
 
 
+#### 路由
+
+```
+npm install vue-router --save
+import VueRouter from 'vue-router'
+import Vue from 'vue'
+
+Vue.use(VueRouter);
+//创建VueRouter对象
+const routes=[
+	
+]
+
+//vue挂载router实例 main.js
+import router from './router/index'
+new Vue({
+	el:"#app",
+	router:router
+})	
+
+
+<router-link to="/home">home</router-link>
+<router-link to="/table">table</router-link>
+<router-view></router-view>
+
+```
+
