@@ -162,3 +162,8 @@ show field keys
 > precision ms
 ```
 
+
+
+百度TSDB
+
+https://cloud.baidu.com/doc/TSDB/s/Kjwvxs9na
