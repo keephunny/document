@@ -67,3 +67,11 @@ https://support.huaweicloud.com/intl/zh-cn/api-IoT/iot_06_2003.html
 电信物联网平台
 
 https://www.ctwing.cn/
+
+
+
+
+
+Apache IoTDB
+
+EMQX+TDengine
