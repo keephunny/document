@@ -67,3 +67,80 @@ new Vue({
 
 ```
 
+
+
+
+
+
+
+```
+局部安装：
+npm install webpack
+npm install webpack-cli
+
+全局安装：
+npm install global webpack
+npm install global webpack-cli（生成目录脚手架）
+
+
+cnpm install --global vue-cli
+
+
+
+
+Failed to download repo vuejs-templates/webpack-simple: connect ETIMEDOUT 192.30.253.112:443，一直报这个错
+
+解决办法：将本机hosts文件中配置有关GitHub的IP全部删除，保存后，继续打开doc执行命令：
+vue init webpack project 便可以成功！
+
+
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+  axios.post('/api/api/v1.0/aepDevice/queryDeviceList',{
+            pageNow: that.currentPage,
+            pageSize: that.pageSize,
+            productId: 15074737
+        },
+        {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
+		
+		
+   axios.get('/api/api/v1.0/aepDevice/queryDeviceList',{
+        params: {
+          pageNow: that.currentPage,
+          pageSize: that.pageSize,
+          productId: 15074737
+        }}
+	queryDeviceList(QueryDeviceListParam queryDeviceListParam) {
+	
+	
+application/x-www-form-urlencoded
+最常见的POST编码方式。在nodejs中我们可以使用querystring中间件对参数进行分离。
+import axios from 'axios';
+import qs from 'qs'
+let data={name:'张三',age:18};
+axios.post('url',qs.stringify(data))
+.then(res=>{
+	console.log('返回数据：',res)
+})
+	
+multipart/form-data
+import axios from 'axios';
+let data=new FormData();
+data.append('name','张三');
+data.append('age',18);
+axios.post('url',data)
+.then(res=>{
+	console.log('返回数据：',res)
+})
+
+application/json
+axios默认的提交方式。如果使用这种编码方式，那么传递到后台的将是序列化后的json字符串。
+import axios from 'axios';
+let data={name:'张三',age:18};
+axios.post('url',data)
+.then(res=>{
+	console.log('返回数据：',res)
+})
+	
+```
+

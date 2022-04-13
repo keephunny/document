@@ -23,6 +23,20 @@ column-> tag(带索引) 、field（不带索引） timestemp（唯一主键）
 
 
 
+### 基本概念
+
+#### Point
+
+Point由时间戳（time）、标签（tags）、数据（field）组成。Point相当于传统数据库里的一行数据。
+
+* time：每个数据的记录时间，默认是纳秒，是数据库中的主索引(会自动生成)
+* fields：各种记录值，一般都是数值型，例如：压力、流量、温度等 
+* tags：各种有索引的属性，例如：设备编号、区域等
+
+#### Series
+
+所在数据库中的数据，需要用图表来表示，而这个series表示这个表里面的数据，可以在图表上画成几条线：通过tags排列组合算出来。
+
 
 
 
@@ -31,7 +45,7 @@ column-> tag(带索引) 、field（不带索引） timestemp（唯一主键）
 
 Measurement（表）
 
-Tages（维度列）
+Tags（维度列）
 
 
 
@@ -162,3 +176,8 @@ show field keys
 > precision ms
 ```
 
+
+
+百度TSDB
+
+https://cloud.baidu.com/doc/TSDB/s/Kjwvxs9na

@@ -60,6 +60,8 @@ restrict安全相关参数
         */5 * * * * ntpdate ntp.ntsc.ac.cn && hwclock -w
         #每小时
         * */1 * * *  ntpdate ntp.ntsc.ac.cn && hwclock -w
+        #每天17:10
+		10 17 * * * 
     #查看定时任务
     [root@localhost src]# crontab -l
     #重启服务
