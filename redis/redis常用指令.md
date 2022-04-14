@@ -11,22 +11,72 @@
 
 ### 连接
 
+```
+redis-cli [OPTIONS] [cmd [arg [arg ...]]]
+	-h <主机ip>，默认是127.0.0.1
+	-p <端口>，默认是6379
+	-a <密码>，如果redis加锁，需要传递密码
+	-c 指定是集群模式连接
+	--help，显示帮助信息
+	
+```
 
 
-https://blog.csdn.net/m0_64830623/article/details/123145942
+
+### 键(Key)
+
+```
+# 查看数据库匹配pattern的key
+keys pattern
+
+# 判断是否存在 返回存在的个数
+exists key [key]
+
+# 设置key的超时时间
+expire key seconds
+
+# 返回key剩余有效时间 秒
+ttl key
+
+# 查看key所存储的数据类型
+type key
+
+# 删除key
+del key [key2]
+```
+
+
 
 ### 数据操作
 
 #### String
 
 ```
+# 设置key的value
+set key value
 
-set key value：设置key的value
-get key：获取指定key的value
-getset key value：为key设置新的value，并返回原来的value
-mget key1 key2 ……：获取多个key的value
-strlen key：返回key的字符串长度
+# 获取指定key的value
+get key
+
+# 获取value的指定位数
+
+# 为key设置新的value，并返回原来的value
+getset key value
+
+# 获取多个key的value
+mget key1 key2 …
+
+# 当key不存在时设置key的value
+setnx key value
+
+# 返回key的字符串长度
+strlen key
+
 ```
+
+
+
+强化现有设备与拟建系统的兼容性。
 
 
 
