@@ -8,6 +8,47 @@
 
 
 
+
+### 连接
+
+
+
+https://blog.csdn.net/m0_64830623/article/details/123145942
+
+### 数据操作
+
+#### String
+
+```
+
+set key value：设置key的value
+get key：获取指定key的value
+getset key value：为key设置新的value，并返回原来的value
+mget key1 key2 ……：获取多个key的value
+strlen key：返回key的字符串长度
+```
+
+
+
+#### Hash
+
+
+
+#### List
+
+
+
+#### Set
+
+
+
+#### Zset
+
+
+
+### 持久化
+
+
 1.	DEL key：该命令用于在 key 存在时删除 key。
 2.	DUMP key：序列化给定 key ，并返回被序列化的值。
 3.	EXISTS key：检查给定 key 是否存在。
