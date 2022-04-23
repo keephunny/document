@@ -81,3 +81,19 @@ https://www.espressif.com/zh-hans/support/documents/technical-documents
 Apache IoTDB
 
 EMQX+TDengine
+
+
+
+数字政通TDengin
+
+https://www.taosdata.com/blog/2022/04/14/7686.html
+
+
+
+设备工作原理动图
+
+https://mp.weixin.qq.com/s?spm=a2c6h.12873639.article-detail.5.37677d5e3kjcUf&__biz=MjM5OTA4MzA0MA==&mid=2454921417&idx=1&sn=9e4ad15ad286fcf829c6f6328d89a6e0&chksm=b1676d868610e490917c4cd5f6898b29c5ea3335cf28d854f4b27e9e63238d806caa63201651&scene=21#wechat_redirect
+
+
+
+Azure IoT Edge

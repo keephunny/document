@@ -60,6 +60,32 @@ redis-4.0.9.tar.gz
 ### 开机自启
 
 ```
+[root@localhost bin]# vi /etc/systemd/system/redis.service
+
+  [Unit]
+  Description=redis-server
+  After=network.target
+
+  [Service]
+  Type=forking
+  ExecStart=/usr/local/redis/bin/redis-server /usr/local/redis/bin/redis.conf
+  PrivateTmp=true
+
+  [Install]
+  WantedBy=multi-user.target
+
+[root@localhost bin]# systemctl daemon-reload
+[root@localhost bin]# systemctl start redis
+
+```
+
+
+
+
+
+
+
+```
 #创建脚本文件
 [root@localhost redis]# vim /etc/init.d/redis
 

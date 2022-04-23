@@ -1,4 +1,9 @@
+ELK->Elastic Stack
 
+* Elasticsearch 存储、搜索、分析
+* Logstash：数据采集
+* Kibana：可化化
+* Beats：数据采集
 
 
 
