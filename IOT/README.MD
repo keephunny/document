@@ -94,6 +94,14 @@ https://www.taosdata.com/blog/2022/04/14/7686.html
 
 https://mp.weixin.qq.com/s?spm=a2c6h.12873639.article-detail.5.37677d5e3kjcUf&__biz=MjM5OTA4MzA0MA==&mid=2454921417&idx=1&sn=9e4ad15ad286fcf829c6f6328d89a6e0&chksm=b1676d868610e490917c4cd5f6898b29c5ea3335cf28d854f4b27e9e63238d806caa63201651&scene=21#wechat_redirect
 
+设备上报二进制数据在 IoT 平台解析实践
 
+https://developer.aliyun.com/article/779278?spm=a2c6h.12873639.article-detail.53.110a44da6o1cC4
+
+
+
+智能物联网设备厂商
+
+https://www.xmsiyb.com/product/nb-iot/58.html
 
 Azure IoT Edge
