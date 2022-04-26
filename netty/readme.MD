@@ -55,3 +55,15 @@ Buffer是一个抽象类，位于java.nio包中，是一块可以写入数据的
 * limit：上界，缓冲区的当前数据量
 * position：当前位置
 * mark：位置标记
+
+
+
+```
+// netty发送数据
+pubic void channelRead(ChannelHandlerContext ctx,Object msg){
+	ByteBuf response=ctx.alloc().buffer(20);
+	response.writeBytes("say hello".getBytes());
+	ctx.writeAndFlush(response);
+}
+```
+
