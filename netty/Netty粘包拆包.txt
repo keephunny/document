@@ -19,3 +19,48 @@
 * 行拆包器LineBasedFrameDecoder每个应用层数据包都以换行符作为分隔符进行拆分。
 * 分隔符拆包顺DelimiterBasedFrameDecoder每个应用层数据包都通过自定义的分隔符进行拆分。
 * 基于数据长度的拆包器LengthFieldBasedFrameDecoder将应用层数据包的长度作为接收端数据包的拆分依据，按照应用层数据包的大大小拆包。
+
+
+
+
+
+
+
+#### 粘包方法
+
+#### FixedLengthFrameDecoder
+
+是一个定长帧的解码器，你需要指定定长的帧大小，Netty只有读到一个完整的桢时才会调用后续的ChannelRead()。
+
+
+
+####  LineBasedFrameDecoder
+
+是一个以「换行符」为分隔符的解码器。
+
+
+
+#### DelimiterBasedFrameDecoder
+
+是一个可以自定义分隔符的解码器，Netty只有当读到指定的分隔符时才会认为是一个完整的数据报文。
+
+
+
+#### LengthFieldBasedFrameDecoder
+
+是一个将报文长度写入到请求头的解码器，Netty会根据长度字段的偏移量和长度字段占用的字节数，读取到本次报文的长度，当读到一个完整的帧时才调用后续的ChannelRead()
+
+```
+public LengthFieldBasedFrameDecoder(ByteOrder byteOrder,int lengthFieldOffset,int lengthFieldLength,int lengthAdjustment,int initialBytesToStrip,boolean failFast)
+
+byteOrder：是指明长度域字段是大端序还是小端序，因为Netty要读取长度域字段的值，所以大端小端要设置好，默认Netty是大端序ByteOrder.BIG_ENDIAN。(即高位在前为大端模式，低位在前为小端模式)
+
+maxFrameLength：是指最大包长度，如果Netty最终生成的数据包超过这个长度，Netty就会报错。
+
+lengthFieldOffset：是指明Length的偏移位，在这里应该是2，因为长度域前2个字节。
+
+lengthFieldLength：是Length字段长度，这里是2，Length字段占2个字节。
+
+
+```
+
