@@ -38,3 +38,10 @@ ELK->Elastic Stack
 * Settings：对集群中索引的定义，比如一个索引默认的分片数，副本数等。
 * Mapping：类似于关系型数据中表结构信息，用于定义索引中字段（Field）的存储类型、分词方式、是否存储等信息。Elasticsearch中的mapping是可以动态识别的。如果没有特殊需求，则不需要手动创建mapping，因为Elasticsearch会自动根据数据格式识别它的类型，但是当需要对某些字段添加特殊属性（比如：定义使用其他分词器、是否分词、是否存储等）时，就需要手动设置mapping了。一个索引的mapping一旦创建，若已经存储了数据，就不可修改了。
 * Analyzer：字段的分词方式定义，一个analyzer通常由一个tokenizer，零到多个filter组成，比如默认的标准Analyzerr包含一个标准的token和三个filer：standard token filter、lower case token filter、stop token filter。
+
+
+
+
+
+
+
