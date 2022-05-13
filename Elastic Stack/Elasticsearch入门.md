@@ -68,6 +68,7 @@ Elasticsearch是一个接近实时的搜索平台，从索引一个文档到这�
 - boolean：布尔类型
 - float、double、half_float：浮点类型
 - object：json对象型
+- geo_point
 - nested：保留子字段之间关系的JSON对象。A JSON object that preserves the relationship between its subfields.
 
 
