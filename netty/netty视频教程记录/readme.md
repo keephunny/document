@@ -106,13 +106,80 @@ https://nyimac.gitee.io/2021/04/25/Netty%E5%9F%BA%E7%A1%80/
 
  * 53 12:07  第2章_01-netty入门-概述
 
+   ```
+   Netty介绍
+   Mina介绍
+   ```
+
  * 54 15:52  第2章_02-netty入门-hello-server
 
+   ```
+   netty-all 4.1.39.Final
+   //启动器
+   new ServerBootstrap()
+       //BossEventLoop workerEventLoop(selector,thread) group组
+       .group(new NioEventLoopGroup())
+       //服务器端 NioServerSocketChannel
+       .channel(NioServerSocketChannel.class)
+       //boss负责处理连接   worker负责处理读写
+       .childHandler(new ChannelInitializer<NioSocketChannel>() {
+           //客户端数据读写通道，添加handler
+           @Override
+           protected void initChannel(NioSocketChannel ch) throws Exception {
+               //添田口口String解码器
+               ch.pipeline().addLast(new StringDecoder());
+               //添加读handler
+               ch.pipeline().addLast(new ChannelInboundHandlerAdapter() {
+                   @Override
+                   public void channelRead(ChannelHandlerContext ctx, Object msg) {
+                       logger.info("接收内容:{}", msg);
+                   }
+               });
+           }
+       })
+       //绑定端口
+       .bind(8080);
+   ```
+
+   
+
  * 55 07:33  第2章_03-netty入门-hello-client
+
+   ```
+   //启动类
+   new Bootstrap()
+       //添加EventLoop
+       .group(new NioEventLoopGroup())
+       //客户端channel实现
+       .channel(NioSocketChannel.class)
+       //添加处理器
+       .handler(new ChannelInitializer<NioSocketChannel>() {
+           @Override
+           protected void initChannel(NioSocketChannel ch) throws Exception {
+               ch.pipeline().addLast(new StringEncoder());
+           }
+       })
+       .connect(new InetSocketAddress("127.0.0.1", 8080))
+       .sync()
+       .channel()
+       .writeAndFlush("xxxxx");
+   ```
+
+   
 
  * 56 13:39  第2章_04-netty入门-hello-流程分析
 
  * 57 12:25  第2章_05-netty入门-hello-正确观念
+
+   ```
+   Channel 数据通道 
+   msg 流动的数据，最开始是ByteBuf，但经过pipeline的加工，会变成其它对象，最后输出又变成ByteBuf。
+   handler 数据处理工序，分为Inbound和Outbound。合在一起就是pipeline，pipeline负责发布事件，传播给下一个handler。	
+   eventLoop 数据处理程序，可以管理多个channel的io操作，并且同一程序负责了某个channel，就形成绑定关系。
+   
+   ```
+
+   
 
  * 58 05:53  第2章_06-netty入门-eventloop-概述
 
@@ -194,6 +261,7 @@ https://nyimac.gitee.io/2021/04/25/Netty%E5%9F%BA%E7%A1%80/
    	pipeline()方法添加处理器
    	write()将数据写入
    	writeAndFlush()将数据写入并刷出
+   	flush()
    ```
 
    
@@ -201,7 +269,10 @@ https://nyimac.gitee.io/2021/04/25/Netty%E5%9F%BA%E7%A1%80/
  * 65 10:10  第2章_13-netty入门-channelFuture-连接问题
 
    ```
-   
+   ChannelFuture channelFuture=new Bootstrap();
+   channelFuture.sync();
+   Channel channel=channelFuture.channe();
+   channel.writeAndFlush("xxx");
    
    ```
 
@@ -216,10 +287,10 @@ https://nyimac.gitee.io/2021/04/25/Netty%E5%9F%BA%E7%A1%80/
    //方法二 回调
    channelFuture.addListener(new ChannelFutureListener() {
    @Override
-   public void operationComplete(ChannelFuture future) throws Exception {
-   Channel channel = future.channel();
-   channel.writeAndFlush("hello world2");
-   }
+   	public void operationComplete(ChannelFuture future) throws Exception {
+   		Channel channel = future.channel();
+   		channel.writeAndFlush("hello world2");
+   	}
    });
    ```
 
@@ -228,12 +299,29 @@ https://nyimac.gitee.io/2021/04/25/Netty%E5%9F%BA%E7%A1%80/
  * 67 06:44  第2章_15-netty入门-channelFuture-关闭问题
 
    ```
-   
+   参考代码67
    ```
 
    
 
  * 68 10:42  第2章_16-netty入门-channelFuture-处理关闭
+
+   ```
+   ChannelFuture closeFuture=channel.closeFuture();
+   closeFuture.sync();
+   logger.info("关闭");
+   
+   //方法二
+   closeFuture.addListener(new ChannelFutureListener(){
+   	@Override
+   	public void operationComplete(ChannelFuture future)throws Exception{
+   		logger.info("正确处理关闭之后的操作")
+   		group.shutdownGracefully();
+   	}
+   });
+   ```
+
+   
 
  * 69 04:48  第2章_17-netty入门-channelFuture-处理关闭
 
@@ -297,11 +385,54 @@ https://nyimac.gitee.io/2021/04/25/Netty%E5%9F%BA%E7%A1%80/
 
  * 75 13:23  第2章_23-netty入门-pipeline
 
+   ```
+   ChannelHandler用来处理Channel上的各种事件，分为入站、出站两种。所有的ChannelHandler被连成一串就是pipeline。
+   * 入站处理器通常是ChannelInboudHandlerAdapter的子类
+   * 出站处理器通常是ChannelOutboundHandlerAdapter的子类
+   
+   ChannelPipeline pipeline = channel.pipeline();
+   pipeline.addLast(new ChannelInboundHandlerAdapter() {
+   	@Override
+   	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+   		logger.info("handler1");
+   		//传输 ChannelInboundHandlerAdapter ctx.fireChannelRead(msg);
+   		//入栈链 传递下一个handler 如果是最后一个handler可以不调用
+   		super.channelRead(ctx, msg);
+   	}
+   });
+   
+   
+   		//从栈尾往回写
+   		channel.writeAndFlush(0xff);
+   		
+   		//从当前栈往前回写
+   		ctx.writeAndFlush(0xff);
+   		
+   		
+   参考代码 TestNetty75
+   ```
+
+   ![image-20220515133008606](/Users/apple/Library/Application Support/typora-user-images/image-20220515133008606.png)
+
  * 76 10:00  第2章_24-netty入门-inbound-handler
 
  * 77 07:14  第2章_25-netty入门-outbound-handler
 
+   ```
+   //从最后通道往前返回
+   ch.writeAndFlush(ctx.alloc().buffer().writeBytes("xx".getByte()));
+   //从当通道前返回
+   ctx.writeAndFlush(ctx.alloc().buffer().writeBytes("xx".getByte()));
+   ```
+
  * 78 04:56  第2章_26-netty入门-embedded-channel
+
+   ```
+   EmbeddedChannel
+   参考代码 TestNetty78
+   ```
+
+   
 
  * 79 05:46  第2章_27-netty入门-bytebuf-创建
 
