@@ -59,6 +59,11 @@ void channelWritabilityChangedd(ChannelHandlerContext ctx);
 public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
     ctx.fireChannelRegistered();
 }
+
+// 出错时
+@Override
+@SuppressWarnings("deprecation")
+void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception;
 ```
 
 
@@ -100,6 +105,8 @@ public interface ChannelOutboundHandler extends ChannelHandler {
 
 
 #### ChannelDuplexHandler
+
+ChannelDuplexHandler继承了ChannelInboundHandlerAdapter，相当于实现了ChannelInboundHandler，同时还实现了ChannelOutboundHandler接口，因此支持Inbound(入站)和Outbound(出站)事件的处理；
 
 
 
@@ -150,8 +157,40 @@ public abstract class SimpleChannelInboundHandler<I> extends ChannelInboundHandl
           }
       }
   }
-
 	protected abstract void channelRead0(ChannelHandlerContext ctx, I msg) throws Exception;
 }
 ```
 
+
+
+DefaultChannelPipeline
+
+可以看到, 在 DefaultChannelPipeline 的构造方法中，将传入的 channel 赋值给字段 this.channel，这里需要说明下：对于每个新的通道，会创建一个新的ChannelPipeline并附加至通道。一旦连接建立，Channel和ChannelPipeline之间的耦合就是永久性的。Channel不能附加其他的ChannelPipeline或从ChannelPipeline分离。
+
+接着又实例化了两个特殊的字段: tail 与 head，这两个字段是一个双向链表的头和尾。其实在 DefaultChannelPipeline 中，维护了一个以 AbstractChannelHandlerContext 为节点的双向链表，这个链表是 Netty 实现 Pipeline 机制的关键。
+
+```
+final class DefaultChannelPipeline implements ChannelPipeline {
+    final AbstractChannelHandlerContext head;
+    final AbstractChannelHandlerContext tail;
+    
+    public DefaultChannelPipeline(AbstractChannel channel) {
+        if (channel == null) {
+            throw new NullPointerException("channel");
+        }
+        this.channel = channel;
+
+        tail = new TailContext(this);
+        head = new HeadContext(this);
+
+        head.next = tail;
+        tail.prev = head;
+    }
+}
+```
+
+
+
+
+
+![image-20220524070544332](/Users/apple/Library/Application Support/typora-user-images/image-20220524070544332.png)
