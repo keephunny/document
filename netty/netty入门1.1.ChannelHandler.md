@@ -108,6 +108,30 @@ public interface ChannelOutboundHandler extends ChannelHandler {
 
 ChannelDuplexHandler继承了ChannelInboundHandlerAdapter，相当于实现了ChannelInboundHandler，同时还实现了ChannelOutboundHandler接口，因此支持Inbound(入站)和Outbound(出站)事件的处理；
 
+ChannelDuplexHhandler和ChannelOutboundHandlerAdapter有很多类似的，但是因为不支持继承只能自已再实现一次，两都没有继承关系。它对ChannelOutboundHandler的实现和ChannelOutboundhandlerAdapter几乎是一样的。可以理解为ChannelDuplexHandler具备ChannelInboundHandlerAdapter和ChhannelOutboundHandlerAdapter的特性，在定义一个双向处理器的时候，可以继承ChannelDuplexHandler来实现。
+
+```
+public class ChannelDuplexHandler extends ChannelInboundHandlerAdapter implements ChannelOutboundHandler {
+  @Override
+  public void bind(ChannelHandlerContext ctx, SocketAddress localAddress, ChannelPromise promise) throws Exception {}
+  
+  public void connect(ChannelHandlerContext ctx, SocketAddress remoteAddress, SocketAddress localAddress, ChannelPromise promise) throws Exception {}
+    
+  public void disconnect(ChannelHandlerContext ctx, ChannelPromise promise) throws Exception {}
+
+  public void close(ChannelHandlerContext ctx, ChannelPromise promise) throws Exception {}
+    
+  public void deregister(ChannelHandlerContext ctx, ChannelPromise promise) throws Exception {}
+  public void read(ChannelHandlerContext ctx) throws Exception {}
+    
+  public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {}
+    
+  public void flush(ChannelHandlerContext ctx) throws Exception{}
+}
+```
+
+
+
 
 
 #### ChannelHandlerAdapter
@@ -194,3 +218,18 @@ final class DefaultChannelPipeline implements ChannelPipeline {
 
 
 ![image-20220524070544332](/Users/apple/Library/Application Support/typora-user-images/image-20220524070544332.png)
+
+
+
+Channel -> 
+
+​	ChannelInboundHandler和ChannelOutboundHandler -> 
+
+​		ChannelHandlerAdapter
+
+​		ChannelInboundHandlerAdapter
+
+​		ChannelOutboundHandlerAdapter
+
+​		ChannelDuplexHandler
+
