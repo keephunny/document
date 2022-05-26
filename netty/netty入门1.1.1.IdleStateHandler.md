@@ -17,6 +17,10 @@ IdleStateHandler心跳机制主要是用来检测远端是否存活，如果不�
 
 自定义处理类Handler继承ChannlInboundHandlerAdapter，实现其userEventTriggered()方法，在出现超时事件时会被触发，包括读空闲超时或者写空闲超时；
 
+* readerIdleTime:读超时时间 在服务器端会每隔5秒来检查一下channelRead方法被调用的情况，如果在5秒内该链上的channelRead方法都没有被触发，就会调用userEventTriggered方法：
+* writerIdleTime:写超时时间
+* allIdleTime:所有类型的超时时间
+
 ```
 ServerBootstrap b= new ServerBootstrap();
 b.group(bossGroup,workerGroup).channel(NioServerSocketChannel.class)
