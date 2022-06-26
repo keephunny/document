@@ -1,3 +1,5 @@
+channel相当于socket，基本IO操作bind()、connect()、read()、write()依赖于顶层网络传输所提供的原语。
+
 
 
 ### Channel生命周期
