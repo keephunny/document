@@ -12,10 +12,19 @@ jps [option] [pid]
 ```
 
 ### jinfo
-实时查看和调整JVM配置参数
+configuration info for java 实时查看和调整JVM配置参数，并不是所有的参数都支持动态修改
 ```
 jinfo pid
 jinfo -flags pid
+jinfo -flag MaxHeapSize PID 
+jinfo -flag UseG1GC PID   #查看是否用到了G1，有'-'号表示没有用到
+
+#修改
+jinfo -flag [+|-] PID 
+jinfo -flag <name>=<value> PID
+
+#查看全部
+jinfo -flags PID  
 ```
 
 ### jstat
@@ -28,5 +37,6 @@ jstat -class pid
 ```
 
 ### jmap
+jmap jvm memory map：获取dump文件，获取java内存的相关信息、堆中各区域的使用情况、统计信息、类加载信自己等。
 * jmap -heap pid
 获取heap的概要信息，gc使用的算法，heap的配置及jvm堆内存的使用情况
