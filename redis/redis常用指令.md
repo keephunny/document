@@ -306,3 +306,11 @@ Redis 服务器命令
 管理 redis 的慢日志
 31	SYNC
 用于复制功能(replication)的内部命令
+
+
+
+
+
+```
+cat command.txt | /usr/local/redis/bin/redis-cli -h $host -p $port -a $password --pipe
+```
