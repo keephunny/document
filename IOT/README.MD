@@ -82,7 +82,9 @@ Apache IoTDB
 
 EMQX+TDengine
 
+http://www.aiotos.net/
 
+IOTOS物联网中间件平台 | 开源社区 --- 深圳爱投斯官网 | 
 
 
 

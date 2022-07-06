@@ -1,5 +1,5 @@
  ### 修改host文件
- 
+
 1. C:\Windows\System32\drivers\etc\hosts
 2. 在https://www.ipaddress.com/ 查询github的ip
 	* github.com
@@ -16,5 +16,18 @@
 ```
 4. 刷新DNS缓存
 ```
-	ipconfig /flushdns
+	C:\Windows\System32\drivers\etc\hosts
+	win   ipconfig /flushdns
+	
+	sudo vim /etc/hosts
+	mac   sudo killall -HUP mDNSResponder
 ```
+
+
+
+
+
+```
+
+```
+

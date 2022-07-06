@@ -56,3 +56,71 @@ Elasticsearch是一个接近实时的搜索平台，从索引一个文档到这�
 * green：所有主要分片和复制分片都可用
 * yellow：所有主要分片可用，部份复制分片不可用
 * red：部份主要分片不可用
+
+
+
+#### ES数据类型
+
+- text：全文检索字符串
+- keyword：用于精确字符串匹配和聚合
+- date、date_nanos：格式化日期或数字日期
+- byte、short、integer、long：整型
+- boolean：布尔类型
+- float、double、half_float：浮点类型
+- object：json对象型
+- geo_point
+- nested：保留子字段之间关系的JSON对象。A JSON object that preserves the relationship between its subfields.
+
+
+
+### 创建索引
+
+创建一个索引（index）并插入一个文档（document）。如果在RDMS中，通常需要先创建数据和表才能插入数据。但elasticsearch却不需要，可以直接创建并插入数据。为了提高入门的易用性，Elasticsearchh可以自动动态的创建mapping，当建立一个索引的第一个文档时，如果你没有创建schema，那么es会根据输入的字段猜测数据类型，并自动创建schema，这种方式我们称为schema on write。mapping被称作为es的数据schema。文档中所有字段都需要映射到es中的数据类型。mapping指定每一个字段的数据类型，并确定如何索引和分析字段以进行搜索。mapping 可以显式声明或动态生成。一旦一个索引的某个字段的类型被确定下来之后，那么后续导入的文档的这个字段的类型必须是和之前的是一致，否则写入将导致错误。动态 mapping 还可能导致某些字段未映射到你的预期，从而导致索引请求失败。显式 mapping 允许更好地控制索引中的字段和数据类型。
+
+```
+PUT 索引名/文档名/ID
+{
+	"uid":1,
+	"user":"张三",
+	"city":"北京"
+}
+
+response：
+{
+	"_index":"索引名",
+	"_type":"文档名",
+	"_id":"1"
+	"_version":4		//版本会每次自动增加1
+	"result":"updated",
+	"_shards":{
+		"total":2,	//两个分版
+		"successful":1,
+		"failed":0
+	},
+	"_seq_no":8,
+	"_primary_term":1
+}
+```
+
+**修改自动创建索引**
+
+```
+PUT _cluster/settings
+{
+	"persistent":{
+		"action.auto_create_index":"false"
+	}
+}
+```
+
+通常对一个通过上面方法写入到 Elasticsearch 的文档，在默认的情况下并不马上可以进行搜索。这是因为在 Elasticsearch 的设计中，有一个叫做 refresh 的操作。这个周期为1秒。
+
+```
+强制更新
+PUT twitter/_doc/1?refresh=true
+同步的操作，它等待下一个 refresh 周期发生完后，才返回。
+PUT twitter/_doc/1?refresh=wait_for
+```
+
+
+
