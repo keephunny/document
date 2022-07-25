@@ -1,0 +1,6 @@
+mybatis插件在四大组件(Executor、StatementHandler、ParameterHander、ResultSetHander)处理提供了简单易用的插件扩展机制。利用JDK动态代理机制进行方法拦截，为这些接口的实现类创建代理对象，在执行方时，先去执行代理对象的方法，从而执行自定义方法。
+
+mybatis允许拦截以下方法
+* 执行器Executor的update、query、commit、rollback等
+* SQL构造器StatementHander的prepare、parameterrize、batch、upate、query等
+* 结果处理器ResultSetHandler的handlerResultSets、handleOutputParameters等
