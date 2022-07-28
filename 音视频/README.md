@@ -41,3 +41,8 @@ H.264是在MPEG-4技术的基础之上建立起来的，其编解码流程主要
 
 数据速率
 总比特率
+
+
+
+青柿视频流媒体服务解决方案
+https://www.liveqing.com/docs/products/LiveGBS.html

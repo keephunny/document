@@ -99,3 +99,22 @@ mvn package
 [INFO] hello my parameter [参数1, 参数2]
 [INFO] hello my args hello world
 ```
+
+
+#### 插件安装
+
+@Mojo(name = mvnPlugin)
+
+安装插件要在后续使用插件，就必须至少将插件安装到本地仓库，settings.xml配置
+```
+    <pluginGroups>
+        <!-- pluginGroup
+            | Specifies a further group identifier to use for plugin lookup.
+        <pluginGroup>com.your.plugins</pluginGroup>
+        -->
+        <pluginGroup>org.example.mvnplugin</pluginGroup>
+    </pluginGroups>
+```
+
+Maven根据插件的artifactId来识别插件前缀。
+mvn hello:mvnPlugin

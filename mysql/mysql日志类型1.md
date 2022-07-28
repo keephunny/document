@@ -58,5 +58,12 @@ MySQL中有六种日志文件，分别是：重做日志（redo log）、回滚�
 
 
 
+#### redo log
+redo log记录的是物理日志，也就是磁盘数据页的修改，作用用来保证服务崩溃后，仍能把事务中变更的数据持久化到磁盘上。mysql事务中持久性就是redo log实现的。
+
+#### undo log
+undo log记录的是逻辑日志，也就是sql语句，用来事务回滚时，恢复到修改前的数据，实现MVCC多版本并发控制。mysql原子性就是undo log实现的。
+
+
 http://baijiahao.baidu.com/s?id=1605412388928730420&wfr=spider&for=pc
 https://www.cnblogs.com/xiaocen/p/3709114.html

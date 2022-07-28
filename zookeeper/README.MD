@@ -51,3 +51,20 @@ Znode有四种形式的目录节点（默认是persistent ）
 * 持久化顺序编号目录节点（PERSISTENT_SEQUENTIAL）客户端与zookeeper断开连接后，该节点依旧存在，只是Zookeeper给该节点名称进行顺序编号
 * 临时目录节点（EPHEMERAL）客户端与zookeeper断开连接后，该节点被删除
 * 临时顺序编号目录节点（EPHEMERAL_SEQUENTIAL）客户端与zookeeper断开连接后，该节点被删除，只是Zookeeper给该节点名称进行顺序编号
+
+
+#### 认证方式
+* world：默认方式，开放权限随意访问。
+* auth：已授权且认证通过的用户可以访问。
+* digest：用户名：密码认证方式，最常用
+* IP白名单： 授权指定的Ip地址，和指定的权限点，控制访问。
+```
+#添加认证用户
+addauth digest 用户名:密码
+
+#设置权限
+setAcl /path auth:用户名:密码:权限
+
+#查看Acl设置
+getAcl /path
+```
