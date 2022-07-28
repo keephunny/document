@@ -126,6 +126,34 @@ WantedBy=multi-user.target
           alias /opt/application/proj-data/;
         }
     }
+    
+    
+    
+stream {
+    upstream hefei_tcp {
+        least_conn;
+        server 60.174.207.210:38996;
+    }
+    upstream hefei_udp {
+        least_conn;
+        server 60.174.207.210:35683;
+    }
+
+	server {
+		listen        38996;
+		proxy_pass    hefei_tcp;
+		proxy_timeout 3s;
+		proxy_connect_timeout 1s;
+	}
+	
+	server {
+		listen        35683;
+		proxy_pass    hefei_udp;
+		proxy_timeout 3s;
+		proxy_connect_timeout 1s;
+	}
+}
+
 ```
 
 查看开机启动项

@@ -1,0 +1,6 @@
+  #influx -username admin -password 123456
+  influx:
+    url: http://10.5.4.169:8086
+    user: admin
+    password: 123456
+    database: iot_log

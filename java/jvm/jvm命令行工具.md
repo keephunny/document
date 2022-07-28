@@ -1,3 +1,12 @@
+jps：查看正在运行的Java进程
+jstat：查看JVM统计信息
+jinfo：实时查看和修改JVM配置参数
+jmap：导出内存映像文件&内存使用情况
+jhat：JDK自带堆分析工具
+jstack：打印JVM中线程快照
+jcmd：多功能命令行
+jstatd：远程主机信息收集
+
 
 ### jps
 java virtaul machine process status tool 查询linux系统当前所有的java进程pid的命令。
