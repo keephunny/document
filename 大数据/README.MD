@@ -79,8 +79,30 @@ Kafka是一种分布式，基于发布/订阅的消息系统，采用java和scal
 Flink是一个框架和分布式处理引擎，用于在无边界和有边界数据流上进行有状态的计算，并能以内存速度和任意规模进行计算。它需要计算资源来执行应用程序，flink集成了所有常见的集群资源管理器，但也可以作为独立集群运行。
 
 
+* hive是一个构建在hadoop平台上的数据仓库，离线处理批量计算
+* hive数据存放在hdfs上
+* hive数据查询最终被转换为mapreduce
+* hive方便熟悉sql，快速上手大数据分析
+* hive默认计算引擎是mapreduce，所以查询时间较长
+* hive底层计算引擎也可以更换为spark/tez
+* hive中的表是纯逻辑表，只有表定义，本身不存储和计算，完全依赖于是hdfs/mapreduce
+* hive主要用于构建基于hadoop平台的数据仓库、离线处理海量数据，提供了完整的sql实现，一般用于是历史数据的分析挖掘。  
 
+* hbase是一个基于hdfs平台的noSql数据库
+* hbase数据存储在hdfs上
+* hbase是基于数据库本身的实时查询，而非运行mapreduce 
+* hbase本身不支持sql，需要通过集成Phoenix/hive才支持sql
+* hbase基于一级索引rowkey进行数据查询，所以查询速度比较快
+* hbase底层基于scan进行数据扫描，而非基于mapreduce
+* hbase中的表是物理表，有独立的物理数据结构，查询时可以将数据加载到内存中，提升后续的查询效率。
+* hbase适合大数据实时查询，海量数据的存储，近实时数据库，支持线上业务的实时查询。
 
+实时数仓
+Lambda架构、Kappa架构
+实时计算引擎
+flink、sparkStreaming、storm
+实时存储引擎
+clickhouse、hbase、tidb、es、druid
 
 
 
