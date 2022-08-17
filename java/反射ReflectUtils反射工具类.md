@@ -1,3 +1,21 @@
+反射是java语言的一个特性，它允许程序在运行时进行自我检查并且对内部的成员进行操作。
+
+创建类对象
+```
+#第一种：通过 Class 对象的 newInstance() 方法。
+Class clz = Class.forName("com.xxx");
+Object obj= (Object)clz.newInstance();
+
+
+#第二种：通过 Constructor 对象的 newInstance() 方法
+Class clz = Class.forName("com.xxx");
+Constructor constructor = clz.getConstructor();
+Object obj= (Object)constructor.newInstance();
+
+```
+
+
+```
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -104,3 +122,4 @@ public class ReflectUtils {
         stuNameField.set(obj,value);
     }
 }
+```

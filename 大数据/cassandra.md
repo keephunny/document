@@ -38,4 +38,10 @@ java集成cassandra
 * springdata-cassandra
 
 
+SSTable
+将数据言语件段中的数据按key进行排序，并且保证相同的key只出现一次，这种格式称之为排序字符串表，简称SSTable（sorted string table）。将数据按key进行排序后有以下几个好处：
+* 合并更加简单高效，即数据文件段大于内存，也可以使用类似的归并排序算法进行数据段的压缩，即将一个大文件拆成多个小数据进行压缩，如果多个文件段中有相同的key，那么以最新的文件段的key为准。
+* 缓解哈希索引需要整个hashMap存储到内存的窘境，因为key是排序的，所以可以在内存中维持一个稀疏索引上，存储每个key的范围。
+
+
 https://blog.csdn.net/weixin_39800144/article/details/117259407

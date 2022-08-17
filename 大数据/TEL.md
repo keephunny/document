@@ -1,0 +1,1 @@
+用来描述从来源端经过抽取Extract、转换transform、加载load至目的端的过程。
