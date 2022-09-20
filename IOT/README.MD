@@ -89,9 +89,27 @@ IOTOS物联网中间件平台 | 开源社区 --- 深圳爱投斯官网 |
 
 
 水利部南京水利水文自动化研究所
-
 https://www.nsy.com.cn/
 
+
+modbus 智慧工业物联网平台
+https://www.modbus.cn/
+http://cloud.modbus.cn/
+常用协议
+ModBus RTU
+ModBus TCP
+MLINK TCP
+Hj212-2017
+MLINK MQTT
+TOS IT
+Blovestyle MQTT
+DISPLACE TCP
+FBox Transfer
+OpenGW
+SanteUps
+GqGs
+HaiWei MQTT
+EI-RN6020型用户信息传输装置按照国家标准GB26875.1-2011《城市消防远程监控系统第一部分
 
 
 
@@ -129,6 +147,9 @@ https://www.nsy.com.cn/
 **BCD码**
 
 BCD码（Binary-Coded Decimal‎），用4位二进制数来表示1位十进制数中的0~9这10个数码，是一种二进制的数字编码形式，用二进制编码的十进制代码。BCD码这种编码形式利用了四个位元来储存一个十进制的数码，使二进制和十进制之间的转换得以快捷的进行。这种编码技巧最常用于会计系统的设计里，因为会计制度经常需要对很长的数字串作准确的计算。相对于一般的浮点式记数法，采用BCD码，既可保存数值的精确度，又可免去使计算机作浮点运算时所耗费的时间。此外，对于其他需要高精确度的计算，BCD编码亦很常用。
+
+
+
 
 
 

@@ -6,6 +6,7 @@ https://www.apache.org/
 https://dlcdn.apache.org/zookeeper/zookeeper-3.8.0/apache-zookeeper-3.8.0-bin.tar.gz
 ```
 
+[apache-zookeeper-3.5.10-bin.tar.gz](./resources/apache-zookeeper-3.5.10-bin.tar.gz)
 
 
 
@@ -32,16 +33,17 @@ https://dlcdn.apache.org/zookeeper/zookeeper-3.8.0/apache-zookeeper-3.8.0-bin.ta
 [root@localhost ]# 
 #开机自启
 [root@localhost ]# vim /usr/lib/systemd/system/zookeeper.service
-	[Unit]
+    [Unit]
     Description=zookeeper
     After=network.target remote-fs.target nss-lookup.target
     [Service]
     Type=forking
-    ExecStart=/root/zookeeper-3.8.0-bin/bin/zkServer.sh start
-    ExecReload=/root/zookeeper-3.8.0-bin/bin/zkServer.sh restart
-    ExecStop=/root/zookeeper-3.8.0-bin/bin/zkServer.sh stop
+    ExecStart=/usr/local/zookeeper/bin/zkServer.sh start
+    ExecReload=/usr/local/zookeeper/bin/zkServer.sh restart
+    ExecStop=/usr/local/zookeeper/bin/zkServer.sh stop
     [Install]
     WantedBy=multi-user.target
+
 [root@localhost ]# systemctl enable zookeeper
 [root@localhost ]# systemctl start zookeeper
 [root@localhost ]# 
@@ -61,7 +63,28 @@ https://dlcdn.apache.org/zookeeper/zookeeper-3.8.0/apache-zookeeper-3.8.0-bin.ta
     ZooKeeper JMX enabled by default
     Using config: /usr/local/zookeeper-3.8.0/bin/../conf/zoo.cfg
     Client port found: 2181. Client address: localhost. Client SSL: false.
-    Mode: standalone
+    Mode: standalone 
+
+```
+
+```
+报错
+localhost.localdomain systemd[1]: Starting zookeeper...
+zkServer.sh[28661]: Error: JAVA_HOME is not set and java ...H.
+systemd[1]: zookeeper.service: control process exited, co...=1
+systemd[1]: Failed to start zookeeper.
+systemd[1]: Unit zookeeper.service entered failed state.
+systemd[1]: zookeeper.service failed.
+
+
+vim bin/zkServer.sh
+	#
+	# If this scripted is run out of /usr/bin or some other system bin directory
+	# it should be linked to and not copied. Things like java jar files are found
+	# relative to the canonical path of this script.
+	#
+
+	export JAVA_HOME=/usr/local/java
 
 ```
 
