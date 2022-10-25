@@ -56,6 +56,7 @@ TDengine：TDengine-server-2.6.0.18-Linux-x64.tar.gz
 
 ### 配置调试 
 命令行工具
+```
 [root@localhost src]# taos
   CREATE DATABASE demo;
   USE demo;
@@ -63,7 +64,7 @@ TDengine：TDengine-server-2.6.0.18-Linux-x64.tar.gz
   INSERT INTO t VALUES ('2019-07-15 00:00:00', 10);
   INSERT INTO t VALUES ('2019-07-15 01:00:00', 20);
   SELECT * FROM t;
-
+```
 #### 文件目录
 ```
 [root@localhost ]# cd /usr/local/taos
@@ -116,8 +117,16 @@ systemctl status taosadapter
 
 
 ### 目录文件
-|目录|说明|
-|/usr/local/taos/bin|TDengine 可执行文件目录。其中的执行文件都会软链接到/usr/bin 目录下。|
+
+```
+/usr/local/taos/bin	：可执行文件目录。其中的执行文件都会软链接到/usr/bin 目录下。
+/usr/local/taos/driver		： 动态链接库目录。会软链接到/usr/lib 目录下。
+/usr/local/taos/examples		： 各种语言应用示例目录。
+/usr/local/taos/include		： 对外提供的 C 语言接口的头文件。
+/etc/taos/taos.cfg		： 默认[配置文件]
+/var/lib/taos		： 默认数据文件目录。可通过[配置文件]修改位置。
+/var/log/taos		： 默认日志文件目录。可通过[配置文件]修改位置。
+```
 
 
 
