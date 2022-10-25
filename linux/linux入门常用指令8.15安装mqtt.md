@@ -134,11 +134,62 @@ INSERT INTO mqtt_acl (allow, ipaddr, username, clientid, access, topic) VALUES (
 ```
 
 ### 开机自启
-
 ```
 [root@localhost ]# systemctl enable emqx
 
 ```
+
+### 集群配置
+静态配置
+```
+#节点1
+[root@localhost ]# vim /etc/etc/emqx.conf
+  cluster.discovery = static
+  cluster.static.seeds = emqx@192.168.1.1 ,emqx@192.168.1.2
+  node.name = emqx@192.168.1.1
+
+#节点2
+[root@localhost ]# vim /etc/etc/emqx.conf
+  cluster.discovery = static
+  cluster.static.seeds = emqx@192.168.1.1 ,emqx@192.168.1.2
+  node.name = emqx@192.168.1.2
+[root@localhost ]# emqx restart
+[root@localhost ]# 
+[root@localhost ]# 
+
+
+```
+
+动态配置
+```
+[root@localhost ]# ./bin/emqx_ctl cluster join emqx@192.168.1.2
+[root@localhost ]# ./bin/emqx_ctl cluster status
+```
+
+组播集群
+```
+  cluster.discovery = mcast
+  cluster.mcast.addr = 239.192.0.1
+  cluster.mcast.ports = 4369,4370
+  cluster.mcast.iface = 0.0.0.0
+  cluster.mcast.ttl = 255
+  cluster.mcast.loop = on
+```
+
+退出集群
+```
+子节点
+[root@localhost ]# ./bin/emqx_ctl cluster leave
+主节点
+[root@localhost ]# ./bin/emqx_ctl cluster force-leave node1@192.168.1.2
+```
+
+
+* 1883	MQTT/TCP 协议端口
+* 11883	MQTT/TCP 协议内部端口，仅用于本机客户端连接
+* 8883	MQTT/SSL 协议端口
+* 8083	MQTT/WS 协议端口
+* 8084	MQTT/WSS 协议端口
 
 ### 常见问题
 
