@@ -114,6 +114,13 @@ systemctl start taosadapter
 systemctl stop taosadapter
 systemctl status taosadapter
 
+
+### 目录文件
+|目录|说明|
+|/usr/local/taos/bin|TDengine 可执行文件目录。其中的执行文件都会软链接到/usr/bin 目录下。|
+
+
+
 ### 常见错误
 
 ```
