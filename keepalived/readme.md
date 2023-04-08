@@ -1,5 +1,5 @@
 Keepalived为linux系统提供了负载均均衡的高可用能力，负载均衡的能力来自于linux内核中的LVS项目模块IP Virtual Server。
-eepalived 运行在 Linux 系统中，它会启动内核中的 LVS 服务来创建虚拟服务器。比如我们在两台服务器上都启动了一个 Keepalived 服务，然后 LVS 会虚拟化出来一个 IP（VIP），但是只有一个 Keepalived 会接管这个 VIP，就是说客户端的请求只会到 Master Keepalived 节点上。这样流量就只会到一台 keepalived 上了，然后 keepalived 可以配置几台真实的服务 IP 地址和端口，通过负载调度算法将流量分摊到这些服务上。对于另外一台 Backup Keepalived 节点。
+keepalived 运行在 Linux 系统中，它会启动内核中的 LVS 服务来创建虚拟服务器。比如我们在两台服务器上都启动了一个 Keepalived 服务，然后 LVS 会虚拟化出来一个 IP（VIP），但是只有一个 Keepalived 会接管这个 VIP，就是说客户端的请求只会到 Master Keepalived 节点上。这样流量就只会到一台 keepalived 上了，然后 keepalived 可以配置几台真实的服务 IP 地址和端口，通过负载调度算法将流量分摊到这些服务上。对于另外一台 Backup Keepalived 节点。
 #### LVS负载功能
 * 基于DNS域名轮流解析
 * 基于客户端调度访问方案

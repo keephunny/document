@@ -71,7 +71,9 @@ mariadb-libs-5.5.41-2.el7_0.x86_64
     mysql> set password=password("xxxxx");
     #密码强度
     ERROR 1819 (HY000): Your password does not satisfy the current policy requirements
-
+    SHOW VARIABLES LIKE 'validate_password%';
+    set global validate_password_policy=LOW; 
+    set global validate_password_length=6;
 [root@localhost mysql]# 
 [root@localhost mysql]# 
 [root@localhost mysql]# 
@@ -104,6 +106,14 @@ mariadb-libs-5.5.41-2.el7_0.x86_64
     #数据库连接闲置最大时间值,如果MYSQL中有大量的Sleep进程，则需要修改
     wait_timeout=1800
     interactive_timeout = 1800
+
+
+    #密码策略配置
+    validate_password_policy=0
+    validate_password_length=6
+    validate_password_mixed_case_count=0
+    validate_password_number_count=0
+    validate_password_special_char_count=0
         
 #重新启动mysql
 [root@localhost mysql]# service mysql restart

@@ -45,7 +45,7 @@ ArrayList有两个构造方法，一个无参，一个传入初始容量。
         elementData[index] = element;
         size++;
     }
-
+    
     /** 计算最小容量 */
     private static int calculateCapacity(Object[] elementData, int minCapacity) {
         if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
@@ -53,19 +53,19 @@ ArrayList有两个构造方法，一个无参，一个传入初始容量。
         }
         return minCapacity;
     }
-
+    
     /** 扩容的入口方法 */
     private void ensureCapacityInternal(int minCapacity) {
         ensureExplicitCapacity(calculateCapacity(elementData, minCapacity));
     }
-
+    
     private void ensureExplicitCapacity(int minCapacity) {
         modCount++;
         // overflow-conscious code
         if (minCapacity - elementData.length > 0)
             grow(minCapacity);
     }
-
+    
     /** 扩容的核心方法 */
     private void grow(int minCapacity) {
         // overflow-conscious code
@@ -79,7 +79,7 @@ ArrayList有两个构造方法，一个无参，一个传入初始容量。
         // 扩容
         elementData = Arrays.copyOf(elementData, newCapacity);
     }
-
+    
     private static int hugeCapacity(int minCapacity) {
         if (minCapacity < 0) // overflow
             throw new OutOfMemoryError();
@@ -106,7 +106,7 @@ ArrayList有两个构造方法，一个无参，一个传入初始容量。
     E elementData(int index) {
         return (E) elementData[index];
     }
-
+    
     /** 删除指定元素，若元素重复，则只删除下标最小的元素 */
     public boolean remove(Object o) {
         if (o == null) {
@@ -125,7 +125,7 @@ ArrayList有两个构造方法，一个无参，一个传入初始容量。
         }
         return false;
     }
-
+    
     /** 快速删除，不做边界检查，也不返回删除的元素值 */
     private void fastRemove(int index) {
         modCount++;
@@ -169,3 +169,21 @@ ArrayList实现了RandomAccess接口这是一个标志性接口。表明他具�
         }
     }
     System.out.println(list);
+
+
+### List初始化
+
+```
+List<Integer> test = new ArrayList<Integer>(){{
+    add(1);
+    add(2);
+}};
+
+List<Integer> test = Arrays.asList(1, 2, 3);
+List<Integer> test = new ArrayList<>(Arrays.asList(1, 2, 3));
+
+List<Integer> test = Stream.of(1, 2, 3).collect(Collectors.toList());
+
+List<Integer> test = Lists.newArrayList(1, 2, 3);
+```
+

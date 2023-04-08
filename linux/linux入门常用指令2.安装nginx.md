@@ -130,25 +130,25 @@ WantedBy=multi-user.target
     
     
 stream {
-    upstream hefei_tcp {
+    upstream tcp {
         least_conn;
-        server 60.174.207.210:38996;
+        server 192.168.1.1:8001;
     }
-    upstream hefei_udp {
+    upstream udp {
         least_conn;
-        server 60.174.207.210:35683;
+        server 192.168.1.2:8002;
     }
 
 	server {
-		listen        38996;
-		proxy_pass    hefei_tcp;
+		listen        8001;
+		proxy_pass    tcp;
 		proxy_timeout 3s;
 		proxy_connect_timeout 1s;
 	}
 	
 	server {
-		listen        35683;
-		proxy_pass    hefei_udp;
+		listen        8002;
+		proxy_pass    udp;
 		proxy_timeout 3s;
 		proxy_connect_timeout 1s;
 	}

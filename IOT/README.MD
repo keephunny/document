@@ -1,3 +1,5 @@
+UDI是英文Unique Device Identification的缩写，
+
 ### 物联网网关
 在物联网的体系架构中，在感知层和网络层两个不同的网络之间需要一个中间设备，那就是“物联网网关”。物联网网关既可用于广域网互连，也可以用于局域网互连。此外物联网网关还需具备设备管理功能，运营商通过物联网网关设备可以管理底层的各感知节点。
 1. 协议转换功能
@@ -112,6 +114,64 @@ HaiWei MQTT
 EI-RN6020型用户信息传输装置按照国家标准GB26875.1-2011《城市消防远程监控系统第一部分
 
 
+ 
+运营商平台中国电信的天翼物联  https://www.ctwing.cn/
+中国联通的物联网平台  https://www.10646.cn/
+中国移动的ONENet  https://open.iot.10086.cn/
+互联网大厂平台
+百度天工  https://cloud.baidu.com/solution/iot/index.html
+阿里云物联网  https://iot.aliyun.com/腾讯IoT Explorer  https://cloud.tencent.com/product/iotexplorer
+腾讯QQ物联  https://iot.open.qq.com/
+京东微联  https://smartcloud.jd.com/
+京东小京鱼  https://jdwhale.jd.com/
+京东智联云  https://www.jdcloud.com/cn/iot/all
+小米IoT开发者平台  https://iot.mi.com/
+设备商平台
+华为云IoT  https://www.huaweicloud.com/product/iot.html
+浪潮云IoT  https://cloud.inspur.com/product/iotdm/
+新华三绿洲平台  https://iot-developer.h3c.com/
+庆科云FogCloud  https://v2.fogcloud.io/
+中消云  http://www.zxycloud.com/
+创业型公司平台涂鸦智能  https://www.tuya.com/cn/
+机智云  https://www.gizwits.com/
+云智易  http://www.xlink.cn/
+青云  https://sw.qingcloud.com/internet_of_things
+智城云  https://www.zcyun.cn/
+氦氪云  https://www.hekr.me/Ablecloud  http://www.ablecloud.com/Yeelink  http://www.yeelink.net/
+艾拉物联  https://www.ayla.com.cn/物联网安全云平台360智汇云  https://zyun.360.cn/product/iotdevice
+信锐物联网开放平台  https://www.sundray.com.cn/solutions/iot_cloud.html青莲云  https://www.qinglianyun.com/
+企业自用云平台
+美的M-Smart  https://msmart.midea.com/cloudPlatformTCL
+鸿鹄实验室  https://iot.tcl.com/
+工业互联网平台树根根云  https://www.rootcloud.com/
+有人物联  http://cloud.usr.cn/
+繁易  http://www.flexem.cn/
+宏电Walle  http://www.hongdian.com/m2m/prolist_101036003018.html
+鲁邦通RCMS  http://www.robustel.com.cn/robustel-cloud-manager-service/
+瀚云科技HanClouds  https://www.hanclouds.com/
+蘑菇物联  https://www.mogulinker.com/
+普奥云  http://www.proudsmart.com/
+中科云创  http://www.cloudinnov.com/
+联想LeapIOT  http://dibg.lenovo.com.cn/leapIOT.html
+紫光云  https://www.unicde.com/shtml/269/283/index.html
+中服云  http://www.cserver.com.cn/
+广联达筑联  http://zl.glodon.com/
+海尔卡奥斯  https://www.cosmoplat.com/
+寄云  https://www.neucloud.cn/
+
+国外大厂亚马逊AWS IoT  https://aws.amazon.com/cn/iot/
+谷歌IoT  https://cloud.google.com/solutions/iot/
+微软Azure IoT  https://azure.microsoft.com/zh-cn/overview/iot/
+Arm Pelion  https://pelion.com/GE Predix  https://www.predix.io/
+IBM Watson  https://www.ibm.com/cloud/watson-iot-platform
+西门子  https://mindsphere.io/
+甲骨文  https://www.oracle.com/internet-of-things/
+思科Kinetic  https://www.cisco.com/c/en/us/solutions/internet-of-things/kinetic.html总结
+
+
+
+
+
 
 
 ### 超声波和雷达
@@ -158,3 +218,30 @@ BCD码（Binary-Coded Decimal‎），用4位二进制数来表示1位十进制�
 
 
 
+### RS-485
+RS-485是一个物理接口，简单来说，也就是硬件。
+它只需要两根通讯线，即可以在两个或两个以上的设备之间进行数据传输。
+这种数据传输的连接，是半双工的通讯方式。在某一个时刻，一个设备只能进行发送数据或接收数据。
+硬件通讯接口建立后，在进行数据传输的仪表之间需要约定一个数据协议，以使接收端能够解析收到的数据，这便是“协议”的概念。
+通讯协议有统一标准的协议格式，如“ModBus”协议，标准的协议内容全面，包含的内容很多，但不易理解。由此，部分厂商自定义了一种协议，简单实用，这便是“自定义协议”。
+RS-485总线由于其成本低廉，设计简单而得到了广泛的应用，大量用于智能家居、安防监控，智能交通，智能楼宇，机房监控，工业自动化等各个领域。RS-485总线敷设线路比较简单，但是有一些相应的事项必须注意，否则会容易导致通信失败。
+
+### Modbus
+Modbus是通信协议的其中一种，就像汉语和英语一样，是一种交流的语言，一种机器之间交流的语言。
+那么在交流之前肯定要有沟通的桥梁，那就是传输媒介RS-485或RS-232等其他电气规则。
+同一种协议可以用不同的传输媒介方式，如RS-485或RS-232.
+Modbus协议又分Modbus RTU，Modbus ASCII和后来发展的Modbus TCP三种模式。
+其中前两种所用的物理硬件接口都是串行(Serial)通讯口(RS-232、RS-485、RS-422)。而Modbus TCP则是为了顺应当今世界的发展潮流，都可以用Ethernet网或Internet来连接，传送数据。所以又叫Modbus TCP模式，该模式的硬件接口就是以太网(Ethernet)口了，也就是我们电脑上一般用的网络口了。
+所以说呢，RS485是硬件，Modbus是通讯语言，它们可以合作实现国际标准协议进行设备通讯。
+
+
+### 数据传输方式
+数据传输方式（data transmission mode），是数据在信道上传送所采取的方式。
+
+若按数据传输的顺序可以分为「并行传输」和「串行传输」；
+若按数据传输的同步方式可分为「同步传输」和「异步传输」；
+若按数据传输的流向和时间关系可以分为单工、半双工和全双工数据传输。
+串行链路中定义了两种数据传输方式：异步和同步。
+
+异步传输：是以「字节」为单位来传输数据，并且需要采用额外的起始位和停止位来标记每个字节的开始和结束。起始位为二进制值0，停止位为二进制值1。在这种传输方式下，开始和停止位占据发送数据的相当大的比例，每个字节的发送都需要额外的开销。
+同步传输：是以「帧」为单位来传输数据，在通信时需要使用时钟来同步本端和对端的设备通信。DCE 即数据通信设备，它提供了一个用于同步 DCE 设备和 DTE 设备之间数据传输的时钟信号。DTE 即数据终端设备，它通常使用 DCE 产生的时钟信号。

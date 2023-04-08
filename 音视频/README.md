@@ -43,6 +43,114 @@ H.264是在MPEG-4技术的基础之上建立起来的，其编解码流程主要
 总比特率
 
 
+### 名词解释
+* OSD（on-screen display）即屏幕菜单式调节方式
+* PTZ 在安防监控应用中是 Pan/Tilt/Zoom 的简写，代表云台全方位（左右/上下）移动及镜头变倍、变焦控制。
+* SIP：（Session initialization Protocol，会话初始协议）是由IETF制定的多媒体通信协议。是一个基于文本的应用层控制协议，用于创建、修改和释放一个或多个参与者的会话。SIP 是一种源于互联网的IP 语音会话控制协议，具有灵活、易于实现、便于扩展等特点。
+* IPC：IP Camera网络摄像机，它是在前一代模拟摄像机的基础上，集成了编码模块后的摄像机。
+* 信令：信令是控制电路的信号，是终端和终端、终端和网络之间传递的一种消息，专门用来控制电路，建立、管理、删除连接，以使用户能够正常通过这些连接进行通信。
+* flv
+* rtmp
+* hls
+* m3u8
+* DVR：Digital Video Recorder 硬盘录像机
+* NVR：Network Video Recorder，即网络视频录像机
+* GB28181
+* RSVP（ Resource ReServation Protocol ）用于预约网络资源，
+* RTP（ Real-time Transmit Protocol ）用于传输实时数据并提供服务质量（ QoS ）反馈，
+* RTSP （ Real-Time Stream Protocol ）用于控制实时媒体流的传输，
+* SAP（ Session Announcement Protocol ）用于通过组播发布多媒体会话，
+* SDP（ Session Description Protocol ）用于描述多媒体会话。
+* IPSec:因特网安全协议(InternetProtocolSecurity)
+* ISUP是海康部分新版NVR主动连接协议的新名称
+
+
+ehome
+isup
 
 青柿视频流媒体服务解决方案
 https://www.liveqing.com/docs/products/LiveGBS.html
+https://www.liveqing.com/docs/manuals/LiveGBS.html
+
+demo
+https://gbs.liveqing.com:10010/login.html
+
+ 安徽旭帆信息科技有限公司
+http://www.tsingsee.com/
+https://github.com/tsingsee/EasyIPCamera
+
+
+安徽
+http://www.easydarwin.org/
+
+
+https://github.com/swwheihei/wvp-GB28181
+https://doc.wvp-pro.cn/#/./_content/introduction/config
+
+
+海康萤石平台
+https://open.ys7.com/help/399
+
+一个基于C++11的高性能运营级流媒体服务框架
+https://github.com/ZLMediaKit/ZLMediaKit
+
+
+
+国产开源流媒体SRS4.0对视频监控GB28181的支持
+https://github.com/ossrs/srs
+https://ossrs.net/lts/zh-cn/docs/v5/doc/introduction
+https://zhuanlan.zhihu.com/p/141113179?utm_source=wechat_session
+
+5.0安装配置 海康 players/srs_gb28181.html
+https://blog.csdn.net/adkada1/article/details/121121901
+
+https://www.bilibili.com/video/BV1Mv4y1d7Vy/?spm_id_from=333.337.search-card.all.click&vd_source=47a8ecfae6ac799392c4199544055284
+从零开发国标GB28181流媒体服务器，并实现大华摄像头国标协议推流。代码开源地址：https://gitee.com/Vanishi/BXC_SipServer。GB28181流媒体服务器的sip信令服务是我自己开发，流媒体传输和流媒体分发则采用开源项目ZLMediaKit。最终可以将摄像头的视频流通过国标协议传输到流媒体服务器，并实现RTSP/RTMP/HTTP-FLV/HLS等协议进行分发。另外如果没有支持GB28181的摄像头用来调试，可以看我视频合集里面另外一个模拟GB28181摄像头的项目。
+
+
+
+实现一个支持国标GB28181协议的摄像头模拟软件
+https://www.bilibili.com/video/BV1cK411z73C/?spm_id_from=333.788&vd_source=47a8ecfae6ac799392c4199544055284
+
+
+
+
+GBSipDevice客户端测试 模拟软件
+https://gitee.com/DLGCY_GB28181/GB28181_ServerPlatform
+https://www.dianjilingqu.com/541592.html
+
+
+海康
+tsingeye/FreeEhome
+https://github.com/tsingeye/FreeEhome
+
+
+
+各终端实时推流
+https://github.com/EasyDarwin/EasyPusher
+
+开放演示平台
+https://gbs.realgbs.com:8280/monitor/catalogs
+https://gbs.liveqing.com:10010/login.html
+
+
+cd cmake-3.12.4
+./bootstrap
+gmake
+./configure
+make && make install
+vi /etc/profile
+export PATH=/usr/loacl/bin/cmake:$PATH
+source /etc/profile
+
+
+
+No SOURCES given to target: flv
+CMake Error at CMakeLists.txt:111 (add_library):
+  No SOURCES given to target: mpeg
+CMake Error at CMakeLists.txt:132 (add_library):
+  No SOURCES given to target: mov
+CMake Error at CMakeLists.txt:170 (add_library):
+  No SOURCES given to target: zltoolkit
+CMake Error at CMakeLists.txt:148 (add_library):
+  No SOURCES given to target: rtp

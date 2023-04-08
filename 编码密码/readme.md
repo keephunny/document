@@ -31,3 +31,8 @@ CRC编码 = M(X) + R(X)
 
 **海明码校验**
 
+
+
+### ASCII码
+![](./resources/ascii-1-1.png)
+![](./resources/ascii-2-1.png)

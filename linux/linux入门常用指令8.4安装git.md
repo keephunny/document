@@ -9,6 +9,7 @@ yum install git
 ### 源码包安装
 
 https://git-scm.com/download/linux
+wget --no-check-certificate https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.9.5.tar.gz
 
 #### 依赖
 

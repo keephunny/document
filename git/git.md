@@ -31,6 +31,9 @@ git config --list
 git config --global user.name "username"
 git config --global user.email  useremail@qq.com
 
+git config --local user.name "username"
+git config --local user.email  useremail@qq.com
+
 查看是否设置成功
 git config user.name
 git config user.email
@@ -43,3 +46,9 @@ git config user.email
 优先级
 git config （git config  --local ） > git config --global > git config --system。
 ```
+
+
+限制文件上传大小
+git config --global http.postBuffer 524288000
+git config --global http.postBuffer 524288000
+(52428000=500×1024×1024,即500M)

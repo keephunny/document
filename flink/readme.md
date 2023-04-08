@@ -13,4 +13,33 @@ flink流处理
  * SQL层
  * Table API层
  * DataStream/DataSet API
- * 有状态流处理
+ * 有状态流处理 prosessFuntion
+
+
+ nc -lk
+
+ ### flink数据源
+ * 从集合读取
+ * 从文件读取
+ * 从socket读取
+ * 从kafka读取
+ * 自定义数据源
+ * flink支持的数据类型TypeInformation
+
+
+ #### P41 转换算子
+
+P43 扁平映射flatMap，主要将数据流中的整体(集合类型)拆分成一个一个的个体使用。消费一个元素可能产生0到多个元素。
+
+P44 聚合算子 Aggregation
+* 按键分区(keyBy) flink对海量数据做聚合时需要进行分区
+    KeyedStream
+
+P52 输出算子Sink
+SinkFunction
+writeAsCsv
+writeAsText
+writeAsSocket
+
+
+P59 Flink时间窗口

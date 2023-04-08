@@ -22,7 +22,7 @@ https://dlcdn.apache.org/zookeeper/zookeeper-3.8.0/apache-zookeeper-3.8.0-bin.ta
 
 #配置环境变量
 [root@localhost ]# vim /etc/profile
-	ZOOKEEPER_HOME=/root/apache-zookeeper-3.8.0-bin
+	ZOOKEEPER_HOME=/usr/local/zookeeper
     PATH=$PATH:$ZOOKEEPER_HOME/bin
     export PATH ZOOKEEPER_HOME PATH
 [root@localhost ]# source /etc/profile

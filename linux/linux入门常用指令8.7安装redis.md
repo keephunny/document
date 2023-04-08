@@ -21,6 +21,13 @@ redis-4.0.9.tar.gz
     protected-mode no
     #配置密码
     requirepass foobared
+    
+    #开启持久化 生产系统需要调优配置
+    appendonly yes
+    #appendfsync always 每次操作都会持久化
+    #每秒持久化一次
+    appendfsync everysec
+	#appendfsync no 不主动持久化，默认30s一次
 
 [root@localhost redis-4.0.9] bin/redis-server ./redis.conf &
 [root@localhost redis-4.0.9] bin/redis-cli shutdown

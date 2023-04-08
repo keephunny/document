@@ -135,7 +135,6 @@ public class ChannelDuplexHandler extends ChannelInboundHandlerAdapter implement
 
 
 #### ChannelHandlerAdapter
-
 ChannelInboundHandlerAdapter和ChannelOutboundHandlerAdapter这两个适配器作为上面两个接口的实现类，分别实现了它们所有的方法，实际编程中都是以这两个类作为起点，继承它们并重写其中的方法。如果@Sharable表示可以添加到多个ChannelPipeline中
 
 ```
@@ -154,7 +153,6 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 ```
 
 #### SimpleChannelInboundHandler
-
 SimpleChannelInboundHandler是抽象类，继承了ChannelInboundHandlerAdaptor类，重写了channelRead方法，并增加了ChannelRead0抽象方法。
 
 这里使用的是模版模式，将需要变化的逻辑放在抽象方法channelRead0()中，让子类根据自已的实现进行编码，将处理逻辑不变的内容写在channelRead()中，并在里面调用channelRead0()。
