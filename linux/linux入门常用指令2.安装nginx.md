@@ -62,6 +62,26 @@ checking for C compiler ... not found
 #安装
 [root@localhost nginx-1.20.1]# make install
 ```
+
+### 配置流量转发(复制)
+```
+[root@localhost nginx-1.20.1]# ./configure --prefix=/usr/local/nginx --with-http_ssl_module --with-http_stub_status_module --with-stream
+[root@localhost nginx-1.20.1]# make && make install
+
+
+配置
+  location / {
+    root   html;
+    index  index.html index.htm;
+    mirror /mirror;
+  }
+
+  location /mirror {
+      proxy_pass http://172.25.50.46:80$request_uri;
+      proxy_set_header X-Original-URI $request_uri;
+  }
+
+```
 ### 启动nginx
 ```
 #启动
