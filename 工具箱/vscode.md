@@ -1,6 +1,8 @@
 
 ### paste image插件
 
+Ctrl+Alt+V
+
 ```
 Paste Image: Base Path
 Default Name：Y-MM-DD-HH-mm-ss
