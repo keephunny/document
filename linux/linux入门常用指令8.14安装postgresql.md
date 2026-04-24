@@ -193,3 +193,49 @@ PostgreSQL的开机自启动脚本位于PostgreSQL源码目录的contrib/start-s
 ```
 
 
+
+
+### pgsql模式
+SCHEMA是一个表的集合，一个模式可以包含视图、索引、数据类型、函数和操作符等，相同的对象名称可以被用于不同的模式而不会冲突。
+* 允许多个用户使用一个数据库且不会干扰
+* 将数据库对象组织成逻辑组以便管理
+* 第三方应用的对象可以放在独立的模式中，不会与其他对象的名称发生冲突。
+```
+CREATE SCHEMA myschema (
+
+);
+
+
+DROP SCHEMA myschema;
+
+
+DROP SCHEMA myschema CASCADE;
+```
+
+
+### pgAdmin
+pgAdmin 是一个开源的 PostgreSQL 数据库管理工具，提供了图形化的界面来简化数据库的管理与操作。
+
+pgAdmin 是 PostgreSQL 官方推荐的管理工具，支持从简单的查询到复杂的数据库管理任务，适合开发者和数据库管理员使用。
+
+主要功能
+数据库管理：支持创建、修改和删除数据库、表、视图、索引等。
+SQL 查询：内置 SQL 查询编辑器，支持代码高亮、自动补全和查询历史。
+数据导入与导出：支持 CSV、Excel、SQL 等多种格式的数据导入导出。
+备份与恢复：提供数据库的备份和恢复工具，支持全量和增量备份。
+可视化设计：支持 ER 图的可视化展示，帮助理解数据库结构。
+多版本支持：支持 PostgreSQL 的多个版本。
+远程连接：支持对远程数据库进行管理，方便跨区域的数据库维护。
+
+
+pgAdmin 官方网站：https://www.pgadmin.org/。
+pgAdmin Github 源码地址：https://github.com/pgadmin-org/。
+pgAdmin 4 是对 pgAdmin 的完全重写，基于 Python、ReactJS 和 JavaScript 构建。
+pgAdmin 4支持两种运行模式：
+桌面模式：通过 Electron 打包，可独立运行，适合个人使用。
+Web 模式：可部署在 Web 服务器上，支持多用户通过浏览器访问。
+
+
+
+pgsql帮助手册
+https://www.runoob.com/postgresql/postgresql-syntax.html
