@@ -20,6 +20,8 @@ PostgreSQL（简称PgSQL）是由加州大学伯克利分校开发的对象-关�
 
 ### 安装包
 本次安装版本为：postgresql-14.20.tar.gz
+CentOS Linux release 7.9.2009 (Core)
+
 ```
 下载地址：
 linux 
@@ -184,7 +186,10 @@ PostgreSQL的开机自启动脚本位于PostgreSQL源码目录的contrib/start-s
 
 [root@localhost src]# 
 [root@localhost src]# service postgresql start
-[root@localhost src]# 
+    Starting PostgreSQL: ok
+[root@localhost src]# systemctl status firewalld
+[root@localhost src]# systemctl stop firewalld
+[root@localhost src]# systemctl disable firewalld
 ```
 
 
