@@ -62,3 +62,11 @@ postgres=# alter user postgres with password '123456'
 查看表内容 selet * from xxx
 查看数据库表专用空间  \dt+
 清理数据库表缓存   vacuum FULL 表名
+
+
+下载地址：
+linux 
+https://www.postgresql.org/ftp/source/
+
+window
+https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
