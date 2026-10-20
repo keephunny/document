@@ -425,6 +425,25 @@ KiB Swap:  2097148 total,  2097148 free,        0 used.   679608 avail Mem
         Restarting network (via systemctl):                        [  OK  ]
     ```
 
+    
+nslookup(Name Server Lookup)是一种网络管理命令，用于从 DNS 服务器查询域名、IP或其他 DNS 记录信息。
+```
+# 方法一、
+/etc/resolv.conf
+	nameserver 114.114.114.114    
+	nameserver 8.8.8.8
+
+# 方法二、
+/etc/sysconfig/network-scripts/ifcfg-ens33
+	DNS1=118.118.118    
+	DNS2=8.8.8.8
+```
+
+重启系统：>reboot
+重启网络服务：>systemctl restart network
+查看IP: >ip addr
+查看DNS: >nslookup www.baidu.com
+
 ### 日期时间配置
 ```
     #设置日期时间

@@ -14,7 +14,25 @@
 [root@localhost /]# mount -o loop centos.iso /mnt/cdrom
 #查看挂载成功
 [root@localhost /]# ll /mnt/cdrom/
+#开机自动挂载cd
+[root@localhost /]# vim /etc/fstab
+    /dev/mapper/centos-root /                       xfs     defaults        0 0
+    UUID=595aa982-c858-4a4a-a934-a182753c2d95 /boot                   xfs     defaults        0 0
+    /dev/mapper/centos-swap swap                    swap    defaults        0 0
+    
+    #cd
+    /dev/cdrom  /mnt/cdrom   iso9660  defaults  0 0
+
+    #iso文件
+    /centos.iso  /mnt/cdrom  iso9660  loop,defaults  0  0
+
+
+[root@localhost /]# 
+[root@localhost /]# 
+[root@localhost /]# 
+
 ```
+
 ### 配置本地yum源
 ```
 [root@localhost /]# cd /etc/yum.repos.d/

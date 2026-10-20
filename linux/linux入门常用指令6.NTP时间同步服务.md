@@ -119,3 +119,29 @@ ntpdate: /usr/sbin/ntpdate /usr/share/man/man8/ntpdate.8.gz
 * time1.aliyun.com
 * time2.aliyun.com
 * time3.aliyun.com
+
+
+
+
+### 修改时区
+```
+[root@localhost ~]# timedatectl
+      Local time: Thu 2026-10-15 01:56:26 EDT
+  Universal time: Thu 2026-10-15 05:56:26 UTC
+        RTC time: Thu 2026-10-15 05:56:25
+       Time zone: America/New_York (EDT, -0400)
+     NTP enabled: yes
+NTP synchronized: no
+ RTC in local TZ: no
+      DST active: yes
+ Last DST change: DST began at
+                  Sun 2026-03-08 01:59:59 EST
+                  Sun 2026-03-08 03:00:00 EDT
+ Next DST change: DST ends (the clock jumps one hour backwards) at
+                  Sun 2026-11-01 01:59:59 EDT
+                  Sun 2026-11-01 01:00:00 EST
+[root@localhost ~]# timedatectl set-timezone Asia/Shanghai
+[root@localhost ~]# ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+[root@localhost ~]# 
+
+```
