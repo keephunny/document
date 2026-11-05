@@ -252,6 +252,43 @@ cd php-5.3.8/ext/sockets/
 ./configure --enable-sockets --with-php-config=/usr/local/php/bin/php-config
 make && make install
 
+
+安装缺失的PHP扩展bcmath、sockets、ldap
+#1. 进入扩展源码目录
+cd /download/php-8.4.14/ext/bcmath/
+#2.生成编译配置（phpize）
+/usr/local/php/bin/phpize
+#3.配置编译参数并编译并安装
+./configure --with-php-config=/usr/local/php/bin/php-config  && echo $?
+make  &&  make install
+#4.启用扩展（修改 php.ini）
+echo "extension=bcmath.so" >>  /usr/local/php/etc/php.ini
+
+#1. 进入扩展源码目录
+cd /download/php-8.4.14/ext/sockets/
+#2.生成编译配置（phpize）
+/usr/local/php/bin/phpize
+#3.配置编译参数并编译并安装
+./configure --with-php-config=/usr/local/php/bin/php-config  && echo $?
+make  &&  make install
+#4.启用扩展（修改 php.ini）
+echo "extension=sockets.so" >>  /usr/local/php/etc/php.ini
+
+#0.安装依赖
+yum install -y openldap-devel
+#1. 进入扩展源码目录
+cd /download/php-8.4.14/ext/ldap/
+#2.生成编译配置（phpize）
+/usr/local/php/bin/phpize
+#3.配置编译参数并编译并安装
+./configure \
+  --with-php-config=/usr/local/php/bin/php-config 
+###若报错configure:error: Cannot find ldap libraries in /usr/lib
+cp -frp  /usr/lib64/libldap* /usr/lib/
+make  &&  make install
+#4.启用扩展（修改 php.ini）
+echo "extension=ldap.so" >>  /usr/local/php/etc/php.ini
+
 ```
 
 
@@ -268,8 +305,10 @@ make && make install
       --with-mysql \
       --with-net-snmp \
       --with-libcurl \
-      --with-ssl 
-[root@localhost ~]# make && make install
+      --with-ssl \
+      --with-libxml2 \
+      --with-unixodbc \
+      --enable-java
 ##编译 源代码-->可执行文件(命令) 
 make  -j `nproc`  && echo $? 
 ##安装 创建目录,复制文件
@@ -443,7 +482,13 @@ error while loading shared libraries: libevent_core-2.1.so.7: cannot open shared
       }
    }
 
+[root@localhost ~]# cp -rf /usr/local/src/zabbix-7.0.21/ui/* /usr/local/zabbix_web/
+[root@localhost ~]# chown -R www:www /usr/local/zabbix_web/
+[root@localhost ~]# 
+
 ```
+
+
 
 yum install httpd -y
 systemctl start httpd
@@ -477,6 +522,10 @@ http://192.168.110.150:8000/setup.php
 ![](assets/2026-10-19-17-45-36.png)
 
 ![](assets/2026-10-19-17-51-41.png)
+
+
+![](assets/2026-10-20-15-52-40.png)
+数据库主机localhost不能连接数据库，127.0.0.1能连接数据库，localhost是本地 socket 文件通信，要求 PHP 知道文件放在哪（socket 路径），但你没告诉 PHP 正确的路径，所以失败；
 ### 常见报错
 
 解决Zabbix启动报错Cannot bind socket to“/var/run/zabbix/zabbix_server_preprocessing.sock“: [13] Permission
@@ -540,19 +589,23 @@ Time zone for PHP is not set (configuration parameter "date.timezone").
 [root@localhost ~]# cd /usr/local/src/zabbix-7.0.31
 [root@localhost ~]# yum install curl-devel -y
 [root@localhost ~]# yum install libcurl-devel -y
-[root@localhost ~]# ./configure  --prefix=/usr/local/zabbix  --enable-agent --with-net-snmp  --with-libcurl --with-ssl 
+[root@localhost ~]# ./configure  --prefix=/usr/local/zabbix  --enable-agent  --with-net-snmp  --with-libcurl --with-ssl  --with-libxml2 
+
+[root@localhost ~]# ./configure  --prefix=/usr/local/zabbix  --enable-agent --with-net-snmp  --with-libcurl --with-ssl --with-libxml2 
+
 [root@localhost ~]# make && make install
 [root@localhost ~]# mkdir  /var/log/zabbix/
 [root@localhost ~]# mkdir /usr/local/zabbix/run/
+[root@localhost ~]# useradd -r  -M -s /sbin/nologin zabbix
 [root@localhost ~]# chown -R zabbix:zabbix /var/log/zabbix/
 [root@localhost ~]# chown -R zabbix:zabbix /usr/local/zabbix/run/
 [root@localhost ~]# 
 [root@localhost ~]# 
 [root@localhost ~]# vim /usr/local/zabbix/etc/zabbix_agentd.conf
-   LogFile=/var/log/zabbix/zabbix_agentd.log
    PidFile=/usr/local/zabbix/run/zabbix_agentd.pid
+   LogFile=/var/log/zabbix/zabbix_agentd.log
    Server=zabbix_server_ip
-   ServerActive=zabbix_server_ip:10050
+   ServerActive=zabbix_server_ip:10051
    Hostname=Zabbix server
    Include=/usr/local/zabbix/etc/zabbix_agentd.conf.d/*.conf
 [root@localhost ~]# 
@@ -561,7 +614,7 @@ Time zone for PHP is not set (configuration parameter "date.timezone").
    [Unit]
    Description=Zabbix Agent 
    After=syslog.target
-   After=network.target mysqld.service #设置依赖于mysqld 不设置重启zabbix会启动不了卡住
+   After=network.target 
    [Service]
    Environment="CONFFILE=/usr/local/zabbix/etc/zabbix_agentd.conf"
    EnvironmentFile=-/usr/local/zabbix
@@ -577,10 +630,85 @@ Time zone for PHP is not set (configuration parameter "date.timezone").
    WantedBy=multi-user.target
 [root@localhost ~]# 
 [root@localhost ~]# 
-[root@localhost ~]# systemctl enable --now zabbix_server.service zabbix_agent.service
+[root@localhost ~]# systemctl enable --now zabbix_agent.service
 [root@localhost ~]# systemctl start zabbix_agent
-[root@localhost ~]# 
+[root@localhost ~]# systemctl status zabbix_agent
+[root@localhost ~]# 例外端口
+firewall-cmd --zone=public --add-port=10050/tcp --permanent
+firewall-cmd --reload
 ```
 ![](assets/2026-10-20-14-32-02.png)
 ![](assets/2026-10-20-14-31-46.png)
 ![](assets/2026-10-20-14-32-33.png)
+
+
+
+
+### 安装监控主机zabbix_agent2
+提前安装go环境
+```
+[root@localhost ~]# cd /usr/local/src/zabbix-7.0.31
+[root@localhost ~]# yum install curl-devel -y
+[root@localhost ~]# yum install libcurl-devel -y
+[root@localhost ~]# ./configure  --prefix=/usr/local/zabbix  --enable-agent  --enable-agent2 --with-net-snmp  --with-libcurl --with-ssl  --with-libxml2 
+
+[root@localhost ~]# ./configure  --prefix=/usr/local/zabbix  --enable-agent --enable-agent2 --with-net-snmp  --with-libcurl --with-ssl --with-libxml2 
+
+[root@localhost ~]# make && make install
+[root@localhost ~]# mkdir  /var/log/zabbix/
+[root@localhost ~]# mkdir /usr/local/zabbix/run/
+[root@localhost ~]# useradd -r  -M -s /sbin/nologin zabbix
+[root@localhost ~]# chown -R zabbix:zabbix /var/log/zabbix/
+[root@localhost ~]# chown -R zabbix:zabbix /usr/local/zabbix/run/
+[root@localhost ~]# 
+[root@localhost ~]# 
+[root@localhost ~]# vim /usr/local/zabbix/etc/zabbix_agentd.conf
+   PidFile=/usr/local/zabbix/run/zabbix_agentd.pid
+   LogFile=/var/log/zabbix/zabbix_agentd.log
+   Server=zabbix_server_ip
+   ServerActive=zabbix_server_ip:10051
+   Hostname=Zabbix server
+   Include=/usr/local/zabbix/etc/zabbix_agentd.conf.d/*.conf
+[root@localhost ~]# 
+[root@localhost ~]# 
+[root@localhost ~]# vim /lib/systemd/system/zabbix_agent.service
+   [Unit]
+   Description=Zabbix Agent 
+   After=syslog.target
+   After=network.target 
+   [Service]
+   Environment="CONFFILE=/usr/local/zabbix/etc/zabbix_agentd.conf"
+   EnvironmentFile=-/usr/local/zabbix
+   Type=forking
+   PIDFile=/usr/local/zabbix/run/zabbix_agentd.pid
+   ExecStart=/usr/local/zabbix/sbin/zabbix_agentd -c /usr/local/zabbix/etc/zabbix_agentd.conf
+   ExecStop=/usr/bin/kill  $MAINPID
+   Restart=always
+   RestartSec=5
+   User=zabbix
+   Group=zabbix
+   [Install]
+   WantedBy=multi-user.target
+[root@localhost ~]# 
+[root@localhost ~]# 
+[root@localhost ~]# systemctl enable --now zabbix_agent.service
+[root@localhost ~]# systemctl start zabbix_agent
+[root@localhost ~]# systemctl status zabbix_agent
+[root@localhost ~]# 例外端口
+firewall-cmd --zone=public --add-port=10050/tcp --permanent
+firewall-cmd --reload
+```
+![](assets/2026-10-20-14-32-02.png)
+![](assets/2026-10-20-14-31-46.png)
+![](assets/2026-10-20-14-32-33.png)
+
+
+
+### 常见报错
+```
+configure: error: Unable to find "go" executable in path
+
+
+
+
+```

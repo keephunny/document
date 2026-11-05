@@ -222,6 +222,18 @@ zabbix5.0离线安装，需要配置本地yum源，zabbix的yum源已下载好�
 [root@localhost ~]# yum install rh-php72-php-fpm -y
 [root@localhost ~]# yum install zabbix-web-mysql-scl -y
 [root@localhost ~]# yum install zabbix-apache-conf-scl -y
+[root@localhost ~]# cd /usr/local/src/zabbix-7.0.31
+[root@localhost ~]# ./configure \
+      --prefix=/usr/local/zabbix \
+      --enable-server \
+      --enable-agent \
+      --enable-agent2 \
+      --with-mysql \
+      --with-net-snmp \
+      --with-libcurl \
+      --with-ssl \
+      --with-libxml2 
+[root@localhost ~]# make && make install
 
 # 安装字体
 [root@localhost ~]# yum -y install wqy-microhei-fonts
@@ -236,11 +248,14 @@ zabbix5.0离线安装，需要配置本地yum源，zabbix的yum源已下载好�
 [root@localhost ~]# systemctl status zabbix-server zabbix-agent httpd rh-php72-php-fpm
 [root@localhost ~]# 
 
+例外端口
+firewall-cmd --zone=public --add-port=10050/tcp --permanent
+firewall-cmd --reload
 
 ```
 ### 访问zabbix
 
-默认账号：Amin/zabbix
+默认账号：Admin/zabbix
 
 
 ```
@@ -258,6 +273,10 @@ zabbix5.0离线安装，需要配置本地yum源，zabbix的yum源已下载好�
 解决Zabbix启动报错Cannot bind socket to“/var/run/zabbix/zabbix_server_preprocessing.sock“: [13] Permission
 
 ```
+setenforce 0
+systemctl status firewalld
+systemctl stop firewalld
+systemctl disable firewalld
 # 关闭防火墙
 [root@localhost ~]# vim /etc/selinux/config
    SELINUX=disabled
@@ -285,3 +304,17 @@ Kylin@123
 
 
 ![](assets/2026-10-15-18-02-14.png)
+
+
+
+
+### 企业微信测试推送消息
+![](assets/2026-10-22-15-32-48.png)
+
+
+
+### zabbix监控mysql
+
+CREATE USER 'zabbix_monitor'@'%' IDENTIFIED BY 'Zabbix@123';
+GRANT REPLICATION CLIENT,PROCESS,SHOW DATABASES,SHOW VIEW ON *.* TO 'zabbix_monitor'@'%';
+flush privileges;

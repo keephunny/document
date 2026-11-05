@@ -58,3 +58,6 @@ netstat -tunlp|grep 端口
 * nc -vuz 127.0.0.1 9998：客户端验证
 
 
+例外端口
+firewall-cmd --zone=public --add-port=10050/tcp --permanent
+firewall-cmd --reload

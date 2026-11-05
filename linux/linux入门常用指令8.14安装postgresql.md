@@ -127,7 +127,7 @@ initdb初使化
 ```
 #切换用户
 [root@localhost src]# su postgres
-[root@localhost src]# initdb
+[root@localhost src]# //usr/local/pgsql/bin/initdb
 [root@localhost src]# cd /usr/local/pgsql/data
 [root@localhost src]# ll
     drwx------. 5 postgres postgres    41 Apr 24 02:00 base
@@ -193,8 +193,80 @@ PostgreSQL的开机自启动脚本位于PostgreSQL源码目录的contrib/start-s
 ```
 
 
+### 创建用户
+
+```
+#切换postgres用户
+[root@localhost ]# su postgres
+[root@localhost ]# cd /usr/local/pgsql
+[root@localhost ]# ./bin/psql 
+    psql (14.20)
+    Type "help" for help.
+
+    postgres=# create user root with password '123456';
+    CREATE ROLE
+    postgres=# create database test_db;
+[root@localhost ]# 
+[root@localhost ]# 
+[root@localhost ]# GRANT ALL PRIVILEGES ON DATABASE [数据库名称] TO [用户名];
+[root@localhost ]# su postgres
+[root@localhost ]# psql -U 用户名 -h 访问地址 -p 端口 -d postgres
+[root@localhost ]$ psql -U postgres
+    psql (14.20)
+    Type "help" for help.
+
+    postgres=# 
+
+    # 使用 \l 用于查看已经存在的数据库：
+    postgres=# \l
+                                List of databases
+    Name    |  Owner   | Encoding  | Collate | Ctype |   Access privileges   
+    -----------+----------+-----------+---------+-------+-----------------------
+    postgres  | postgres | SQL_ASCII | C       | C     | 
+    template0 | postgres | SQL_ASCII | C       | C     | =c/postgres          +
+            |          |           |         |       | postgres=CTc/postgres
+    template1 | postgres | SQL_ASCII | C       | C     | =c/postgres          +
+            |          |           |         |       | postgres=CTc/postgres
+    (3 rows)
+
+    postgres=# 
+
+    # 进入命令行工具，可以使用 \help 来查看各个命令的语法
+    postgres-# \help
+
+```
 
 
+firewall-cmd --add-port=5432/tcp --permanent
+firewall-cmd --reload
+
+[root@localhost data]# psql -version
+psql: error: connection to server on socket "/tmp/.s.PGSQL.5432" failed: FATAL:  database "root" does not exist
+切换su postgres用户
+
+
+### 命令行工具
+pgsql -h 主机 -p 端口 -U 用户 -d数据库名
+* -h：数据库主机，本地连接可省略或填 localhost
+* -p：端口，默认 5432
+* -U：用户名，不指定则默认跟当前系统用户名一致
+* -d：数据库名，不指定则连同名的库，库不存在会报错
+
+数据库的命令窗口
+* \l： 查看已经存在的数据库
+* \c 数据库名：切换数据库
+* \dt ：列出当前数据库中的所有表
+* \d tblname：查看指定表的结构
+* \di: 查看索引
+* \dS：显示出了表、视图等信息
+* \dS+：显示了更多信息，包括表存储空间
+* \du: 显示用户和角色的属性。
+* \z 或 \dp: 显示表的访问权限。
+
+```
+ 
+
+```
 ### pgsql模式
 SCHEMA是一个表的集合，一个模式可以包含视图、索引、数据类型、函数和操作符等，相同的对象名称可以被用于不同的模式而不会冲突。
 * 允许多个用户使用一个数据库且不会干扰
@@ -210,6 +282,28 @@ DROP SCHEMA myschema;
 
 
 DROP SCHEMA myschema CASCADE;
+```
+
+### 配置全局环境变量
+
+```
+[root@localhost bin]# su postgres
+[postgres@localhost bin]$ pgsql
+bash: pgsql：未找到命令
+
+[postgres@localhost bin]$ vim /etc/profile
+    export PATH=$PATH:/usr/local/pgsql/bin
+[postgres@localhost bin]$ source /etc/profile
+[postgres@localhost bin]$ vim ~/.bash_profile 
+    export PATH=$PATH:/usr/local/pgsql/bin
+[postgres@localhost bin]$ source ~/.bash_profile 
+# 切换到 postgres 用户： 不加参数i u不生效
+[postgres@localhost bin]$ sudo -i -u postgres
+[postgres@localhost bin]$ 
+[postgres@localhost bin]$ 
+[postgres@localhost bin]$ 
+
+
 ```
 
 
